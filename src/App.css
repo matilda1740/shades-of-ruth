@@ -1,0 +1,81 @@
+.home_page {
+  display: flex;
+}
+
+.main_header {
+  background-color: #f8f8f8;
+  width: 100%;
+  height: 100%;
+
+  margin-left: 60px;
+}
+
+.all_pages_inner {
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+  width: 100%;
+  height: 100%;
+
+  margin-top: 60px;
+}
+
+.store_badge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+}
+
+.notifications {
+  position: relative;
+}
+
+.num_notif {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(161, 15, 15);
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  color: white;
+  top: 3px;
+  right: 5px;
+
+  font-size: 14px;
+}
+
+.no_badge {
+  display: none;
+}
+
+/* WISHLIST && CART PRODUCTS */
+
+.wishlist_left {
+  width: 50%;
+  height: 100%;
+}
+.wishlist_left > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.wishlist_right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 10px;
+}
+
+.wishlist_right * {
+  padding: 10px 0;
+}
+
+.list_icons {
+  font-size: 50px !important;
+  cursor: pointer;
+}

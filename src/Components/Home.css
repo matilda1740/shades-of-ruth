@@ -1,0 +1,32 @@
+.banner_model {
+  width: 100%;
+  height: 450px;
+  margin-bottom: 10px;
+}
+.banner_model > img {
+  object-fit: stretch;
+  height: 100%;
+  width: 100%;
+}
+.products_home {
+  height: 100%;
+  width: 100%;
+}
+
+.products_home > img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+
+.lipsticks,
+.shadows {
+  display: flex;
+  margin: 20px 0;
+}
+.lipsticks {
+  height: 400px;
+}
+.shadows {
+  height: 300px;
+}
