@@ -1,0 +1,25 @@
+{
+  "name": "shades_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+      "type" : "module",
+
+  "scripts": {
+    "test": "nodemon server",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "shades_backend"
+  },
+  "author": "Matilda Mwendwa",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "prettyjson": "^1.2.1"
+  }
+}

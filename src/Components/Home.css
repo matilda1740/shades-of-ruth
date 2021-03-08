@@ -8,25 +8,59 @@
   height: 100%;
   width: 100%;
 }
-.products_home {
-  height: 100%;
-  width: 100%;
-}
-
-.products_home > img {
-  object-fit: contain;
-  height: 100%;
-  width: 100%;
-}
-
 .lipsticks,
 .shadows {
   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
   margin: 20px 0;
+  width: 100%;
 }
-.lipsticks {
-  height: 400px;
+
+.products_home {
+  width: 40%;
+  position: relative;
+  margin: 0 10px 20px 0;
 }
-.shadows {
-  height: 300px;
+.home_img {
+  object-fit: contain;
+  height: 100%;
+  width: 90%;
+  z-index: 2;
+}
+.shadows .home_img,
+.shadows .products_overlay {
+  width: 100%;
+}
+
+.products_overlay {
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  width: 90%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: center;
+}
+
+.overlay_btn {
+  padding: 20px 30px;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  background-color: #d0aaaa;
+  cursor: pointer;
+  box-shadow: 5px 8px 6px -6px #000;
+}
+.products_home:hover .products_overlay {
+  opacity: 1;
 }

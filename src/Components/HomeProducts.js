@@ -4,11 +4,14 @@ import { ShoppingBasketRounded } from '@material-ui/icons'
 import { useStateValue } from './StateProvider'
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import CurrencyFormat from 'react-currency-format';
+import { useEffect } from 'react';
 
-export default function HomeProducts({id, type, name, image, description, price}) {
-    
-    const [ {cart, wishlist}, dispatch]  = useStateValue(); 
+export default function HomeProducts({id, type, name, image, description, price, quantity}, localCart) {
+
+    const [{cart, wishlist}, dispatch]  = useStateValue(); 
     const [addedToList, setAddedToList] = useState(false);
+    const [addedCart, setAddedToCart] = useState(false);
+    
 
     const addToCart = (e) => {
         dispatch({
@@ -19,11 +22,12 @@ export default function HomeProducts({id, type, name, image, description, price}
                 name,
                 image,
                 description,
-                price
-            }
+                price,
+                quantity,
+            },
         })
     }
-
+    
     const addToWishlist = (e) => {
         dispatch({
             type: "add_to_wishlist", 
@@ -48,10 +52,11 @@ export default function HomeProducts({id, type, name, image, description, price}
         });
         setAddedToList(false);
     };
-
     return (
             <div key={id} className="product_info">
                 <img src={image} alt={name}/>
+                {/* COLUMN IN SMALL SCREENS */}
+                {/* ROW WITH C1: IMAGE C2: NAME, AND OTHER DETS */}
                 <div className="product_purchase">
                     <h4>{name}</h4>
                     { addedToList ?                                   <FavoriteBorderRoundedIcon className="fav_product"

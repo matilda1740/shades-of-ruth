@@ -1,60 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Home.css'
-import Tags from './Tags';
 import Footer from './Footer';
-import { Link, BrowserRouter as Router} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-export default class Home extends Component {
-    render() {
-        return (
-            <Router>
-                <div className="banner_model">
-                    <img src="/images/banner1.jpg" alt="Banner Model"/>
-                </div>
+export default function Home( {info} ) {
+    return (
+        <>
+            <div className="banner_model">
+                <img src="/images/banner1.jpg" alt="Banner Model"/>
+            </div>
 
-                <Link to="/products">
-                    <Tags title = "Shop Lipsticks" />
-                 </Link>
-                
-                <div className="lipsticks">
-                    <div className="products_home">
-                    <img src="./images/home_product2.jpg" alt="Lipsticks" />
+            <div className="lipsticks">
+            {   
+                info ?
+
+                info.map( item => (
+                    <div 
+                    className="products_home" 
+                    key={item.id} 
+                    id={item.id}
+                    >
+                        <img 
+                        className="home_img"
+                        src={item.src} alt={item.type}/>
+                        <div className="products_overlay">
+                        <Link to="/products">
+                        <button className="overlay_btn">View {item.type}</button></Link>
+                        </div>
                     </div>
+                )) 
+                : 
 
-                    <div className="products_home">
-                    <img src="./images/home_product2.jpg" alt="Lipsticks" />
-                    </div>   
-
-                </div>
-
-                <Link to="/products">
-                    <Tags title = "Shop Eye-Shadows" />
-                </Link>
-
-                <div className="shadows">
-                    <div className="products_home">
-                    <img src="./images/shadow1.jpg"
-                    alt="Eye-Shadows" />
-                    </div>  
-
-                    <div className="products_home">
-                    <img src="./images/shadow3.jpg" alt="Eye-Shadows" />
-                    </div>  
-
-                    <div className="products_home">
-                    <img src="./images/shadow2.jpg" alt="Eye-Shadows" />
-                    </div>                      
-                </div>
-
-                <Link to="/products">
-                    <Tags title = "Our Offers" />
-                </Link>
-
-                <div className="offers">
-                </div>
-                <Footer/> 
-            </Router>
-
-        )
-    }
+                <div><h1>Loading...</h1></div>
+            } 
+            </div>
+            <Footer/> 
+        </>
+    )
 }

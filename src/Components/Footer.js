@@ -12,7 +12,6 @@ export default class Footer extends Component {
         return (
             <section className="footer">
                 <div className ="footer_top">
-                    {/* Three Layers */}
                     <div className="top_left">
                         <p>Shop</p>
                         <ShoppingBasketRoundedIcon className="footer_icons"/>
@@ -32,7 +31,7 @@ export default class Footer extends Component {
                 </div>
                 <div className="footer_bottom">
                     <div className="bottom_left">
-                        <p>Designed by <strong>Matilda Mwendwa</strong></p>
+                        <p>Designed by Matilda Mwendwa</p>
                     </div>
                     <div className="bottom_middle">
                         <a href="https://www.instagram.com/shadesofruth/" className = "social">

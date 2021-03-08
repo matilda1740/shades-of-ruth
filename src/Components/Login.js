@@ -159,8 +159,7 @@ export default function Login() {
                 <div className="row_form">
                   <h5 className="login_labels">Phone Number:</h5>
                   <input className="input_fields" type="text" required></input>
-                  {/* Remove Address Field */}
-                  <h5 className="login_labels">Address:</h5>
+                  <h5 className="login_labels">Delivery Address:</h5>
                   <input className="input_fields" type="text" required ></input>
                 </div>
                 <div className="row_form">

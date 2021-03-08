@@ -30,7 +30,9 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  box-shadow: 10px 5px 5px #d0aaaa;
+  box-shadow: 8px 5px 5px #d0aaaa;
+  border: 1px solid #d0aaaa;
+  border-radius: 8px;
 }
 .register_form h2,
 .login_form h2 {
@@ -89,20 +91,4 @@
 .login_last_div {
   display: flex;
   flex-direction: column;
-}
-
-@media screen and (min-width: 1200px) {
-  .register_form,
-  .login_form {
-    height: 600px;
-  }
-  .row_form {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-    align-items: center;
-    margin: 0 20px;
-    width: 100%;
-    height: 100%;
-  }
 }

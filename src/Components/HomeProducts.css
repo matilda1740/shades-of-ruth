@@ -34,18 +34,6 @@
   color: red;
 }
 
-/* Large devices */
-@media screen and (min-width: 1200px) {
-  .product_info {
-    width: 40%;
-    height: 500px;
-    padding: 0 10px;
-  }
-  .product_info > img {
-    height: 400px;
-  }
-}
-
 .indent_title {
   display: flex;
   flex-direction: row;

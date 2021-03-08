@@ -8,12 +8,3 @@ a {
   color: black;
   text-decoration: none;
 }
-
-.brandName {
-  object-fit: contain;
-  width: 400px;
-  height: 100px;
-}
-
-/* body {
-} */

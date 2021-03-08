@@ -1,0 +1,39 @@
+.process_container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.each_selection {
+  display: flex;
+  flex-direction: row;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.each_selection * {
+  cursor: pointer;
+}
+.each_selection p {
+  padding: 10px;
+}
+.number_cont {
+  border-radius: 50%;
+  border: 1px solid #d0aaaa;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show_process_icon {
+  font-size: 40px;
+  padding-right: 10px;
+}

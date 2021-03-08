@@ -6,6 +6,7 @@ import { faFacebook, faInstagram, faWhatsapp } from "@fortawesome/free-brands-sv
 import { EmojiEmotionsOutlined, ShoppingBasketRounded, SearchRounded, FavoriteBorderRounded, SortOutlined } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { useStateValue } from './StateProvider';
+// import {getproductTotal} from './reducer'
 
 export default function Sidebar() {
 
@@ -13,33 +14,34 @@ export default function Sidebar() {
     return (
         <div className="sidebar_main">
             <div className="sidebar_top">
-                <span className="store_badge">
-                    <Link to="/checkout">
-                    <ShoppingBasketRounded className="sidebar_icons notifications" />
-                    </Link>
-                    {
-                        cart?.length !== 0 ? 
-                        <span className="num_notif">{cart?.length}</span>
-                        :<span className="no_badge"></span>
-                    }
-                </span> 
-                <span className="store_badge">
-                    <Link to="/wishlist">
-                    <FavoriteBorderRounded className="sidebar_icons notifications" />
-                    </Link>
-                    {
-                        wishlist?.length !== 0 ? 
-                        <span className="num_notif">{wishlist?.length}</span>
-                        :<span className="no_badge"></span>
-                    }
-                </span>
+                <Link to="/cart">
+                    <span className="store_badge">
+                        <ShoppingBasketRounded className="sidebar_icons notifications" />
+                        {
+                            cart?.length !== 0 ? 
+                            <span className="num_notif">{cart?.length}</span>
+                            :<span className="no_badge"></span>
+                        }
+                    </span> 
+                </Link>
+                <Link to="/wishlist">
+                    <span className="store_badge">
+                        <FavoriteBorderRounded className="sidebar_icons notifications" />
+                        {
+                            wishlist?.length !== 0 ? 
+                            <span className="num_notif">{wishlist?.length}</span>
+                            :<span className="no_badge"></span>
+                        }
+                    </span>
+                </Link>
+
                 <Link to="/reviews">
                 <EmojiEmotionsOutlined
-                className="sidebar_icons" />
+                className="sidebar_icons notifications" />
                 </Link>
-                <Link to="/search">
+                {/* <Link to="/search">
                 <SearchRounded className="sidebar_icons"/> 
-                </Link>
+                </Link> */}
             </div>
             <div className="sidebar_middle">
                 <SortOutlined className="sidebar_icons"/>

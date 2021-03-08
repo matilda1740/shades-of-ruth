@@ -1,12 +1,11 @@
 .home_page {
   display: flex;
+  width: 100%;
 }
 
 .main_header {
   background-color: #f8f8f8;
   width: 100%;
-  height: 100%;
-
   margin-left: 60px;
 }
 
@@ -15,12 +14,11 @@
   flex-direction: column;
   padding: 60px;
   width: 100%;
-  height: 100%;
-
   margin-top: 60px;
 }
 
 .store_badge {
+  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
@@ -78,4 +76,116 @@
 .list_icons {
   font-size: 50px !important;
   cursor: pointer;
+}
+
+/* MEDIA QUERIES FOR ALL PAGES*/
+
+/* SMALLER SCREENS */
+
+@media screen and (max-width: 812px) {
+  .all_pages_inner {
+    padding: 30px;
+    margin-top: 80px;
+  }
+
+  .navigation {
+    width: 66.666666666% !important;
+  }
+  .header_icons_div {
+    display: none !important;
+  }
+
+  /* HOME.CSS */
+  .banner_model {
+    width: 100%;
+    height: 200px !important;
+    margin-bottom: 10px;
+  }
+
+  .lipsticks,
+  .shadows {
+    width: 100%;
+    flex-direction: column !important;
+    margin: 20px 0 20px 0 !important;
+  }
+
+  .products_home {
+    width: 80% !important;
+  }
+  /* FOOTER.CSS */
+  .fotter_bottom {
+    display: flex;
+    flex-direction: row;
+  }
+  .bottom_left,
+  .bottom_right {
+    width: 100%;
+  }
+  .bottom_middle {
+    display: none;
+  }
+
+  /* ERROR PAGES */
+  .error_page {
+    height: 200px;
+  }
+}
+/* LARGE SCREENS */
+@media screen and (min-width: 1200px) {
+  /* ALL PAGES - HEADER */
+  .show_lips,
+  .show_eyes {
+    width: 25% !important;
+  }
+  /* START LOGIN PAGE */
+  .register_form,
+  .login_form {
+    height: 600px;
+  }
+  .row_form {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 20px;
+    width: 100%;
+    height: 100%;
+  }
+  /* END LOGIN PAGE */
+
+  /* HEADER CSS */
+  .header_icons_div {
+    width: 20% !important;
+  }
+  /* HOME PRODUCTS.CSS */
+  .product_info {
+    width: 40%;
+    height: 500px;
+    padding: 0 10px;
+  }
+  .product_info > img {
+    height: 400px;
+  }
+
+  /* FOOTER CSS */
+  .top_left,
+  .top_right {
+    width: 25%;
+  }
+  .top_right > a {
+    font-size: 16px;
+  }
+  .top_middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+  .bottom_right {
+    justify-content: flex-end;
+  }
+  .social {
+    padding: 25px 40px;
+    font-size: 40px;
+  }
 }

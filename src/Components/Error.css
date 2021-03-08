@@ -1,0 +1,31 @@
+.error_page {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.error_message {
+  border: 1px solid #d0aaaa;
+  box-shadow: 8px 5px 5px #d0aaaa;
+
+  border-radius: 8px;
+  width: 60vw;
+  height: 300px;
+  margin: 0 10%;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  align-items: center;
+}
+.error_text {
+  padding: 10px;
+}
+.error_message p {
+  color: rgb(209, 4, 4);
+}
+.error_btn {
+  margin: 20px 0;
+  padding: 10px 50px;
+}

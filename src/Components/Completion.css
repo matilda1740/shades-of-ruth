@@ -1,0 +1,99 @@
+textarea,
+input,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+.complete_transaction_page {
+  width: 100%;
+  height: 100%;
+}
+.checkout_client_details {
+  width: 75%;
+  height: 100%;
+  margin: 0 10px 10px 0;
+}
+h3,
+p {
+  padding: 10px 5px;
+}
+
+.checkout_row_form {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.checkout_row_form .login_labels,
+.delivery_pickup_options .login_labels {
+  width: 30%;
+}
+.checkout_row_form .input_fields,
+.checkout_row_form textarea,
+#delivery_locations {
+  width: 70% !important; /* important cause of the textarea */
+}
+/* THIS WILL BE UNDER THE PRODUCT PREVIEW */
+.delivery_pickup_container {
+  /* border: 1px solid #d0aaaa; */
+  border-radius: 25px;
+  padding: 10px;
+  text-align: center;
+}
+.checkout_delivery_options {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 20px 0;
+}
+.delivery_pickup_cont {
+  width: 48%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  /* border: 1px solid #999999; */
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.delivery_pickup_cont:hover {
+  box-shadow: 5px 3px 5px #999999;
+  transform: scale(1.03);
+}
+.delivery_icon {
+  font-size: 80px !important;
+}
+
+.delivery_pickup_options {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 50px;
+}
+
+#delivery_locations {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+
+  transition: all 0.3s ease-in-out;
+}
+#delivery_locations:hover {
+  box-shadow: 5px 3px 5px #d0aaaa;
+  transform: scale(1.03);
+}
+.delivery_locations::after {
+  display: flex;
+  position: absolute;
+}
+.delivery_locations::after option {
+  padding: 5px 10px;
+}
+/* ANIMATING THESE OPTIONS */

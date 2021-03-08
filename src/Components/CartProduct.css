@@ -1,0 +1,15 @@
+.cart_product {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.checkout_right {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart_quantity_div {
+  display: flex;
+  justify-content: space-around;
+}
