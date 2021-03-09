@@ -1,8 +1,12 @@
+.cart_page {
+  display: flex;
+  flex-direction: column;
+}
 .cart_page h5 {
   padding: 20px 20px 0 20px;
   text-align: center;
 }
-.cart_product {
+.cart_product_div {
   display: flex;
   justify-content: space-between;
   align-items: center;

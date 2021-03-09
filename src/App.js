@@ -20,9 +20,6 @@ export default function App(){
 
   const [{}, dispatch] = useStateValue();
   const [productInfo, setProductInfo] = useState();
-  const [ isCartActive, setIsCartActive] = useState(false);
-  const [ isCheckoutActive, setIsCheckoutActive] = useState(false);
-  const [ isCompletionActive, setIsCompletionActive] = useState(false);
 
   const initialLocalCart = () => {
     return window.localStorage.getItem('cart') && JSON.parse(window.localStorage.getItem('cart'))
@@ -48,24 +45,8 @@ export default function App(){
 
   }
 
-  const checkPageActive = () => {
-    if(window.location.pathname === "/cart") {
-        setIsCartActive(true)
-        setIsCheckoutActive(false)
-        setIsCompletionActive(false)
-    }else if (window.location.pathname === "/checkout"){
-        setIsCartActive(true)
-        setIsCheckoutActive(true)
-        setIsCompletionActive(false)
-    }else if (window.location.pathname === "/completion"){
-        setIsCartActive(true)
-        setIsCheckoutActive(true)
-        setIsCompletionActive(true)
-    }
-  }
   useEffect(() => {
     getData();
-    checkPageActive();
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch({
@@ -81,9 +62,6 @@ export default function App(){
     });
 
     }, []);
-
-
-
 
   return (
     <Router> 
@@ -114,16 +92,9 @@ export default function App(){
                 />                     
                 <Route exact path="/wishlist" component={WishList} />
                 <Route exact path="/cart" component={Cart} />
-                <Route 
-                  exact path="/checkout" 
-                  render={() => (
-                    <Checkout active={isCheckoutActive} />
-                  )} 
-                /> 
                 <Route exact path="/checkout" component={Checkout} />
+                {/* <Route exact path="/checkout" component={Checkout} /> */}
                 <Route exact path="/client" component={Completion} />
-
-
                 <Route exact path="*" component={Error} />
 
               </Switch>

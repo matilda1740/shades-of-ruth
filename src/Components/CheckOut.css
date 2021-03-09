@@ -5,41 +5,58 @@
   height: 100%;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
-/* LEFT SIDE make these two sides width: 49%; */
+textarea,
+input,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+/* BOTH SIDES */
+.client_and_checkout {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+/* LEFT SIDE */
+
 /* RIGHT SIDE */
-.checkout_page_right {
-  width: 100%; /* Change to 49% */
-}
-.checkout_details {
+.client_details,
+.checkout_details_right {
   width: 100%;
-}
-.product_preview {
+  height: 100%;
   display: flex;
 
-  justify-content: space-between;
   flex-direction: column;
+}
+.product_preview h3 {
+  align-self: start;
+}
+.product_preview,
+.checkout_right {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  align-items: center;
+
   width: 100%;
   height: 100%;
 }
 
-.checkout_left > img {
-  width: 100%;
-  height: 100%;
-}
 .checkout_right {
   flex-direction: row;
-  align-items: center;
   color: #787878;
   font-size: 14px;
 }
 .checkout_right svg {
   font-size: 40px !important;
 }
-.checkout_right p {
-  display: none;
+.checkout_right * {
+  width: 30%;
 }
-
 /* SUBTOTAL DIV */
 .checkout_product_subtotal,
 .checkout_product_subtotal *,
@@ -52,10 +69,143 @@
   flex-direction: row;
   margin-bottom: 20px;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
 }
 
 .checkout_product_subtotal * {
   border: none;
   font-size: large;
+}
+
+/* FROM COMPLETION */
+
+.checkout_client_details {
+  width: 100%;
+  height: 100%;
+  margin: 0 10px 10px 0;
+}
+.checkout_page h3,
+.checkout_page p {
+  padding: 10px 5px;
+}
+
+.checkout_row_form {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.checkout_row_form .login_labels,
+.delivery_pickup_options .login_labels {
+  width: 30%;
+}
+.checkout_row_form .input_fields,
+.checkout_row_form textarea,
+#delivery_locations {
+  width: 70% !important; /* important cause of the textarea */
+}
+/* THIS WILL BE UNDER THE PRODUCT PREVIEW */
+.delivery_pickup_container {
+  border-radius: 25px;
+  padding: 10px;
+}
+.checkout_delivery_options {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 20px 0;
+}
+.delivery_pickup_cont {
+  width: 48%;
+}
+.payment_choice {
+  width: 30%;
+}
+.delivery_pickup_cont,
+.payment_choice {
+  /* box-shadow: 5px 3px 5px #999999; */
+  /* box-shadow: 0px 0px 8px #d0aaaa; */
+  border: 1px solid #d0aaaa;
+
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.delivery_pickup_cont:hover,
+.payment_choice:hover {
+  /* box-shadow: 5px 3px 5px #999999; */
+  box-shadow: 5px 3px 5px #d0aaaa;
+
+  transform: scale(1.03);
+}
+.delivery_icon {
+  font-size: 80px !important;
+}
+.delivery_pickup_options {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 50px;
+}
+
+#delivery_locations {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+
+  transition: all 0.3s ease-in-out;
+}
+#delivery_locations:hover {
+  box-shadow: 5px 3px 5px #d0aaaa;
+  transform: scale(1.03);
+}
+.delivery_locations::after {
+  display: flex;
+  position: absolute;
+}
+.delivery_locations::after option {
+  padding: 5px 10px;
+}
+/* ANIMATING THESE OPTIONS */
+
+/* PAYMENT OPTIONS */
+.payment_options {
+  width: 100%;
+  height: 100%;
+  padding: 0 0 20px 0;
+}
+.select_payment_option {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* HOW TO ADD SMOOTH TRANSITIONS TO P/D AND P OPS */
+
+.mpesa_regular,
+.card_pay {
+  height: 95% !important;
+}
+.payment_choice > img {
+  height: 100%;
+  object-fit: contain;
+}
+.mpesa_process_div,
+.mpesa_stk_div,
+.stripe_card_div {
+  margin: 10px 0;
+}
+.payment_options {
+  transition: height 1s ease-in-out;
 }

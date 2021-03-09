@@ -7,25 +7,23 @@ import { useStateValue } from './StateProvider';
 import { Link } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 import { getSubTotal } from './reducer'
+import Process from './Process';
 // import {getproductTotal} from './reducer'
 
 export default function Cart() {
 
     const [ {cart} ] = useStateValue();
-
     return (
         <section className="cart_page">
         { 
             (!cart?.length) ? <h4>You have no products in your cart</h4>
             :
             <>
+            <Process/>
             <h4>You have {cart?.length} {cart?.length === 1 ? `product` : `products`} in your cart</h4> 
             
-                { 
-
-                cart.map( item => (
-                <div className="cart_product" key={item.id} id={item.id} >
-
+            {cart.map( item => (
+                <div className="cart_product_div" key={item.id} id={item.id} >
                     <CartProduct 
                         id={item.id}
                         type={item.type}
@@ -35,12 +33,8 @@ export default function Cart() {
                         price={item.price}
                         quantity={item.quantity}
                     />
-                    <div className="each_cart_product">
-                        <h3>Product Price: {item.price * item.quantity}</h3>
-                    </div>
                 </div>
-            )
-            )}
+            ))}
 
             <div className="cart_subtotal">
             <h4><strong>Subtotal:</strong></h4>
