@@ -5,9 +5,10 @@ import Process from './Process';
 import { getSubTotal } from './reducer';
 import { useStateValue } from './StateProvider';
 import CurrencyFormat from 'react-currency-format';
-import { Link } from 'react-router-dom';
 
 import { CardTravelRounded, CommuteRounded, LocalShippingRounded } from '@material-ui/icons';
+import axios from "../Components/axios"
+
 
 // ASK USER 1. ARE YOU A MEMBER - LOGIN 2. IF NOT Sign UP or proceed without signing up
 // EACH PRODUCT WITH ITS TOTAL + PRODUCT TOTAL THEN RENDER SUBTOTAL AFTER DELIVERY FEE
@@ -17,8 +18,7 @@ import { CardTravelRounded, CommuteRounded, LocalShippingRounded } from '@materi
 // 1. SEND STK MPESA PUSH IF MPESA
 // 2. SEND STRIPE IF CARD 
 // 3. ALL THIS PLUS SEND AN ORDER NOTIFICATION MESSAGE WITH FORM INFO TO BUSINESS
-export default function Checkout() {
-
+export default function Checkout({stripePromise}) {
     const [ {cart}, dispatch ] = useStateValue();
 
     // P/DELIVERY
@@ -48,10 +48,12 @@ export default function Checkout() {
     const getFee = (e) => {
         return pickup ? setFee(e.target.value) : delivery && setFee(e.target.value)
     }
+
     // PAYMENT PART
     const [useMpesa, setUseMpesa] = useState(false);
     const [useMpesaExpress, setUseMpesaExpress] = useState(false);
     const [useCard, setUseCard] = useState(false);
+    const [isPaymentLoading, setPaymentLoading] = useState(false);
     const [paySuccess, setPaySuccess] = useState(false);
 
     const handleMpesaOrCard = (e) =>{
@@ -73,7 +75,38 @@ export default function Checkout() {
             console.log("ERROR ", error)
         }
     }
+    // COMPLETE PAYMENT
+    const postFormCart = async () => {
+        const inputFields = document.querySelectorAll(".card_payment_form .input_fields");
+        let myformData = [];
+        inputFields.forEach( paydata => myformData.push({ [paydata.name]: paydata.value}))
+        let cartDetails = cart.map( ({name, quantity}) => ({name, quantity}))
+        let allInfo = [...myformData, ...cartDetails]; // send this as email or message to shades of ruth after order has been confirmed
+        // console.log("Processing payment...", allInfo); // send message with cart as products and formdata as user info
 
+        // POST
+        const response = await fetch('/checkout',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Accept' : 'application/json'
+            },
+            body: JSON.stringify(allInfo),
+            cache: 'no-cache', 
+
+        } );
+        return response;
+    }
+    const handleCardPayment = (e) => {
+        e.preventDefault();
+        postFormCart()
+            .then( response => response.json())
+            .then(data => {
+            // console.log('Success:', data);
+            return data;
+        })
+            .catch( error => console.log("POST FORM CART ERROR: ", error))
+    }
     return (
         <div className="checkout_page">
             {
@@ -229,7 +262,9 @@ export default function Checkout() {
                         </form>
                         {/* BACKEND CHECK WHETHER PAYMENT HAD BEEN MADE ON SOR SIDE */}
                     </div>
+                
                 : useMpesaExpress ?
+
                     <div className="mpesa_stk_div">
                         {/* SEND POST REQUEST AND GET SUCCESS/ FAILURE */}
                         <p>Receive M-pesa Payment Prompt</p>
@@ -240,36 +275,48 @@ export default function Checkout() {
                             </div>                                
                         </form>
                     </div>
+                
                 : useCard &&
+
                     <div className="stripe_card_div">
-                            <h3>Online Secure Card Payment</h3>
-                            <p>Please provide your card information below</p>
-                            <form className="send_card_info" action="POST">
-                                <div className="checkout_row_form">
-                                    <h5 className="login_labels">First Name:</h5>
-                                    <input className="input_fields" type="text" required></input>
-                                </div>                                
-                                <div className="checkout_row_form">
-                                    <h5 className="login_labels">Last Name:</h5>
-                                    <input className="input_fields" type="text" required></input>
-                                </div>   
-                                <div className="checkout_row_form">
-                                    <h5 className="login_labels">Card Number:</h5>
-                                    <input className="input_fields" type="text" required></input>
-                                </div>   
-                                <div className="checkout_row_form">
-                                    <h5 className="login_labels">Expiry Date:</h5>
-                                    <input className="input_fields" type="text" required></input>
-                                </div>   
-                                <div className="checkout_row_form">
-                                    <h5 className="login_labels">Security Code:</h5>
-                                    <input className="input_fields" type="text" required></input>
-                                </div>   
-                            </form>                        
+                        <h3>Online Secure Card Payment</h3>
+                        <p>Please provide your card information below</p>
+                            <form className="card_payment_form" action="/card_payment" method="POST" onSubmit={handleCardPayment}>
+                            <div className="checkout_row_form">
+                                <h5 className="login_labels">Email Address:</h5>
+                                <input name="email" className="input_fields" type="text" required></input>
+                            </div>                                
+                            <div className="checkout_row_form">
+                                <h5 className="login_labels">Name on Card:</h5>
+                                <input name="card_name" className="input_fields" type="text" required></input>
+                            </div>   
+                            <div className="checkout_row_form">
+                                <h5 className="login_labels">Card Information:</h5>
+                                <input name="card_number" className="input_fields" type="text" size="20" data-stripe="number" required></input>
+                            </div>   
+                            <div className="checkout_row_form">
+                                <h5 className="login_labels">Expiration (MM/YY)</h5>
+                                <input name="exp_month" className="input_fields smaller" type="text" size="2" data-stripe="exp_month" required></input>
+                                {/* <h5 className="login_labels">/</h5> */}
+                                <span>/</span>
+                                <input name="exp_year" className="input_fields smaller" type="text" size="2" data-stripe="exp_year" required></input>
+                            </div>   
+                            <div className="checkout_row_form">
+                                <h5 className="login_labels">CVC: </h5>
+                                <input name="cvc" className="input_fields" type="text" size="4" data-stripe="cvc" required></input>
+                            </div>  
+                            <button 
+                                type="submit"
+                                className="card_submit checkout_product_subtotal btns" 
+                                >
+                                {isPaymentLoading ? "Payment Loading..." : "Complete Payment"}
+                            </button> 
+                        </form>  
                     </div>
             } 
             </div>
-                {/* PLACE ORDER BUTTON THAT LINKS TO CONFIRMATION PAGE */}
+
+
 
                 {/* BOTTOM DIV */}
 

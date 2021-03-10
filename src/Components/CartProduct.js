@@ -34,11 +34,11 @@ export default function CartProduct({id, type, name, image, description, price, 
         <section className="cart_product">
         { 
             window.location.pathname === '/cart' ? 
-            <>
+            <div  key={id} id={id} >
                 <div className="wishlist_left checkout_left">
                 <img src={image}alt={name}/>
                 </div>
-                <div key={id} id={id} className="wishlist_right checkout_right">
+                <div className="wishlist_right checkout_right">
                     <h3 className="item_name">{name}</h3>
                     <div className="cart_quantity_div">
                         <h3>Quantity</h3>
@@ -51,9 +51,9 @@ export default function CartProduct({id, type, name, image, description, price, 
                         <span className="item_price"><strong>Ksh. {price * quantity}</strong></span>
                     {/* } */}
                 </div>
-            </>
+            </div>
             :
-            <>
+            <div  key={id} id={id} >
                 <div className="each_preview">
                     <img src={image}alt={name}/>
                     <h4 className="item_name">{name}</h4>
@@ -67,7 +67,7 @@ export default function CartProduct({id, type, name, image, description, price, 
                     <span className="item_price"><strong>Ksh. {price * quantity}</strong></span>
 
                 </div>
-            </>
+            </div>
         }
         </section>
     )

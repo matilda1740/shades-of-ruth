@@ -22,12 +22,14 @@ export default function Header({products}) {
 
 
     const handleExpand = e => {
-        if(!showEyes.classList.contains("hide_products")){
-            showEyes.classList.add("hide_products");
-        }
-        if(e.target.parentNode.className === "nav_lips") {
-            showLips.classList.toggle("hide_products");
-            lipActive === false ? setLipsActive(true) : setLipsActive(false);
+        if(showEyes.classList){
+            if(!showEyes.classList.contains("hide_products")){
+                showEyes.classList.add("hide_products");
+            }
+            if(e.target.parentNode.className === "nav_lips") {
+                showLips.classList.toggle("hide_products");
+                lipActive === false ? setLipsActive(true) : setLipsActive(false);
+            }
         }
     }
 

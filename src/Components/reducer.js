@@ -1,4 +1,6 @@
 
+
+//CHECK INDEX JS FOR NEW INITIAL STATE
 export const initialState = {
     cart: [],
     wishlist: [],

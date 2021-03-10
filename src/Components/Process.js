@@ -26,9 +26,9 @@ export default function Process({chekoutActive, cartActive}) {
             setIsCompletionActive(true)
         }
     }
-    console.log("PROCESS CART ACTIVE: ", isCartActive);
-    console.log("PROCESS CHECKOUT ACTIVE: ", isCheckoutActive);
-    console.log("PROCESS COMPLETE ACTIVE: ", isCompletionActive);
+    // console.log("PROCESS CART ACTIVE: ", isCartActive);
+    // console.log("PROCESS CHECKOUT ACTIVE: ", isCheckoutActive);
+    // console.log("PROCESS COMPLETE ACTIVE: ", isCompletionActive);
 
     useEffect( () => {
     checkPageActive()

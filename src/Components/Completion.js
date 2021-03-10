@@ -25,6 +25,14 @@ export default function Completion() {
 
     return (
         <div className="complete_transaction_page">
+            <div className="error_message">
+                <p>Payment</p>
+                {/* <h1 className="error_text">Oops! Page Not Found</h1> */}
+                {/* <p className="error_text">ⓘ The page you are looking for cannot be found</p>
+                <Link to="/">
+                    <button className="btns error_btn">Go to Home Page</button>
+                </Link> */}
+            </div>
             {/* 
             FORM 
             IF USER LOGGED IN GENERATE DELIVERY AMOUNT FROM INFORMATION

@@ -101,16 +101,8 @@
     height: 200px !important;
     margin-bottom: 10px;
   }
-
-  .lipsticks,
-  .shadows {
+  .lipsticks {
     width: 100%;
-    flex-direction: column !important;
-    margin: 20px 0 20px 0 !important;
-  }
-
-  .products_home {
-    width: 80% !important;
   }
   /* FOOTER.CSS */
   .fotter_bottom {
@@ -130,6 +122,13 @@
     height: 200px;
   }
 }
+/************** MEDIUM SCREENS *******************/
+@media screen and (min-width: 600px) {
+  /* HOME CSS */
+  /* .lipsticks {
+    width: 50% !important;
+  } */
+}
 /* LARGE SCREENS */
 @media screen and (min-width: 1200px) {
   /* ALL PAGES - HEADER */
@@ -137,11 +136,13 @@
   .show_eyes {
     width: 25% !important;
   }
+
   /* START LOGIN PAGE */
   .register_form,
   .login_form {
     height: 600px;
   }
+
   .row_form {
     display: flex;
     justify-content: space-evenly;
@@ -151,12 +152,17 @@
     width: 100%;
     height: 100%;
   }
-  /* END LOGIN PAGE */
 
   /* HEADER CSS */
   .header_icons_div {
     width: 20% !important;
   }
+
+  /* HOME CSS */
+  .lipsticks {
+    width: 40% !important;
+  }
+
   /* HOME PRODUCTS.CSS */
   .product_info {
     width: 40%;
@@ -172,9 +178,11 @@
   .top_right {
     width: 25%;
   }
+
   .top_right > a {
     font-size: 16px;
   }
+
   .top_middle {
     display: flex;
     justify-content: center;
