@@ -68,9 +68,7 @@ export default function Search({products}){
                 <form className="search_form" action="">
                     <input 
                     type="text" onChange={triggerSearch} />
-                    {/* <Link to="/search/products"> */}
-                        {/* <SearchRounded className="search_icon" onClick={searchToproducts}/> */}        
-                    {/* </Link> */}
+                    <SearchRounded className="search_icon"/>        
 
                 </form>
                 <div className="searching_dropdown filtered"></div>                

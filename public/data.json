@@ -7,31 +7,16 @@
                 
         },
         {
-            "id": "13",
-            "type": "Lipsticks",
-            "src": "./images/home_lipstick2.jpg"
-        },
-        {
             "id": "14",
             "type": "Eye-Shadows",
             "src": "./images/shadow1.jpg"
-        },
-        {
-            "id": "15",
-            "type": "Eye-Shadows",
-            "src": "./images/shadow2.jpg"
-        },
-        {
-            "id": "16",
-            "type": "Eye-Shadows",
-            "src": "./images/product_shadow.jpg"
-        }    
+        }  
     ],
     "products": [      
         {
             "id": "1",
             "type": "Lipsticks",
-            "src": "./images/intentions.jpg",            
+            "src": "/images/intentions_nobg.png",            
             "name":"Intentions Lipstick",
             "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
             "price": "950",
@@ -40,7 +25,7 @@
         {
             "id": "2",
             "type": "Lipsticks",
-            "src": "./images/redwood.jpg",
+            "src": "/images/redwood_nobg.png",
             "name":"Redwood Lipstick",
             "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
             "price": "950",
@@ -50,7 +35,7 @@
         {
             "id": "3",
             "type": "Lipsticks",
-            "src": "./images/plum.jpg",
+            "src": "/images/plum_nobg.png",
             "name":"Plum Lipstick",
             "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
             "price": "950",
@@ -60,7 +45,7 @@
         {
             "id": "4",
             "type": "Lipsticks",
-            "src": "./images/ruby.jpg",
+            "src": "/images/ruby_nobg.png",
             "name":"Ruby Lipstick",
             "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
             "price": "950",
@@ -70,22 +55,22 @@
         {
             "id": "5",
             "type": "Lipsticks",
-            "src": "./images/rose.jpg",
+            "src": "/images/rose_nobg.png",
             "name":"Rose Lipstick",
             "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
             "price": "950",
             "quantity": "1"
-
         },
         {
             "id": "6",
             "type": "Eye-Shadows",
-            "src": "./images/product_shadow.jpg",
+            "src": "/images/shadows_nobg.png",
             "name":"Taurus Collection",
             "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
             "price": "1650",
             "quantity": "1"
-
         }
+
+
     ]
 }

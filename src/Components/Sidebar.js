@@ -6,7 +6,7 @@ import { faFacebook, faInstagram, faWhatsapp } from "@fortawesome/free-brands-sv
 import { EmojiEmotionsOutlined, ShoppingBasketRounded, SearchRounded, FavoriteBorderRounded, SortOutlined } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { useStateValue } from './StateProvider';
-// import {getproductTotal} from './reducer'
+import {getproductTotal} from './reducer'
 
 export default function Sidebar() {
 
@@ -19,7 +19,7 @@ export default function Sidebar() {
                         <ShoppingBasketRounded className="sidebar_icons notifications" />
                         {
                             cart?.length !== 0 ? 
-                            <span className="num_notif">{cart?.length}</span>
+                            <span className="num_notif">{getproductTotal(cart)}</span>
                             :<span className="no_badge"></span>
                         }
                     </span> 

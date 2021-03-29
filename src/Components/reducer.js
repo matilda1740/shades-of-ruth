@@ -23,6 +23,7 @@ export const getSubTotal = (cart) => {
 }
 
 // THIS FUNCTION IS SO COOL
+
 export const getproductTotal = (cart) => cart?.reduce((amount, item) => amount+=parseInt(item.quantity), 0)
 
 export const reducer = (previousState = initialState, action) => {
@@ -38,7 +39,7 @@ export const reducer = (previousState = initialState, action) => {
 
                 if (!itemExists){
                     addedCart.push(action.item);
-                    console.log("NEW ITEMS: ", action.item)
+                    console.log("NEW CART ITEMS: ", action.item)
                 }
 
             }catch(error){
@@ -96,9 +97,22 @@ export const reducer = (previousState = initialState, action) => {
             };
         
         case "add_to_wishlist": 
+            let addedList = [...previousState.wishlist];
+
+            try{
+                let itemExists = addedList.find( product => product.id === action.item.id);
+
+                if (!itemExists){
+                     addedList.push(action.item);
+                    console.log("NEW LIST ITEMS: ", action.item)
+                }
+
+            }catch(error){
+                console.log(error);
+            }        
             return {
                 ...previousState,
-                wishlist: [...previousState.wishlist, action.item],
+                wishlist: addedList
             };
        
         case "remove_from_wishlist":
@@ -116,6 +130,7 @@ export const reducer = (previousState = initialState, action) => {
                 ...previousState,
                 wishlist: [...updatedWishlist]
             };
+
         case "set_user": 
             return {
                 ...previousState,

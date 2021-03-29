@@ -3,11 +3,15 @@ import './Login.css'
 import { useHistory } from 'react-router-dom';
 import { auth } from './firebase'
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faGoogle} from "@fortawesome/free-brands-svg-icons";
+import { faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
 export default function Login() {
 
-    const [email, setEmail] = useState("");
-    const [number, setNumber] = useState("");
-    const [password, setPassword] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [number, setNumber] = useState("");
+    // const [password, setPassword] = useState("");
     const [newUser, setNewUser] = useState(false);
     const history = useHistory();
 
@@ -16,6 +20,12 @@ export default function Login() {
     const [loginMsg, setLoginMsg] = useState("");
 
     const msgStyle = { color: formFilled ? `#00DA08`: `#f70000` }
+
+    // SIGN IN METHODS
+    const [emailSignIn, setEmailSignIn] = useState(false);
+    const [googleSignIn, setGoogleSignIn] = useState(false);
+    const [phoneSignIn, setPhoneSignIn] = useState(false);
+
 
     const displayLogin = (e) => {
       e.preventDefault();
@@ -27,76 +37,10 @@ export default function Login() {
       setNewUser(true);
       e.target.classList.add("choose_display");
     }
-    const handleEmailLogin = (e) => {
-      e.preventDefault();
-      auth
-      .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
-        history.push("/");
-      })
-      .catch((err) => {
-        let code = err.code;
-        if (code === 'auth/wrong-password') {
-          setFormFilled(false);
-          setLoginMsg("ⓘ Wrong Password");
-        }else if(code === 'auth/user-not-found'){
-          setFormFilled(false);
-          setLoginMsg("ⓘ User not Found. Please check your email or create an account with us");
-          setTimeout(() => {
-            setLoginMsg("");
-          }, 2000);
-        }
-        console.log(err.message, err.code)
-      } );
-    }
-    // const handlePhoneLogin = (e) => {
-    //   e.preventDefault();
-    //   auth.signInWithPhoneNumber(number)
-    //   .then( data => {}).catch( error => {
-    //     let code = error.code;
-
-    //     if()
-
-    //   });
-    // }
-    // SIGN IN WITH PHONE NUMBER
-    const handleRegister = (e) => { 
-      auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((auth) => {
-        if (auth) {
-          history.push("/");
-        }
-      })
-      .catch((err) => {
-        let code = err.code;
-        if(code === 'auth/invalid-email'){
-          setSignupMsg("ⓘ Invalid Email");
-
-        }else
-        console.log(err);
-      });
-      // Check if all field have been filled
-      // If no setSignupMsg("ⓘ Please fill in all the fields") and setFormFilled(false)
-    }
-
-    const handleEmail = (e) => {
-      setEmail(e.target.value);
-    }
-    const handlePassword = (e) => {
-      setPassword(e.target.value);
-    }
-    const hanldeNumber = (e) => {
-        setNumber(e.target.value);
-    }
-    const handleCancel = e => {
-      e.target.classList.add("choose_display");
-      setNewUser(false);
-    }
 
     // SIGN UP VALIDATIONS
     const confirmEmail = (e) => {
-      let mail = document.getElementById("email");
+      let mail = document.getElementById("register_email");
       if(e.target.value === null && mail.value === null){
         setSignupMsg("ⓘ Email Required");
         setFormFilled(false);
@@ -115,7 +59,7 @@ export default function Login() {
       }
     }
     const confirmPass = (e) => {
-      let pass = document.getElementById("pass");
+      let pass = document.getElementById("register_pass");
       if(e.target.value === null && pass.value === null){
         setSignupMsg("ⓘ Password Required");
         setFormFilled(false);
@@ -132,6 +76,90 @@ export default function Login() {
         }
       }
     }
+   
+    const handleRegister = (e) => { 
+      e.preventDefault();
+      if(setFormFilled){
+        const regEmail = document.getElementById("register_email").value;
+        const regPass = document.getElementById("register_pass").value;
+
+        auth
+        .createUserWithEmailAndPassword(regEmail, regPass)
+        .then((auth) => {
+        // GET FORM DATA 
+        const formData = document.querySelectorAll(".register_form .input_fields");
+        const newUserDetails = []
+        formData.forEach( (userData) => newUserDetails.push({ [userData.name] : userData.value}))
+        console.log(newUserDetails); //USER DETAILS AS AN ARRAY OF OBJECTS
+        setFormFilled(false);
+        setSignupMsg("");
+        setLoginMsg("");
+
+        history.push("/");
+        })
+        .catch((error) => {
+          console.log(error.code, " " , error.message);
+          let code = error.code;
+          if (code === 'auth/invalid-email') {
+            setSignupMsg("ⓘ Invalid Email. Please Try again");
+            setFormFilled(false);
+        }else if (code === 'auth/weak-password') {
+            setSignupMsg(`ⓘ Weak Password. ${error.message}`);
+
+        }
+        });
+      }else {
+        setSignupMsg("ⓘ Please fill in all the fields");
+        setFormFilled(false);
+      }
+    }
+        // SIGN IN Methods
+    const sigInDiv = document.querySelector(".signInMethods");
+    const displayEmailLogin = (e) => {
+      setEmailSignIn(true);
+      sigInDiv.classList.add("choose_display")
+    }
+    const displayGoogleLogin = (e) => {
+      setGoogleSignIn(true);
+      sigInDiv.classList.add("choose_display")
+    }
+    const displayPhoneLogin = (e) => {
+      setPhoneSignIn(true);
+      sigInDiv.classList.add("choose_display")
+    }
+    // WORKING
+    const handleEmailLogin = (e) => {
+      e.preventDefault();
+      const loginEmail = document.getElementById("login_email").value;
+      const loginPass = document.getElementById("login_pass").value;
+      auth
+      .signInWithEmailAndPassword(loginEmail, loginPass)
+      .then((auth) => {
+        console.log(loginEmail, loginPass);
+        history.push("/");
+      })
+      .catch((err) => {
+        let code = err.code;
+        if (code === 'auth/wrong-password') {
+          setFormFilled(false);
+          setLoginMsg("ⓘ Invalid Password. Please Try again");
+        }else if(code === 'auth/user-not-found'){
+          setFormFilled(false);
+          setLoginMsg("ⓘ User not Found. Please check your email or create an account with us");
+          setTimeout(() => {
+            setLoginMsg("");
+          }, 10000);
+        }
+        console.log(err.message, err.code)
+      } );
+    }
+
+    const handleCancel = e => {
+      e.target.classList.add("choose_display");
+      setNewUser(false);
+    }
+
+
     return (
         <div className="login_signup_page">
             <div className="choose_page_btns choose_display">
@@ -145,34 +173,35 @@ export default function Login() {
             </div>
 
             { newUser ? 
-              <form className="register_form" action="">
+              
+              <form className="register_form" action="" onSubmit={handleRegister}>
                 <div className="login_page_logo">
                     <img src="/images/brand2.png" alt="Shades of Ruth Logo"/>
                 </div>
                 <h2>Sign Up</h2>
                 <div className="row_form">
                   <h5 className="login_labels">First Name:</h5>
-                  <input className="input_fields" type="text" required></input>
+                  <input id="register_fname" name="firstName" className="input_fields" type="text" required></input>
                   <h5 className="login_labels">Last Name:</h5>
-                  <input className="input_fields" type="text" required></input>
+                  <input id="register_lname" name="lasttName"  className="input_fields" type="text" required></input>
                 </div>
                 <div className="row_form">
                   <h5 className="login_labels">Phone Number:</h5>
-                  <input className="input_fields" type="text" required></input>
+                  <input id="register_phone" name="number" className="input_fields" type="text" required></input>
                   <h5 className="login_labels">Delivery Address:</h5>
-                  <input className="input_fields" type="text" required ></input>
+                  <input id="register_address" name="confirmNumber"className="input_fields" type="text" required ></input>
                 </div>
                 <div className="row_form">
                   <h5 className="login_labels" >Email:</h5>
-                  <input className="input_fields" type="text" id="email" required></input>
+                  <input id="register_email" name="email" className="input_fields" type="text" required></input>
                   <h5 className="login_labels" >Confirm Email:</h5>
-                  <input className="input_fields" type="text" onChange={confirmEmail} required></input>
+                  <input id="register_confirmEmail"  name="confirmEmail" className="input_fields" type="text" onChange={confirmEmail} required></input>
                 </div>
                 <div className="row_form">
                   <h5 className="login_labels" >Password:</h5>
-                  <input className="input_fields" type="password"  id="pass" required></input>
+                  <input id="register_pass" name="pass" className="input_fields" type="password"  required></input>
                   <h5 className="login_labels">Confirm Password:</h5>
-                  <input className="input_fields" type="password" id="confirm_pass" onChange={confirmPass} required></input>
+                  <input id="register_confirmPass" name="confirmEmail" className="input_fields" type="password"  onChange={confirmPass} required></input>
                 </div>                
                 <p style={{ color: msgStyle.color }}>{signupMsg}</p>
                 <p>
@@ -180,7 +209,6 @@ export default function Login() {
                 </p>
                 <button
                 type="submit"
-                onClick={handleRegister}
                 className="btn_login_page solo_btns ">
                 Create Account
                 </button>
@@ -197,18 +225,37 @@ export default function Login() {
                 </div>
                 </form>
               :
-              <form className="login_form" action="">
+              <div className="signInMethods">
+                  <div className="login_page_logo">
+                    <img src="/images/brand2.png" alt="Shades of Ruth Logo"/>
+                  </div>
+                <h3>Sign In Methods</h3>
+                  
+                  <button className="btn_login_page solo_btns" onClick={displayEmailLogin}>
+                  <FontAwesomeIcon className="signIn_icons" icon={ faEnvelope } />
+                  Email</button> 
+                  <button className="btn_login_page solo_btns" onClick={displayGoogleLogin}>
+                  <FontAwesomeIcon className="signIn_icons" icon={ faGoogle } />
+                  Google</button> 
+                  <button className="btn_login_page solo_btns" onClick={displayPhoneLogin}>
+                  <FontAwesomeIcon className="signIn_icons" icon={ faPhoneAlt } />
+                  Phone Number</button> 
+              </div>
+            } 
+            <>
+            { emailSignIn ?
+              <form className="login_form" action="" onSubmit={handleEmailLogin}>
                 <div className="login_page_logo">
                     <img src="/images/brand2.png" alt="Shades of Ruth Logo"/>
                 </div>
                 <h2>Log in</h2>
                 <div className="row_form">
                   <h5 className="login_labels">Email: </h5>
-                  <input className="input_fields" type="text" onChange={handleEmail} required/>
+                  <input id= "login_email" className="input_fields" type="text" required/>
                 </div>
                 <div className="row_form">
                   <h5 className="login_labels">Password: </h5>
-                  <input className="input_fields" type="password" onChange={handlePassword} required/>                  
+                  <input id= "login_pass" className="input_fields" type="password" required/>                  
                 </div>
                 <p style={{ color: msgStyle.color }}>{loginMsg}</p>
                 <p>
@@ -216,7 +263,6 @@ export default function Login() {
                 </p>
                 <button
                     type="submit"
-                    onClick={handleEmailLogin}
                     className="btn_login_page solo_btns">Log In
                 </button> 
                 <p>New User? Create an account with us... </p>    
@@ -228,7 +274,20 @@ export default function Login() {
                   <button className="btn_login_page cancel_btn">Cancel</button>
                 </div>
               </form>
-            }           
+              
+              : googleSignIn ?
+
+              <form className="google_login_form" action="">
+
+              </form>
+
+              : phoneSignIn && 
+
+              <form className="phone_login_form" action="">
+                
+              </form>
+              }
+            </>
         </div>
     )
 }

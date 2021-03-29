@@ -1,0 +1,32 @@
+.categories_div {
+  width: 300px;
+  height: 100%;
+  padding: 10px 0;
+  display: flex;
+  flex-flow: column;
+  /* justify-content: center; */
+  /* background-color: #d0aaaa; */
+}
+.cat_product {
+  display: flex;
+  margin-left: 10%;
+}
+.categories_div h5 {
+  margin-left: 12%;
+
+  /* margin: 20px 0 20px 20%; */
+  padding: 20px 0;
+}
+
+.categories_div li {
+  display: flex;
+  align-items: center !important;
+  padding: 10px 0;
+  cursor: pointer;
+  color: #343434;
+  transition: all 0.3s ease-in-out;
+}
+
+.categories_div li:hover {
+  color: #d0aaaa;
+}

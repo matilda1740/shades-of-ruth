@@ -9,6 +9,8 @@ import Sidebar from './Components/Sidebar';
 import Home from './Components/Home';
 import AllProducts from './Components/AllProducts';
 import HomeProducts from './Components/HomeProducts';
+import EachProduct from './Components/EachProduct';
+
 import WishList from './Components/WishList';
 import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
@@ -16,16 +18,17 @@ import Error from './Components/Error';
 import axios from './Components/axios.js';
 import Completion from './Components/Completion';
 // STRIPE
+import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from "@stripe/react-stripe-js";
+import About from './Components/About';
+import User from './Components/User';
 
-const stripePromise = loadStripe('pk_test_51HPvTxEaginv2FOA9RsSDHDBh05VKPgKZDByT2Ab0mJH83OD01DtK8FHr1kWCx9aV26fOXUCNyb902ExqamMKBDf00uKPGdX3z');
+const stripePk = loadStripe('pk_test_51HPvTxEaginv2FOA9RsSDHDBh05VKPgKZDByT2Ab0mJH83OD01DtK8FHr1kWCx9aV26fOXUCNyb902ExqamMKBDf00uKPGdX3z');
 
 export default function App(){
 
   const [{}, dispatch] = useStateValue();
   const [productInfo, setProductInfo] = useState();
-
 
   const getData = async () => {
     try{
@@ -57,6 +60,10 @@ export default function App(){
 
     }, []);
 
+    // PARALLAX SCROLL EFFECT
+    window.addEventListener("scroll", () => {
+      
+    })
   return (
     <Router> 
     <section className='app'>
@@ -70,37 +77,45 @@ export default function App(){
                 <Route 
                   exact path="/" 
                   render={() => (
-                  productInfo && <Home info={productInfo.home} />
+                  productInfo && <Home info={productInfo.home}/>
                   )} 
                 /> 
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/about-us" component={About} />
+                <Route exact path="/user" component={User} />
+                
                 <Route 
                   exact path="/products" 
                   render={() => (
                     productInfo && <AllProducts products={productInfo.products} />
                   )} 
-                /> 
+                />                                 
+                {/* <Route path="/products/product_:id" component={EachProduct} /> */}
                 <Route 
-                  exact path="/search/products" 
-                  components={HomeProducts} 
-                />                     
+                  exact path="/products/product_:id"
+                  render={(props) => (
+                    productInfo && <EachProduct url={props} products={productInfo.products}/>
+                  )} 
+                />
                 <Route exact path="/wishlist" component={WishList} />
                 <Route exact path="/cart" component={Cart} />
-                <Route 
-                exact path="/checkout" 
-                render={() => ( <Checkout stripePromise={stripePromise}/>
-                )} 
-                />        
+                  <Route 
+                  exact path="/checkout" 
+                  render={() => (
+                  <Elements stripe={stripePk}>
+                  <Checkout />
+                </Elements>                    
+                  )} 
+                /> 
+   
                 <Route exact path="/card_payment" component={Completion} />
-                {/* </Elements> */}
-                {/* <Route exact path="/checkout" component={Checkout} /> */}
                 <Route exact path="/client" component={Completion} />
                 <Route exact path="*" component={Error} />
 
               </Switch>
           </div>                            
         </div>
-        <Sidebar/>
+        {/* <Sidebar/> */}
       </div>
     </section>
     </Router>

@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import './HomeProducts.css'
-import { ShoppingBasketRounded } from '@material-ui/icons'
+import { ShoppingBasketRounded, FavoriteBorderRounded , FavoriteRounded,DeleteRounded  } from '@material-ui/icons'
 import { useStateValue } from './StateProvider'
-import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import CurrencyFormat from 'react-currency-format';
 import { useEffect } from 'react';
-
-export default function HomeProducts({id, type, name, image, description, price, quantity}, localCart) {
+import { Link } from 'react-router-dom'
+export default function HomeProducts({id, type, name, image, description, price, quantity}) {
 
     const [{cart, wishlist}, dispatch]  = useStateValue(); 
     const [addedToList, setAddedToList] = useState(false);
     const [addedCart, setAddedToCart] = useState(false);
-    
 
     const addToCart = (e) => {
         dispatch({
@@ -52,20 +50,26 @@ export default function HomeProducts({id, type, name, image, description, price,
         });
         setAddedToList(false);
     };
+
+    // REMOVE FROM CART OPTION ....
     return (
             <div key={id} className="product_info">
+                <Link to={`/products/product_${id}`}>        
                 <img src={image} alt={name}/>
-                {/* COLUMN IN SMALL SCREENS */}
-                {/* ROW WITH C1: IMAGE C2: NAME, AND OTHER DETS */}
+                </Link>
                 <div className="product_purchase">
                     <h4>{name}</h4>
-                    { addedToList ?                                   <FavoriteBorderRoundedIcon className="fav_product"
+                    { addedToList ?                                   
+                    <FavoriteRounded className="fav_icon faved_product"
                     onClick={removeFromWishlist} />  :
-                    <FavoriteBorderRoundedIcon className="fav_product"
+                    (window.location.pathname === "/products") ?
+                    <FavoriteBorderRounded  className="fav_icon product_info_icons"
                     onClick={addToWishlist} /> 
+                    : (window.location.pathname === "/wishlist") && 
+                    <DeleteRounded className="product_info_icons" onClick={removeFromWishlist} />
                     }
                     <ShoppingBasketRounded
-                    className="buy_product"
+                    className="product_info_icons"
                     onClick={addToCart}
                     /> 
                 </div>

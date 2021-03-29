@@ -1,0 +1,30 @@
+/* PAYMENT OPTIONS */
+.payment_section {
+  width: 100%;
+  height: 100%;
+  padding: 0 0 20px 0;
+  transition: all 1s linear;
+}
+.select_payment_option {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* HOW TO ADD SMOOTH TRANSITIONS TO P/D AND P OPS */
+
+.mpesa_regular,
+.card_pay {
+  height: 95% !important;
+}
+.payment_choice > img {
+  height: 100%;
+  object-fit: contain;
+}
+.mpesa_process_div,
+.mpesa_stk_div,
+.stripe_card_div {
+  margin: 10px 0;
+}

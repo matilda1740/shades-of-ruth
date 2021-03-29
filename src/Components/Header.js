@@ -1,110 +1,80 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Header.css"
-// import Search from './Search';
-
 import { Link} from 'react-router-dom';
 import { useStateValue } from './StateProvider';
 
-import { EmojiEmotionsOutlined, FavoriteBorderRounded, ShoppingBasketRounded, ExpandMoreRounded, ExpandLessRounded } from '@material-ui/icons';
+import { EmojiEmotionsOutlined, FavoriteBorderRounded , ShoppingBasketRounded, ExpandMoreRounded, ExpandLessRounded, MenuRounded } from '@material-ui/icons';
 import { useState } from 'react';
-
 import {getproductTotal} from './reducer'
-
+import Search from './Search'
 export default function Header({products}) {
 
     const [ {wishlist, cart}] = useStateValue();
-    const [lipActive, setLipsActive] = useState(false);
-    const [eyeActive, setEyeActive] = useState(false);
+    const [mobileNav, setMobileNav] = useState(false);
+    const mobileMenu = document.querySelector(".mobile_nav_div")
 
+    useEffect( () => {window.screen.width <= 768 ? setMobileNav(true) : setMobileNav(false)}, [])
+    window.addEventListener( "resize", e => window.screen.width <= 768 ? setMobileNav(true) : setMobileNav(false))
 
-    const showLips = document.querySelector(".show_lips");
-    const showEyes = document.querySelector(".show_eyes");
+    const displayMobileMenu = (e) => {
+        // mobileMenu.classList.remove("hidden");
+        mobileMenu.classList.toggle("hidden");
 
-
-    const handleExpand = e => {
-        if(showEyes.classList){
-            if(!showEyes.classList.contains("hide_products")){
-                showEyes.classList.add("hide_products");
-            }
-            if(e.target.parentNode.className === "nav_lips") {
-                showLips.classList.toggle("hide_products");
-                lipActive === false ? setLipsActive(true) : setLipsActive(false);
-            }
-        }
-    }
-
-    const eyeExpand = e => {
-        if(!showLips.classList.contains("hide_products")){
-            showLips.classList.add("hide_products");
-        }
-        if(e.target.parentNode.className === "nav_eyes"){
-            showEyes.classList.toggle("hide_products");
-            eyeActive === false ? setEyeActive(true) : setEyeActive(false)
-        }   
+        // console.log(e.target.innerHTML)
     }
 
     return (
         <div className="header">
             <Link to="/" className="a_brandName">
-            <div className="brandName">
                 <img src="./images/brand2.png" alt="Shades of Ruth" />
-            </div>
             </Link>
 
-            <div className="navigation">
+            {
+                mobileNav ? 
+                <div className="mobile_nav_parent">
+                    <MenuRounded className="mobile_menu nav_icons" onClick={displayMobileMenu}/>
+                </div>
+                :
+                <div className="navigation">
+                <Search />
+
                 <div className="nav_dropdown">
-                    <div className="nav_lips" onMouseOver={handleExpand}>
-                        <p onClick={handleExpand}>Lipsticks</p>
-                        {
-                            lipActive ? <ExpandLessRounded className="nav_icons" onClick={handleExpand}/> : <ExpandMoreRounded className="nav_icons" onClick={handleExpand}/> 
-                        }
-                    </div>
-                    <div className="show_lips hide_products">
-                        <div className="show_triangle"></div>
-                        {
-                            products &&
+                    <Link to="/products">
+                    <div className="nav_lips">
+                        <p className="trigger_show" >Lipsticks</p>
+                        <div className="show_lips"> 
+                        {products &&
                             products.map( item => (
-                                item.type === "Lipsticks" &&
-                                <Link to="/products"  key={item.id}>
-                                <div className="dropdown_products">
-                                    <p>{item.name}</p>
+                            item.type === "Lipsticks" &&
+                            <div className="dropdown_products" key={item.id}>
+                            <p>{item.name}</p>
+                            </div>
+                        ))
+                        }
+                        </div>
+                    </div>
+                    </Link>
+
+                    <Link to="/products">
+                    <div className="nav_eyes">
+                        <p  className="trigger_show">Shadows</p>
+                        <div className="show_eyes"> 
+                        {   products &&
+                            products.map( item => (
+                                item.type === "Eye-Shadows" &&
+                                <div className="dropdown_products" key={item.id}>
+                                <p>{item.name}</p>
                                 </div>
-                                </Link>
                             ))
                         }
+                        </div>
                     </div>
-
-                <div className="nav_eyes" onMouseOver={eyeExpand}>
-                    <p onClick={eyeExpand}>Eye-Shadows</p>
-                    {
-                        eyeActive ? <ExpandLessRounded onClick={eyeExpand} className="nav_icons"/> : <ExpandMoreRounded onClick={eyeExpand} className="nav_icons"/> 
-                    }                        
+                    </Link>                       
                 </div>
-                <div className="show_eyes hide_products">
-                    <div className="show_triangle"></div>
-                    {
-                        products &&
-                        products.map( item => (
-
-                            item.type === "Eye-Shadows" &&
-                            <Link to="/products"  key={item.id}>
-                            <div className="dropdown_products">
-                                <p>{item.name}</p>
-                            </div>
-                            </Link>
-                            
-                        ))
-                    }
-                </div>
-
-                </div>
-
-
-            </div>
+            </div>                
+            }
 
             <div className="header_icons_div">
-                {/* <Search products={products}/> */}
-
                 <Link to="/wishlist">
                     <span className="store_badge">
                         <FavoriteBorderRounded className="notifications" />
@@ -127,9 +97,17 @@ export default function Header({products}) {
                     </span> 
                 </Link>
 
-                <Link>
-                <EmojiEmotionsOutlined />
+                <Link to="/user" className="user_account_btn">
+                    {/* CHECK IF USER SIGNED IN */}
+                    <EmojiEmotionsOutlined />
+                    <p>Hello, Guest</p>
                 </Link>
+            </div>
+
+            <div className="mobile_nav_div hidden">
+                <Link to="/"><h5>Home</h5></Link>
+                <Link to="/products"><h5>Shop</h5></Link>
+                <Link to="/user"><h5>My Account</h5></Link>
             </div>
         </div>
     )
