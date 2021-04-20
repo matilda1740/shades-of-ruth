@@ -263,7 +263,12 @@ li {
   /* HEADER CSS */
 
   .a_brandName {
-    width: 15% !important;
+    /* WIDTH WITH SEARCH BAR */
+    /* width: 15% !important; */
+
+    /*  WIDTH WITHOUT SEARCH BAR */
+    width: 20% !important;
+    margin-left: 50px !important;
   }
   .show_lips,
   .show_eyes {

@@ -8,7 +8,8 @@
 
 .a_brandName {
   /* width: 33.3333333333%; */
-  width: 50%;
+  /* CHECK WIDTH CHANGE 1200 APP CSS - NO SEARCH BAR */
+  width: 50%; /* MOBILE */
   justify-content: flex-start;
   height: 100%;
   margin-left: 20px;
@@ -47,6 +48,7 @@
   height: 100%;
   margin: 0 10px;
 }
+
 .header_icons_div {
   color: #343434;
   width: 40%;
@@ -57,8 +59,14 @@
 .nav_dropdown,
 .nav_lips,
 .nav_eyes {
-  width: 100%;
+  /* width: 100%; */ /* WITH SEARCH BAR */
+  width: 50%; /* WITH NO SEARCH BAR */
   height: 100%;
+}
+/* WHEN NO SEARCH BAR */
+.nav_dropdown,
+.navigation {
+  justify-content: flex-end !important;
 }
 
 .navigation p,
@@ -95,9 +103,7 @@
 .show_eyes {
   margin-top: 90px;
 }
-.nav_lips:hover,
-.trigger_show:hover + .show_lips,
-.trigger_show:hover + .show_eyes {
+.nav_lips:hover + .show_lips {
   animation: showDropDown 0.5s ease-in-out forwards;
 }
 
@@ -112,9 +118,20 @@
 /* ANIMATION - PRODUCTS */
 @keyframes showDropDown {
   0% {
+    /* transform: scale(0); */
     opacity: 0;
   }
+  /* 25% {
+    transform: scale(0.25);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  75% {
+    transform: scale(0.75);
+  } */
   100% {
+    /* transform: scale(1); */
     opacity: 1;
   }
 }

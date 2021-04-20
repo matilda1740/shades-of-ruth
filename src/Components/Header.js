@@ -22,17 +22,16 @@ export default function Header({products}) {
 
     const displayMobileMenu = () => {
         // DISPLAY MOBILE NAV
-        if(!(mobileMenu.classList.contains("closing"))) {
-        // mobileMenu.classList.remove("closing")
-        // setOpen(true)
-        mobileMenu.classList.add("closing")
-        setOpen(false)
-        }else {
-        mobileMenu.classList.remove("closing")
-        setOpen(true)            
-        // mobileMenu.classList.add("closing")
-        // setOpen(false)
-        }        
+        if( typeof(mobileMenu) !== "undefined" && mobileMenu!==null){
+            if(mobileMenu.classList.contains("closing")) {
+            mobileMenu.classList.remove("closing")
+            setOpen(true)
+            }else {
+            mobileMenu.classList.add("closing")
+            setOpen(false)
+            }  
+        }
+      
     }
 
 
@@ -67,7 +66,7 @@ export default function Header({products}) {
             <section className="header_section_two_three">
                 {/* SECTION TWO */}
                 <div className="navigation">
-                <Search />
+                {/* <Search /> */}
 
                 <div className="nav_dropdown">
                     <Link to="/products" className="nav_lips">
@@ -85,7 +84,7 @@ export default function Header({products}) {
                     </Link>
 
                     <Link to="/products" className="nav_eyes">
-                        <p  className="trigger_show">Shadows</p>
+                        <p  className="trigger_show">Eye-Shadows</p>
                         <div className="show_eyes"> 
                         {   products &&
                             products.map( item => (
@@ -143,7 +142,7 @@ export default function Header({products}) {
 
             </section> 
             
-            <div className="mobile_nav_container">
+            <div className="mobile_nav_container closing">
                 <MobileNav /> 
             </div>
         </section>
