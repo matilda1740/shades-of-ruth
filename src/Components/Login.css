@@ -32,6 +32,13 @@
 .register_form,
 .login_form,
 .signInMethods {
+  background-color: #f8f8f8;
+  /* box-shadow: 8px 5px 5px #d0aaaa; */
+  /* border: 1px solid #d0aaaa; */
+  box-shadow: 0 0 10px rgba(160, 54, 54, 0.1);
+
+  border: 1px solid #68acac;
+
   width: 100%;
   height: 100%;
   margin: 10px 0;
@@ -39,8 +46,6 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  box-shadow: 8px 5px 5px #d0aaaa;
-  border: 1px solid #d0aaaa;
   border-radius: 8px;
 }
 .signInMethods {
@@ -93,6 +98,7 @@
 .input_fields:hover,
 .input_fields:focus {
   box-shadow: 3px 3px 5px #343434;
+  /* box-shadow: 3px 3px 5px #68acac; */
 }
 .btn_login_page {
   margin: 20px 30px 20px 20px;
@@ -103,6 +109,7 @@
 .btn_login_page:hover,
 .btn_login_page:focus {
   box-shadow: 3px 2px 5px #343434;
+  /* box-shadow: 3px 3px 5px #68acac; */
 }
 .signInMethods .btn_login_page {
   width: 50%;

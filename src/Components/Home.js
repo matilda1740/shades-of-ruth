@@ -11,10 +11,9 @@ export default function Home( {info} ) {
     return (
         <>
         <Slider />
-        <h5 className="tags">Our Best Sellers</h5>
+        {/* <h5 className="tags">Our Best Sellers</h5> */}
 
         <section className="products_home">
-
             <div className="products_home_part1">
                 <div className="product_blob">
                 <svg viewBox="250 0 200 200" xmlns="http://www.w3.org/2000/svg">

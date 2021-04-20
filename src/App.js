@@ -1,8 +1,9 @@
 import React, { useEffect, useState  }  from 'react';
+import "./App.css";
+
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import { auth } from "./Components/firebase";
 import { useStateValue } from './Components/StateProvider';
-import "./App.css";
 import Login from './Components/Login';
 import Header from './Components/Header';
 import Sidebar from './Components/Sidebar';
@@ -10,31 +11,32 @@ import Home from './Components/Home';
 import AllProducts from './Components/AllProducts';
 import HomeProducts from './Components/HomeProducts';
 import EachProduct from './Components/EachProduct';
-
 import WishList from './Components/WishList';
 import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 import Error from './Components/Error';
+
+import SuccessPage from './Components/SuccessPage'; 
+import Failure from './Components/Failure'; 
+
 import axios from './Components/axios.js';
-import Completion from './Components/Completion';
 // STRIPE
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import About from './Components/About';
 import User from './Components/User';
+import MobileNav from './Components/MobileNav';
 
 const stripePk = loadStripe('pk_test_51HPvTxEaginv2FOA9RsSDHDBh05VKPgKZDByT2Ab0mJH83OD01DtK8FHr1kWCx9aV26fOXUCNyb902ExqamMKBDf00uKPGdX3z');
 
 export default function App(){
 
-  const [{}, dispatch] = useStateValue();
+  const [{cart, wishlist}, dispatch] = useStateValue();
   const [productInfo, setProductInfo] = useState();
 
   const getData = async () => {
     try{
       const response = await axios.get('data.json');
-      console.log("--------------- WAITING -------------");
-      console.log("Response", response.data);
       setProductInfo(response.data)
     }
     catch(error){
@@ -42,8 +44,22 @@ export default function App(){
     }
   }
 
+  const [mobileNav, setMobileNav] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState(false);
+  // If mobile nav - display mob header, else display main h
+  // onclick then display selections under mobile header_section_two_three
+
+  // LOCAL STORAGE
+  cart?.length !== 0 && localStorage.setItem('cart', JSON.stringify(cart))
+  wishlist?.length !== 0 && localStorage.setItem('wishlist', JSON.stringify(wishlist))
+
+  cart?.length === 0 && localStorage.removeItem('cart')
+  wishlist?.length === 0 && localStorage.removeItem('wishlist')
+  
   useEffect(() => {
     getData();
+
+    // Firebase Authentication
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch({
@@ -58,12 +74,18 @@ export default function App(){
       }
     });
 
+    // Mobile Nav
+    if(window.screen.width <= 812) {
+            setMobileNav(true)
+            // const mainSection = document.querySelector(".header_section_two_three")
+            // mainSection &&
+            // mainSection.classList.add("hidden")
+    }else{
+            setMobileNav(false)
+            // document.querySelector(".header_section_two_three")
+    }
     }, []);
 
-    // PARALLAX SCROLL EFFECT
-    window.addEventListener("scroll", () => {
-      
-    })
   return (
     <Router> 
     <section className='app'>
@@ -80,17 +102,17 @@ export default function App(){
                   productInfo && <Home info={productInfo.home}/>
                   )} 
                 /> 
-                <Route exact path="/login" component={Login} />
+                {/* <Route exact path="/login" component={Login} /> */}
                 <Route exact path="/about-us" component={About} />
-                <Route exact path="/user" component={User} />
-                
+          <Route exact path="/mobile" component={MobileNav} />                
+                {/* <Route exact path="/user" component={User} />   */}
+
                 <Route 
                   exact path="/products" 
                   render={() => (
                     productInfo && <AllProducts products={productInfo.products} />
                   )} 
                 />                                 
-                {/* <Route path="/products/product_:id" component={EachProduct} /> */}
                 <Route 
                   exact path="/products/product_:id"
                   render={(props) => (
@@ -99,17 +121,9 @@ export default function App(){
                 />
                 <Route exact path="/wishlist" component={WishList} />
                 <Route exact path="/cart" component={Cart} />
-                  <Route 
-                  exact path="/checkout" 
-                  render={() => (
-                  <Elements stripe={stripePk}>
-                  <Checkout />
-                </Elements>                    
-                  )} 
-                /> 
-   
-                <Route exact path="/card_payment" component={Completion} />
-                <Route exact path="/client" component={Completion} />
+                <Route exact path="/checkout" component={Checkout} />
+                <Route exact path="/order_success" component={SuccessPage} />                
+                <Route exact path="/order_failure" component={Failure} />                    
                 <Route exact path="*" component={Error} />
 
               </Switch>

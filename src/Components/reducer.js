@@ -2,8 +2,8 @@
 
 //CHECK INDEX JS FOR NEW INITIAL STATE
 export const initialState = {
-    cart: [],
-    wishlist: [],
+    cart: localStorage.getItem('cart') === null ? [] : JSON.parse(localStorage.getItem('cart')),
+    wishlist: localStorage.getItem('wishlist') === null ? [] : JSON.parse(localStorage.getItem('wishlist')),
     user: null,
 };
 
@@ -18,12 +18,10 @@ export const initialState = {
 // };
 
 export const getSubTotal = (cart) => {
-
   return cart?.reduce((amount, item) => item.quantity > 1 ? amount+=parseInt(item.price * item.quantity) :amount+=parseInt(item.price), 0)   
 }
 
 // THIS FUNCTION IS SO COOL
-
 export const getproductTotal = (cart) => cart?.reduce((amount, item) => amount+=parseInt(item.quantity), 0)
 
 export const reducer = (previousState = initialState, action) => {
@@ -41,7 +39,6 @@ export const reducer = (previousState = initialState, action) => {
                     addedCart.push(action.item);
                     console.log("NEW CART ITEMS: ", action.item)
                 }
-
             }catch(error){
                 console.log(error);
             }
@@ -49,11 +46,9 @@ export const reducer = (previousState = initialState, action) => {
                 ...previousState,
                 cart: addedCart,
             };
-    
         case "remove_from_cart":
             const cartIndex = previousState.cart.findIndex( item  => item.id === action.id);
             let updatedCart = [...previousState.cart];
-
             if (cartIndex >= 0) {
                 updatedCart.splice(cartIndex, 1);
             } else {
@@ -64,7 +59,6 @@ export const reducer = (previousState = initialState, action) => {
                 cart: [...updatedCart]
             };
         // RIGHT WAY TO ACCESS ACTION ID = action.id chack console.log(action) FOR DETAILS
-        
         case "increase_qty": 
             let increasedCart = [...previousState.cart]; // copy of cart
             
@@ -118,19 +112,16 @@ export const reducer = (previousState = initialState, action) => {
         case "remove_from_wishlist":
             const listIndex = previousState.wishlist.findIndex( item  => item.id === action.id
             );
-
             let updatedWishlist = [...previousState.wishlist];
-
             if (listIndex >= 0) {
                 updatedWishlist.splice(listIndex, 1);
             } else {
-                alert(`Can't remove product (name: ${action.id}) as its not in Your WishList!`)
+                console.log("error removing from cart")
             }
             return {
                 ...previousState,
                 wishlist: [...updatedWishlist]
             };
-
         case "set_user": 
             return {
                 ...previousState,

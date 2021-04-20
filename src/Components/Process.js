@@ -14,21 +14,32 @@ export default function Process({chekoutActive, cartActive}) {
     const checkPageActive = () => {
         if(window.location.pathname === "/cart") {
             setIsCartActive(true)
+            document.querySelector(".num_cart").style = "background-color:#d0aaaa";
             setIsCheckoutActive(false)
             setIsCompletionActive(false)
         }else if (window.location.pathname === "/checkout"){
             setIsCartActive(true)
             setIsCheckoutActive(true)
+            document.querySelector(".num_cart").style = "background-color:#d0aaaa";            
+            document.querySelector(".num_checkout").style = "background-color:#d0aaaa";
             setIsCompletionActive(false)
-        }else if (window.location.pathname === "/completion"){
+        }else if (window.location.pathname === "/order_success"){
+            document.querySelector(".num_cart").style = "background-color:#d0aaaa";            
+            document.querySelector(".num_checkout").style = "background-color:#d0aaaa";
+            document.querySelector(".num_payment").style = "background-color:#d0aaaa";
+            setIsCartActive(true)
+            setIsCheckoutActive(true)
+            setIsCompletionActive(true)
+        }else if (window.location.pathname === "/order_failure"){
+            document.querySelector(".num_cart").style = "background-color:#d0aaaa";            
+            document.querySelector(".num_checkout").style = "background-color:#d0aaaa";
+            document.querySelector(".num_payment").style = "background-color:red";
+
             setIsCartActive(true)
             setIsCheckoutActive(true)
             setIsCompletionActive(true)
         }
     }
-    // console.log("PROCESS CART ACTIVE: ", isCartActive);
-    // console.log("PROCESS CHECKOUT ACTIVE: ", isCheckoutActive);
-    // console.log("PROCESS COMPLETE ACTIVE: ", isCompletionActive);
 
     useEffect( () => {
     checkPageActive()
@@ -37,7 +48,7 @@ export default function Process({chekoutActive, cartActive}) {
     return (
         <div className="process_container">
             <div className="each_selection">
-                <div className="number_cont">1</div>
+                <div className="number_cont num_cart">1</div>
                 {
                     isCartActive ? 
                         <Link to="/cart" >
@@ -52,7 +63,7 @@ export default function Process({chekoutActive, cartActive}) {
             <NavigateNextRounded className="show_process_icon"/>
 
             <div className="each_selection">
-                <div className="number_cont">2</div>
+                <div className="number_cont num_checkout">2</div>
                 {
                     isCheckoutActive ? 
                     <Link to="/checkout" >
@@ -67,13 +78,13 @@ export default function Process({chekoutActive, cartActive}) {
             <NavigateNextRounded className="show_process_icon"/>
 
             <div className="each_selection">
-                <div className="number_cont">3</div>
+                <div className="number_cont num_payment">3</div>
                 {
                     isCompletionActive ?
-                        <Link to="/confirm">
-                        <p>Payment Confirmation</p>
+                        <Link to="/order_success">
+                        <p>Order Confirmation</p>
                         </Link>
-                    :   <p>Payment Confirmation</p>
+                    :   <p>Order Confirmation</p>
                 }
 
             </div>

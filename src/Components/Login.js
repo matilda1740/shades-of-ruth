@@ -9,9 +9,8 @@ import { faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 export default function Login() {
 
-    // const [email, setEmail] = useState("");
-    // const [number, setNumber] = useState("");
-    // const [password, setPassword] = useState("");
+        const newUserDetails = []
+
     const [newUser, setNewUser] = useState(false);
     const history = useHistory();
 
@@ -80,17 +79,20 @@ export default function Login() {
     const handleRegister = (e) => { 
       e.preventDefault();
       if(setFormFilled){
+        // GET FORM DATA 
+        const formData = document.querySelectorAll(".register_form .input_fields");
+        formData.forEach( (userData) => newUserDetails.push({ [userData.name] : userData.value}))
+        // FORM DATA = NEW USER DETAILS
+
         const regEmail = document.getElementById("register_email").value;
         const regPass = document.getElementById("register_pass").value;
 
         auth
         .createUserWithEmailAndPassword(regEmail, regPass)
         .then((auth) => {
-        // GET FORM DATA 
-        const formData = document.querySelectorAll(".register_form .input_fields");
-        const newUserDetails = []
-        formData.forEach( (userData) => newUserDetails.push({ [userData.name] : userData.value}))
-        console.log(newUserDetails); //USER DETAILS AS AN ARRAY OF OBJECTS
+        // SIGNED IN
+        let user = auth.user;
+        console.log(user);
         setFormFilled(false);
         setSignupMsg("");
         setLoginMsg("");
@@ -104,8 +106,12 @@ export default function Login() {
             setSignupMsg("ⓘ Invalid Email. Please Try again");
             setFormFilled(false);
         }else if (code === 'auth/weak-password') {
+            setFormFilled(false);
             setSignupMsg(`ⓘ Weak Password. ${error.message}`);
 
+        }else if (code === 'auth/email-already-in-use') {
+            setFormFilled(false);
+            setSignupMsg(`ⓘ ${error.message}`);
         }
         });
       }else {
@@ -113,6 +119,7 @@ export default function Login() {
         setFormFilled(false);
       }
     }
+  console.log(newUserDetails)
         // SIGN IN Methods
     const sigInDiv = document.querySelector(".signInMethods");
     const displayEmailLogin = (e) => {
@@ -135,7 +142,6 @@ export default function Login() {
       auth
       .signInWithEmailAndPassword(loginEmail, loginPass)
       .then((auth) => {
-        console.log(loginEmail, loginPass);
         history.push("/");
       })
       .catch((err) => {

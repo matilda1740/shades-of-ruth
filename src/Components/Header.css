@@ -1,15 +1,15 @@
 .header {
   position: fixed;
-  /* width: calc(100% - 60px); */
   width: 100vw;
-
   height: 80px;
   background-color: #d0aaaa;
   z-index: 99999;
 }
 
 .a_brandName {
-  width: 33.3333333333%;
+  /* width: 33.3333333333%; */
+  width: 50%;
+  justify-content: flex-start;
   height: 100%;
   margin-left: 20px;
 
@@ -21,6 +21,15 @@
   width: 100%;
   object-fit: contain;
 }
+
+.header_section_two_three {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+
 .header,
 .nav_dropdown,
 .navigation,
@@ -28,53 +37,23 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: space-between; */
   justify-content: space-evenly;
 }
-.user_account_btn {
-  width: 60%;
-  height: 50%;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  background-color: #68acac;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 25px;
-  transition: all 0.3s ease-in-out;
-}
-.user_account_btn p {
-  margin-left: 20px;
-}
-.user_account_btn:hover {
-  transform: scale(1.02);
-}
 
-.navigation,
-.mobile_nav_parent {
-  width: 33.3333333333%;
+/* PRODUCTS NAV */
+.navigation {
+  /* width: 33.3333333333%; */
+  width: 60%;
   height: 100%;
   margin: 0 10px;
 }
-.mobile_nav_parent {
-  justify-content: flex-end;
-  align-items: center;
-  display: flex;
-}
-
-.mobile_nav_div {
-  width: 100vw;
-  margin-top: 255px;
-  background-color: #f0f0f0;
-}
-
-.mobile_nav_div * {
-  padding: 10px;
+.header_icons_div {
   color: #343434;
+  width: 40%;
+  height: 100%;
+  padding: 0 10px;
 }
-.hidden {
-  display: none;
-  opacity: 0;
-}
+
 .nav_dropdown,
 .nav_lips,
 .nav_eyes {
@@ -85,13 +64,6 @@
 .navigation p,
 .nav_icons {
   cursor: pointer;
-}
-
-.header_icons_div {
-  color: #343434;
-  width: 30%;
-  height: 100%;
-  padding: 0 10px;
 }
 
 .nav_lips,
@@ -118,14 +90,15 @@
   transition: all 0.5s linear;
 }
 .show_lips {
-  margin-top: 250px;
+  margin-top: 260px;
 }
 .show_eyes {
   margin-top: 90px;
 }
+.nav_lips:hover,
 .trigger_show:hover + .show_lips,
 .trigger_show:hover + .show_eyes {
-  opacity: 1;
+  animation: showDropDown 0.5s ease-in-out forwards;
 }
 
 .dropdown_products {
@@ -135,13 +108,102 @@
 .dropdown_products p:hover {
   color: #d0aaaa;
 }
-/* 
-.show_triangle {
-  width: 0px;
-  height: 0px;
-  margin-left: 10%;
-  margin-top: -100px;
-  border-style: solid;
-  border-width: 0 10px 17.3px 10px;
-  border-color: transparent transparent #f9f9f9 transparent;
-} */
+
+/* ANIMATION - PRODUCTS */
+@keyframes showDropDown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* END OF PRODUCTS NAVIGATION */
+
+.user_account_btn {
+  width: 100%;
+  height: 50%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  background-color: #68acac;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  transition: all 0.3s ease-in-out;
+  color: black !important;
+}
+
+.user_account_btn p {
+  margin-left: 20px;
+  font-size: medium !important;
+}
+.user_account_btn:hover {
+  transform: scale(1.02);
+}
+
+/************************ MOBILE NAV *****************/
+
+/* HAMBURGER MENU AND CART */
+.mobile_nav_parent {
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  width: 50%;
+  height: 100%;
+}
+/* SECTION WITH SELECTIONS */
+
+.mobile_nav_container {
+  width: 100%;
+  height: 100vh;
+
+  /* SHOW MOBILENAV COMPONENT SECTION */
+  position: fixed;
+  top: 80px;
+  right: 0;
+  z-index: 5;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  animation: headerIn 0.3s ease-in-out forwards;
+}
+
+/* ANIMATION MOBILE HEADER SECTION */
+.closing {
+  opacity: 1;
+  animation: headerOut 0.3s ease-in-out forwards;
+}
+
+@keyframes headerIn {
+  0% {
+    opacity: 0;
+    right: -800px;
+  }
+  100% {
+    opacity: 1;
+    right: 0;
+  }
+}
+@keyframes headerOut {
+  0% {
+    opacity: 1;
+    right: 0;
+  }
+  100% {
+    opacity: 0;
+    right: -800px;
+  }
+}
+.x_icon,
+.m_icon {
+  opacity: 0;
+  animation: Xicon 0.3s ease-in-out forwards;
+}
+
+@keyframes Xicon {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

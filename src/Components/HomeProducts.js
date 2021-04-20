@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import './HomeProducts.css'
-import { ShoppingBasketRounded, FavoriteBorderRounded , FavoriteRounded,DeleteRounded  } from '@material-ui/icons'
+import { ShoppingBasketRounded, FavoriteBorderRounded , FavoriteRounded, DeleteRounded, AddRounded, RemoveRounded, NavigateBeforeRounded, NavigateNextRounded  } from '@material-ui/icons'
 import { useStateValue } from './StateProvider'
 import CurrencyFormat from 'react-currency-format';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom'
+
 export default function HomeProducts({id, type, name, image, description, price, quantity}) {
 
     const [{cart, wishlist}, dispatch]  = useStateValue(); 
     const [addedToList, setAddedToList] = useState(false);
-    const [addedCart, setAddedToCart] = useState(false);
+    const [addedToCart, setAddedToCart] = useState(false);
 
     const addToCart = (e) => {
         dispatch({
@@ -24,6 +25,7 @@ export default function HomeProducts({id, type, name, image, description, price,
                 quantity,
             },
         })
+        setAddedToCart(true);
     }
     
     const addToWishlist = (e) => {
@@ -51,7 +53,39 @@ export default function HomeProducts({id, type, name, image, description, price,
         setAddedToList(false);
     };
 
-    // REMOVE FROM CART OPTION ....
+    const removeFromCart = (e) => {
+        dispatch({
+            type: "remove_from_cart",
+            id
+        });
+        setAddedToCart(false);
+    };  
+    
+    const cartEvents = () => {
+        !addedToCart ? addToCart() : removeFromCart();
+    }
+
+    const handleIncreaseQty = (e) => {
+        dispatch({
+            type: "increase_qty",
+            id,
+            quantity
+        })         
+    }
+    const handleReduceQty = (e) => {
+        dispatch({
+            type: "reduce_quantity",
+            id,
+            quantity
+        })
+    }
+    // CHECK IF ITEM IS ALREADY IN WISHLIST
+    useEffect(() => {
+
+    let itemInList = wishlist.find( product => product.id === id );
+    itemInList ? setAddedToList(true) : setAddedToList(false)
+
+    }, [])
     return (
             <div key={id} className="product_info">
                 <Link to={`/products/product_${id}`}>        
@@ -69,17 +103,18 @@ export default function HomeProducts({id, type, name, image, description, price,
                     <DeleteRounded className="product_info_icons" onClick={removeFromWishlist} />
                     }
                     <ShoppingBasketRounded
-                    className="product_info_icons"
-                    onClick={addToCart}
-                    /> 
+                        className="product_info_icons"
+                        onClick={cartEvents}
+                        />  
                 </div>
                 <h4><CurrencyFormat
                         value={price}
                         displayType={'text'}
                         thousandSeparator={true}
                         prefix={'Ksh. '} />
-                </h4>
+                </h4>                    
                 <p>{description}</p>
+                
             </div>
     )
 }

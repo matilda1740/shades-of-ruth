@@ -1,6 +1,7 @@
 import React from 'react'
 import './Slider.css'
 import { NavigateBeforeRounded, NavigateNextRounded} from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 export default function Slider() {
 
@@ -16,10 +17,12 @@ export default function Slider() {
             </div>
 
             <div className="slider_right">
-
-            <h4>Featured New Collection Of Eye-Shadows</h4>
+            <h2>Featured New Collection Of Eye-Shadows</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            <Link to="/products">
             <button className="btns slider_btn">View Collection</button>
+            </Link>
+
             </div>
         </div>
     )

@@ -2,19 +2,6 @@
   display: flex;
   flex-direction: column;
 }
-.cart_page h5 {
-  padding: 20px 20px 0 20px;
-  text-align: center;
-}
-.cart_product_div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 100%;
-  width: 100%;
-}
-
 .cart_subtotal {
   display: flex;
   justify-content: space-between;
@@ -27,6 +14,9 @@
   margin-top: 20px;
 
   padding: 10px 20px;
+}
+.cart_subtotal input {
+  width: 100%;
 }
 .cart_subtotal * {
   background-color: #343434;
@@ -54,6 +44,7 @@
   outline: none;
   margin: 0 20px;
   color: #343434;
-  background-color: #d0aaaa;
+  /* background-color: #d0aaaa; */
+  background-color: #f8f8f8;
   cursor: pointer;
 }

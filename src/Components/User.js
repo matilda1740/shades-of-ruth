@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import "./User.css"
 
+import { auth } from "./firebase";
+
+
 export default function User() {
     const [updateMsg, setUpdateMsg] = useState("");
     const [updateFormFilled, setUpdateFormFilled] = useState(false);
@@ -49,26 +52,31 @@ export default function User() {
     const handleUpdateAccount = () => {
         console.log("Account Updated")
     }
+
+    const handleLogOut = () => {
+        console.log("Account Updated");
+    }
     return (
         <section className="user">
             <div className="user_dash">
-                <div className ="dash_profile">
-                    <div className="dash_avatar"><img src="/images/model3.jpg" alt="Account Profile" /></div>
-                    <p>User Name <br/> Date Joined January 2020</p>
-                </div>
-                <div className="dash_selections">Account Details</div>
-                <div className="dash_selections">
-                <p>My WishList</p>
-                <span>0</span>
-                </div>
-                <div className="dash_selections">
-                <p>My Cart</p>
-                <span>0</span>
-                </div>
-                <div className="dash_selections">
-                <p>My Orders</p>
-                <span>0</span>
-                </div>
+              <div className ="dash_profile">
+                  <div className="dash_avatar"><img src="/images/model3.jpg" alt="Account Profile" /></div>
+                  <p>User Name <br/> Date Joined January 2020</p>
+              </div>
+              <div className="dash_selections">Account Details</div>
+              <div className="dash_selections">
+              <p>My WishList</p>
+              <span>0</span>
+              </div>
+              <div className="dash_selections">
+              <p>My Cart</p>
+              <span>0</span>
+              </div>
+              <div className="dash_selections">
+              <p>My Orders</p>
+              <span>0</span>
+              </div>
+              <button>Log Out</button>
             </div>
             <div className="user_info">
               <form className="update_form" action="" onSubmit={ handleUpdateAccount}>

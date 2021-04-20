@@ -3,16 +3,20 @@
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
 }
 
 .each_selection {
   display: flex;
   flex-direction: row;
-
-  display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-left: 2px;
 }
 
 .each_selection * {
@@ -20,20 +24,20 @@
 }
 .each_selection p {
   padding: 10px;
+  font-size: xx-small;
 }
 .number_cont {
   border-radius: 50%;
   border: 1px solid #d0aaaa;
-
-  width: 30px;
-  height: 30px;
-
+  width: 20px;
+  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: xx-small;
 }
 
-.show_process_icon {
-  font-size: 40px;
-  padding-right: 10px;
+.payment_success_page .each_selection p,
+.payment_failure_page .each_selection p {
+  padding-left: 10px;
 }

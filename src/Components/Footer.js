@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './Footer.css'
-
-import ShoppingBasketRoundedIcon from '@material-ui/icons/ShoppingBasketRounded';
-import CallRoundedIcon from '@material-ui/icons/CallRounded';
-
+import { ShoppingBasketRounded, CallRounded, SendRounded , PaymentRounded } from '@material-ui/icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
@@ -11,44 +9,82 @@ export default class Footer extends Component {
     render() {
         return (
             <section className="footer">
-                <div className ="footer_top">
-                    <div className="top_left">
-                        <p>Shop</p>
-                        <ShoppingBasketRoundedIcon className="footer_icons"/>
-                        <p>Lipsticks</p>
-                        <p>Eye Shadows</p>
-                    </div>
-                    <div className="top_middle">
-                        <img className="brandName" src="./images/brand.png" alt="Shades of Ruth" />
-                    </div>
-                    <div className="top_right">
-                        <p>Contact Us</p>
-                        <CallRoundedIcon className="footer_icons"/>
+                {/* SECTION ONE */}
+                
+                <div className="footer_column">
+                    <div className="footer_row">
+                        <div className="footer_row_heading">
+                        <CallRounded className="footer_icons"/> 
+                        <h4>CONTACT US</h4>
+                        </div>
+                        
                         <br/>
                         <a href="tel:+25495360960">+25495360960</a> <br/>
-                        <a href="mailto:matilda1740@gmail.com">matilda1740@gmail.com</a>
-                    </div>
-                </div>
-                <div className="footer_bottom">
-                    <div className="bottom_left">
-                        <p>Designed by Matilda Mwendwa</p>
-                    </div>
-                    <div className="bottom_middle">
-                        <a href="https://www.instagram.com/shadesofruth/" className = "social">
-                            <FontAwesomeIcon icon={faFacebook} />
-                        </a>
-                        <a href="https://www.instagram.com/shadesofruth/" className = "social">
-                            <FontAwesomeIcon icon={faInstagram} />
-                        </a>
-                        <a href="https://api.whatsapp.com/send?phone=254795360960&text=link" className = "social">
-                            <FontAwesomeIcon icon={faWhatsapp} />
-                        </a>
-                    </div>
-                    <div className="bottom_right">
-                        <p><strong>©</strong>All Rights Reserved Shades of Ruth</p>
-                    </div>
-                </div>
+                        <a href="mailto:matilda1740@gmail.com">matilda1740@gmail.com</a> 
+                    </div>                
 
+                    <div className="footer_row social_row">
+                        <a href="https://www.instagram.com/shadesofruth/">
+                            <FontAwesomeIcon icon={faFacebook} className="footer_social_icons"/>
+                        </a>
+                        <a href="https://www.instagram.com/shadesofruth/">
+                            <FontAwesomeIcon icon={faInstagram} 
+                                className="footer_social_icons"
+                            />
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=254795360960&text=link">
+                            <FontAwesomeIcon icon={faWhatsapp} 
+                                className="footer_social_icons"
+                            />
+                        </a>
+                    </div>
+
+                    <div className="footer_row credits">
+                        <p>Designed by Matilda Mwendwa <strong> © </strong>All Rights Reserved Shades of Ruth</p>
+                    </div>
+                </div>
+               
+                {/* SECTION TWO */}
+            
+                <div className="footer_column">
+                    <div className="footer_row fr_sub">
+                        <h4>SUBSCRIPTION</h4>
+                    </div>
+                    <div className="footer_row fr_sub ">
+                        <p>To receive latest offers and discounts from the shop.</p>
+                    </div>
+
+                    <div className="footer_row fr_sub">
+                    <form action="#" method="post">
+                    <input type="text" placeholder="Your Email" name="newsletter" required/>
+                    <SendRounded />
+
+                    </form>
+                    </div>                      
+                </div>
+               
+                {/* SECTION THREE */}
+                
+                <div className="footer_column">
+                    <div className="footer_row">
+                        <div className="footer_row_heading">
+                        <ShoppingBasketRounded className="footer_icons"/>
+                        <h4>SHOP</h4>
+                        </div>
+                        <br/>
+                        <a href="/products">Lipsticks</a> <br/>
+                        <a href="/products">Eye-Shadows</a> 
+
+                    </div>    
+                    <h5>PAYMENT METHODS</h5>
+                    <div className="footer_row cards_row">
+                    <PaymentRounded />
+                    <PaymentRounded />
+                    <PaymentRounded />
+
+                    </div>
+                </div>
+               
             </section>
         )
     }

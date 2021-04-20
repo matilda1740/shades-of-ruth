@@ -58,27 +58,45 @@ select {
   width: 30%;
 }
 /* SUBTOTAL DIV */
-.checkout_product_subtotal,
-.checkout_product_subtotal *,
-.checkout_options * {
-  background-color: #68acac;
-  /* color: #d0aaaa; */
-  /* color: #d0aaaa; */
-}
 .checkout_product_subtotal {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 20px;
+  align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  width: 100%;
+}
+.subtotal_row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s linear;
+  border-left: 1px solid #f8f8f8;
+}
+.subtotal_row:hover {
+  color: #68acac;
+  border-left: 1px solid #68acac;
+}
+.checkout_product_subtotal {
+  background-color: #f8f8f8;
+  border-radius: 8px;
 }
 
 .checkout_product_subtotal * {
-  border: none;
-  font-size: large;
+  width: 100%;
+  padding: 7.5px;
 }
 
-/* FROM COMPLETION */
+.checkout_product_subtotal input {
+  text-align: right;
+  /* background-color: #68acac; */
+  background-color: #f8f8f8;
+
+  border: none;
+}
+
+/* FORM COMPLETION */
 
 .checkout_client_details {
   width: 100%;
@@ -88,6 +106,9 @@ select {
 .checkout_page h3,
 .checkout_page p {
   padding: 10px 5px;
+}
+.checkout_product_subtotal p {
+  font-size: small;
 }
 
 .checkout_row_form {
@@ -114,15 +135,18 @@ select {
 /* THIS WILL BE UNDER THE PRODUCT PREVIEW */
 .delivery_pickup_container {
   border-radius: 25px;
-  padding: 10px;
 }
 .checkout_delivery_options {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   margin: 10px 0 20px 0;
+  width: 100%;
+  height: 100%;
 }
 .delivery_pickup_cont {
-  width: 48%;
+  width: 100%;
+  margin-bottom: 10px;
 }
 .payment_choice {
   width: 30%;
@@ -179,3 +203,20 @@ select {
   padding: 5px 10px;
 }
 /* ANIMATING THESE OPTIONS */
+
+.complete_order_btn {
+  border-radius: 8px !important;
+  margin: 0 !important;
+  background-color: #68acac;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+.complete_order_btn:hover {
+  transform: scale(1.02);
+}
+.mpesa_process_div {
+  margin: 10px 0;
+}
+.warning {
+  color: #f8f8f8;
+}
