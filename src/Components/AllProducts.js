@@ -8,55 +8,7 @@ import { useHistory } from 'react-router'
 
 export default function AllProducts({products}) {
 
-
     const [{cart, wishlist}, dispatch]  = useStateValue(); 
-
-    const [ isLipsticks, setIsLipsticks ] = useState(false);
-    const [ isShadows, setIsShadows ] = useState(false);
-    const [ allItems, setAllItems ] = useState(false);
-
-    let currentItems = [];
-    // let lippies = [];
-    // let shadows = [];
-
-    const history = useHistory();
-
-    const checkProductActive = (location) => {
-        if(location.pathname === "/products/lipsticks") {
-
-            // products.filter( product => product.type === "Lipsticks" && lippies.push(product) )
-            // console.log("Lipsticks Page: ", lippies)
-            products.filter( product => product.type === "Lipsticks" && currentItems.push(product) )
-            console.log("Lipsticks Page: ", currentItems)
-            setIsLipsticks(true);
-            setIsShadows(false);
-            setAllItems(false);
-        }else if(location.pathname === "/products/eye_shadows"){
-
-            products.filter( product => product.type === "Eye-Shadows" && currentItems.push(product) )
-            console.log("Eye-Shadows Page: ", currentItems)
-
-            setIsLipsticks(false);
-            setIsShadows(true);
-            setAllItems(false);
-
-        }else if(location.pathname === "/products"){
-
-            currentItems.push(products);
-            setIsLipsticks(false);
-            setIsShadows(false);
-            setAllItems(true);
-        }
-            return currentItems;
-
-    }
-
-    // useEffect( () => checkProductActive(), [])
-    useEffect(() => {
-        return history.listen((location) => {
-            checkProductActive(location);
-        })
-    },[history])
 
     return (
         <section className="allProducts_page">

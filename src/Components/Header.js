@@ -16,12 +16,12 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 export default function Header({products}) {
 
     const [ {wishlist, cart}] = useStateValue();
-
     const [open, setOpen] = useState(false);
     const mobileMenu = document.querySelector(".mobile_nav_container")
 
+    const history = useHistory();
+
     const displayMobileMenu = () => {
-        // DISPLAY MOBILE NAV
         if( typeof(mobileMenu) !== "undefined" && mobileMenu!==null){
             if(mobileMenu.classList.contains("closing")) {
             mobileMenu.classList.remove("closing")
@@ -33,6 +33,16 @@ export default function Header({products}) {
         }
       
     }
+
+    const onURLChange = () => {
+         if( typeof(mobileMenu) !== "undefined" && mobileMenu!==null){
+            if(!mobileMenu.classList.contains("closing")) {
+            mobileMenu.classList.add("closing")
+            setOpen(false)
+            } 
+        }       
+    }
+    useEffect(() =>  history.listen((location) => open && onURLChange(), [history]) )
 
     return (
         <section className="header">
