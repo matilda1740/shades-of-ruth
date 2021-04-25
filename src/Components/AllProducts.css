@@ -15,3 +15,18 @@
   align-items: center;
   width: 100%;
 }
+
+/* LIPSTICKS PAGE */
+/* SHADOWS PAGE */
+.shadows_page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.shadows_page .products_container {
+  justify-content: flex-start !important;
+}
+.shadows_page .products_container .product_info {
+  width: 100%;
+}

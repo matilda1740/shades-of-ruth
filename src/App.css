@@ -17,7 +17,7 @@ li {
 .main_header {
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: #d0aaaa;
+  background-color: #dec3c3;
   width: 100%;
   height: 100%;
 }
@@ -106,6 +106,10 @@ li {
     width: 66.666666666% !important;
   } */
 
+  /* SLIDER */
+  .slider_right {
+    right: 0 !important;
+  }
   /* HOME.CSS */
 
   .products_home {
@@ -116,7 +120,7 @@ li {
     align-items: center;
     justify-content: center;
     flex-direction: column !important;
-    margin: 10px 0;
+    margin: 20px 0;
   }
   .home_product_info {
     margin-left: 0 !important;
@@ -132,10 +136,21 @@ li {
   .product_info {
     width: 100% !important;
   }
-  /* CART PAGE */
+  /* FEATURES */
+  .product_info p,
+  .each_feature p {
+    text-align: center;
+  }
 
-  .shopping_or_checkout .btns {
+  /* CART PAGE */
+  .cart_page h4,
+  .question {
     font-size: smaller;
+  }
+  .shopping_or_checkout .btns {
+    font-size: x-small;
+
+    padding: 5px 7.5px !important;
   }
   .checkout_product_preview .cart_quantity_div {
     margin: 10px 0;
@@ -170,7 +185,12 @@ li {
   .bottom_middle {
     display: none;
   }
+  .fr_sub p {
+    font-size: small;
+    text-align: center;
+  }
 
+  /* PROCESS */
   .show_process_icon {
     font-size: 10px !important;
   }
@@ -216,6 +236,17 @@ li {
     width: 100% !important;
     margin: 50px 0 0 0% !important;
     height: auto !important;
+  }
+
+  /* SUCCESS / FAILURE PAGE */
+  .tick_icon {
+    font-size: 100px !important;
+  }
+  .payment_success_div p {
+    font-size: small;
+  }
+  .success_btns_div {
+    height: 30%;
   }
 }
 /************** MEDIUM SCREENS *******************/
@@ -317,12 +348,19 @@ li {
     font-size: 100px !important;
   }
 
+  /* WISHLIST */
+  .tags {
+    font-size: 50px !important;
+  }
+  .tags svg {
+    font-size: 1.5rem !important;
+  }
   /* ALL PRODUCTS */
   .products_sidebar {
     width: 25% !important;
     margin-left: 5%;
   }
-  .products_container {
+  .allProducts_page .products_container {
     width: 70% !important;
   }
   /* .products_container a {
@@ -423,6 +461,9 @@ li {
   }
 
   /* SUCCESS AND FAILURE PAGES */
+  .tick_icon {
+    font-size: 125px !important;
+  }
   .success_btns_div {
     width: 50%;
     /* height: 50%; */
@@ -434,7 +475,7 @@ li {
     align-items: center !important;
   }
   .success_btns {
-    width: 200px !important;
+    padding: 10px !important;
   }
   /* 404 PAGE */
   .error_btn {

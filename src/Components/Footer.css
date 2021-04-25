@@ -80,7 +80,7 @@
   align-items: center;
   justify-content: space-evenly;
   width: 70%;
-  /* border: 1.5px solid #d0aaaa; */
+  /* border: 1.5px solid #dec3c3; */
   border: 1.5px solid #000;
   border-radius: 2px;
 }
@@ -108,5 +108,5 @@
 }
 .fr_sub form svg:hover {
   cursor: pointer;
-  color: #d0aaaa;
+  color: #dec3c3;
 }

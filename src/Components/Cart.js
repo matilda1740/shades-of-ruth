@@ -26,7 +26,8 @@ export default function Cart() {
             <h4>You have {cart?.length} {cart?.length === 1 ? `product` : `products`} in your cart</h4> 
             
             {cart && cart.map( item => (
-                <CartProduct 
+                <CartProduct
+                key={item.id}
                 id={item.id}
                 type={item.type}
                 name={item.name}

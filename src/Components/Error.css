@@ -7,8 +7,8 @@
   align-items: center;
 }
 .error_message {
-  border: 1px solid #d0aaaa;
-  box-shadow: 8px 5px 5px #d0aaaa;
+  border: 1px solid #dec3c3;
+  box-shadow: 8px 5px 5px #dec3c3;
 
   border-radius: 8px;
   width: 60vw;
@@ -38,6 +38,6 @@
 }
 .error_btn {
   margin: 20px 0;
-  background-color: #d0aaaa;
+  background-color: #dec3c3;
   width: 80%;
 }

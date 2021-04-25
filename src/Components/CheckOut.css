@@ -57,7 +57,18 @@ select {
 .checkout_right * {
   width: 30%;
 }
+/* STATIC P/D OPTIONS */
+/* .checkout_pd_options {
+  margin-top: 20px;
+}
+.checkout_pd_options * {
+  padding: 7.5px;
+}
+.pd_label {
+  width: 70%;
+} */
 /* SUBTOTAL DIV */
+.checkout_pd_options,
 .checkout_product_subtotal {
   display: flex;
   flex-direction: column;
@@ -65,6 +76,8 @@ select {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  background-color: #f8f8f8;
+  border-radius: 8px;
 }
 .subtotal_row {
   display: flex;
@@ -77,10 +90,6 @@ select {
 .subtotal_row:hover {
   color: #68acac;
   border-left: 1px solid #68acac;
-}
-.checkout_product_subtotal {
-  background-color: #f8f8f8;
-  border-radius: 8px;
 }
 
 .checkout_product_subtotal * {
@@ -135,6 +144,7 @@ select {
 /* THIS WILL BE UNDER THE PRODUCT PREVIEW */
 .delivery_pickup_container {
   border-radius: 25px;
+  margin-bottom: 20px;
 }
 .checkout_delivery_options {
   display: flex;
@@ -153,7 +163,7 @@ select {
 }
 .delivery_pickup_cont,
 .payment_choice {
-  border: 1px solid #d0aaaa;
+  border: 1px solid #dec3c3;
 
   height: 200px;
   display: flex;
@@ -167,7 +177,7 @@ select {
 }
 .delivery_pickup_cont:hover,
 .payment_choice:hover {
-  box-shadow: 5px 3px 5px #d0aaaa;
+  box-shadow: 5px 3px 5px #dec3c3;
   transform: scale(1.03);
 }
 .delivery_icon {
@@ -179,7 +189,7 @@ select {
   justify-content: space-between;
 
   width: 100%;
-  height: 50px;
+  /* height: 50px; */
 }
 
 #delivery_locations {
@@ -192,7 +202,7 @@ select {
   transition: all 0.3s ease-in-out;
 }
 #delivery_locations:hover {
-  box-shadow: 5px 3px 5px #d0aaaa;
+  box-shadow: 5px 3px 5px #dec3c3;
   transform: scale(1.03);
 }
 .delivery_locations::after {
@@ -202,7 +212,6 @@ select {
 .delivery_locations::after option {
   padding: 5px 10px;
 }
-/* ANIMATING THESE OPTIONS */
 
 .complete_order_btn {
   border-radius: 8px !important;
@@ -218,5 +227,14 @@ select {
   margin: 10px 0;
 }
 .warning {
-  color: #f8f8f8;
+  color: #cc313d;
+  padding: 0 !important;
+  text-align: center;
+  font-size: smaller;
+  width: 70%;
+  margin-left: 30%;
+}
+
+.final {
+  padding-bottom: 10px !important;
 }

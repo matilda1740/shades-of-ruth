@@ -3,7 +3,7 @@ import './WishList.css'
 
 import { useStateValue } from './StateProvider'
 import HomeProducts from './HomeProducts';
-
+import { FavoriteRounded } from '@material-ui/icons'
 export default function WishList(){
 
         const [ {wishlist}] = useStateValue(); 
@@ -13,7 +13,7 @@ export default function WishList(){
                 { wishlist.length > 0 ?
 
                 <div className="non_empty_list">
-                <h5 className="tags">Your Favourite Items</h5>
+                <h5 className="tags"><FavoriteRounded/>Your Favourite Items<FavoriteRounded/></h5>
 
                 <div className="products_container">
 

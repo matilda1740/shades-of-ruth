@@ -1,11 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
 .about {
   width: 100%;
   height: 100%;
+  height: 1000px;
+  margin: 20px 0 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  box-shadow: 0 10px 10px rgba(160, 54, 54, 0.1);
 }
 
 .about_hero {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+}
+.hero_left {
+  width: 50%;
+  height: 500px;
+  position: relative;
+}
+.hero_cursive {
+  font-family: "Great Vibes", cursive;
+  letter-spacing: 5px;
+  font-size: 100px;
+  /* height: 50px;
+  width: 50px;
+  top: 0;
+  left: 0; */
+  transform: rotate(-45deg);
+  transform-origin: 0 0;
+  position: absolute;
+}
+
+.hero_left h5 {
+  margin-top: -50px;
 }

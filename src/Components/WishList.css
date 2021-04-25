@@ -1,3 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+.tags {
+  font-family: "Great Vibes", cursive;
+  font-size: 23px;
+  padding: 10px 0;
+  text-align: center;
+  letter-spacing: 1px;
+  /* background-color: #f8f8f8;
+  height: 100px;
+  width: 90%; */
+}
+.tags svg {
+  margin: 0 10px;
+  font-size: 10px !important;
+}
 .wishlist_page {
   height: 100%;
   width: 100%;

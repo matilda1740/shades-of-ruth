@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./Header.css"
-import { Link} from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 import { useStateValue } from './StateProvider';
 import {getproductTotal} from './reducer'
 import { auth } from "./firebase";
@@ -34,7 +34,6 @@ export default function Header({products}) {
       
     }
 
-
     return (
         <section className="header">
             <Link to="/" className="a_brandName">
@@ -64,14 +63,15 @@ export default function Header({products}) {
             </div>                
 
             <section className="header_section_two_three">
+                
                 {/* SECTION TWO */}
                 <div className="navigation">
                 {/* <Search /> */}
 
                 <div className="nav_dropdown">
-                    <Link to="/products" className="nav_lips">
+                    <Link to="/lipsticks" className="nav_lips">
                         <p className="trigger_show" >Lipsticks</p>
-                        <div className="show_lips"> 
+                        {/* <div className="show_lips"> 
                         {products &&
                             products.map( item => (
                             item.type === "Lipsticks" &&
@@ -80,12 +80,12 @@ export default function Header({products}) {
                             </div>
                         ))
                         }
-                    </div>
+                        </div>   */}
                     </Link>
 
-                    <Link to="/products" className="nav_eyes">
+                    <Link to="/eye_shadows" className="nav_eyes">
                         <p  className="trigger_show">Eye-Shadows</p>
-                        <div className="show_eyes"> 
+                        {/* <div className="show_eyes"> 
                         {   products &&
                             products.map( item => (
                                 item.type === "Eye-Shadows" &&
@@ -94,7 +94,7 @@ export default function Header({products}) {
                                 </div>
                             ))
                         }
-                        </div>
+                        </div> */}
                     </Link>                       
                 
                 </div>
@@ -127,7 +127,7 @@ export default function Header({products}) {
 
                     {/* <Link to="/user" > */}
                         {/* CONTACT - ROUND 0NE */}
-                    <a href="https://api.whatsapp.com/send?phone=254795360960&text=link" className = "sidebar_social">                
+                    <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello" className = "sidebar_social">                
                     <div className="user_account_btn">
                     <FontAwesomeIcon icon={faWhatsapp} /> 
                     <p>CONTACT US</p>

@@ -44,6 +44,7 @@
 }
 
 .mobile_nav_section a.active {
+  /* color: #dec3c3; */
   color: #d0aaaa;
 }
 .mobile_nav_section a svg {

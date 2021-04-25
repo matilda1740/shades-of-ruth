@@ -20,7 +20,7 @@ import { CardTravelRounded, CommuteRounded } from '@material-ui/icons';
 // 2. SEND STRIPE IF CARD 
 // 3. ALL THIS PLUS SEND AN ORDER NOTIFICATION MESSAGE WITH FORM INFO TO BUSINESS
 export default function Checkout() {
-    const [ {cart}, dispatch ] = useStateValue();
+    const [ {cart}] = useStateValue();
     const history = useHistory();
 
     // P/DELIVERY
@@ -29,18 +29,15 @@ export default function Checkout() {
     const [fee, setFee] = useState(0);
     const [address, setAddress] = useState("");
     const [pdOption, setPDOption] = useState("");
-    const [ sendOrderDetails, setSendOrderDetails] = useState({
-        client_name: '', 
-        client_contact_number: '', 
-        client_email: '', 
-        client_requests: '', 
-        client_order: "",
-        cart_total: '',
-        client_address: '',
-        client_pd_option: '',
-        client_mpesa_number: '', 
-        client_mpesa_code: ''
-    })
+
+    const [clientName, setClientName] = useState("");
+    const [clientNumber, setClientNumber] = useState(0);
+    const [clientEmail, setClientEmail] = useState("");
+    const [clientRequests, setClientRequests] = useState("");
+    const [mpesaNumber, setMpesaNumber] = useState(0);
+    const [mpesaCode, setMpesaCode] = useState("");
+    const [sendOrderDetails, setSendOrderDetails] = useState();
+
     const handlePickupOrDelivery = (e) => {
         try{
             if(e.target.classList.contains("delivery_pickup_cont")){
@@ -70,49 +67,108 @@ export default function Checkout() {
 
     // LIPA NA MPESA SECTION
     const [ lnmFormFilled, setLnmFormFilled] = useState(false);
+    const [ detailsWarning, setDetailsWarning ] = useState("")
+    const [ phoneWarning, setPhoneWarning ] = useState("")
+    const [ mailWarning, setMailWarning ] = useState("")
     const [ warning, setWarning ] = useState("")
 
-    const orderDetails = [], cartInfo = []; 
-    let mpesa_num, mpesa_code ;
-
-    const handleOrderDetails = () => {
-
-    mpesa_num = document.querySelector(".lnm_number").value;
-    mpesa_code = document.querySelector(".lnm_mpesa_code").value;
-
-    if(mpesa_num.length !== 0 && mpesa_code.length !== 0) {
-        setLnmFormFilled(true);
-        setWarning("")
-    }else {
-        setLnmFormFilled(false);
-        setWarning(" ⓘ Please Fill In The Above Details")
-    }
-
-    const orderInputs = document.querySelectorAll(".checkout_client_details .input_fields");
-    orderInputs.forEach( orders => orderDetails.push({ [orders.name]: orders.value}))
-
+    const cartInfo = []; 
     cart.forEach( item => cartInfo.push({ "Name: ":item.name, "Quantity: ":item.quantity}))
 
-     setSendOrderDetails({          
-        client_name: orderDetails[0].client_name, 
-        client_contact_number: orderDetails[1].client_contact_number, 
-        client_email: orderDetails[2].client_email, 
-        client_requests: orderDetails[3].client_requests, 
+    const formValidation = (e) => {
+
+        if(e.target.value.length === 0 || e.target.value === ""){
+            setLnmFormFilled(false);
+            setWarning(" ⓘ Please Fill All the Above Fields") 
+        }else {
+            let value = e.target.value.trim()
+            if (e.target.name === "client_name" ){
+                setClientName(value);
+            }
+            else if(e.target.name === "client_contact_number" || e.target.name === "client_mpesa_number"){
+                let phone = value.replace(/\s+/g, '');
+                let phoneRegex = /^\+?\s?[0-9]{3}\d{9,10}$/;
+                let phoneRegNoCode = /^\d{10}$/;
+
+                if(phone.match(phoneRegex) || phone.match(phoneRegNoCode)) {
+                    setPhoneWarning("");
+                    e.target.name === "client_contact_number" ? setClientNumber(phone) : e.target.name === "client_mpesa_number" && setMpesaNumber(phone);
+                }else {
+                    setPhoneWarning("ⓘ Please Enter A Valid Phone Number(+254 712345678 or 0712345678)") 
+                }
+            }
+            else if(e.target.name === "client_email"){
+                let mail = value.toLowerCase();
+                let mailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+                if(mail.match(mailRegex)){
+                setMailWarning("")
+                setClientEmail(mail)
+                } else{
+                setMailWarning("ⓘ Enter Valid Email Address")
+                }
+            }
+            else if(e.target.name === "client_requests"){
+                setClientRequests(value);
+            }else if(e.target.name === "client_mpesa_code"){
+                setMpesaCode(value);
+            }
+            setSendOrderDetails({          
+            client_name: clientName, 
+            client_contact_number: clientNumber, 
+            client_email: clientEmail, 
+            client_requests: clientRequests, 
+            client_order: JSON.stringify(cartInfo),
+            cart_total: amount,
+            client_address: address,
+            client_pd_option: pdOption,
+            client_mpesa_number: mpesaNumber, 
+            client_mpesa_code: mpesaCode,             
+            })
+        }
+    }
+
+  
+    const handleOrderDetails = (e) => {
+
+        e.preventDefault()
+        setSendOrderDetails({          
+        client_name: clientName, 
+        client_contact_number: clientNumber, 
+        client_email: clientEmail, 
+        client_requests: clientRequests, 
         client_order: JSON.stringify(cartInfo),
         cart_total: amount,
         client_address: address,
         client_pd_option: pdOption,
-        client_mpesa_number: mpesa_num, 
-        client_mpesa_code: mpesa_code             
-    })
-    console.log("Final Order" , sendOrderDetails); 
+        client_mpesa_number: mpesaNumber, 
+        client_mpesa_code: mpesaCode,             
+        })
+
+         
+        if(clientName !== "" && clientNumber !== 0 && clientEmail !== "" && clientRequests !== "" && mpesaNumber !== 0 && mpesaCode !== ""){
+            setDetailsWarning("") 
+            setWarning("")
+            setLnmFormFilled(true);
+            sendEmail()
+            // sendOrderDetails && sendEmail()
+        }
+        else {
+            setLnmFormFilled(false);
+            setDetailsWarning(" ⓘ Please Fill in All the Above Fields") 
+            setWarning(" ⓘ Please Fill in All the Above Fields")
+        }    
+
     }
 
+
     const sendEmail = () => {
+
+        console.log("Email Sent");
+        console.log("Order: " , sendOrderDetails);
         try{
             window.emailjs.send("service_4g858vb", "template_44ffscs", sendOrderDetails, "user_BEqm6BdomIvJ0Y0hRhujd")
             .then( (response) => {
-               console.log('SUCCESS!', response.status, response.text);
+            //    console.log('SUCCESS!', response.status, response.text);
                history.push("/order_success");
             // localStorage.clear();
             // Clear Cart
@@ -127,17 +183,6 @@ export default function Checkout() {
         }
     }
 
-    const handlePlaceOrder = async () => {
-
-        try {
-            handleOrderDetails();
-            console.log("Email Sent!")            
-            // sendEmail();
-        }catch(error) {
-            console.log(error);
-        }
-    }
-
 
     return (
         <div className="checkout_page">
@@ -149,6 +194,7 @@ export default function Checkout() {
             <div className="client_and_checkout"> 
 
                 <div className="checkout_details_right">
+
                     <h3>Product Preview</h3> 
                     
                     <div className="product_preview"> 
@@ -180,25 +226,25 @@ export default function Checkout() {
                             </div>
                         </div>
                         {pickup ? 
-                            <div className="delivery_pickup_options checkout_row_form">
+
+                            <section className="delivery_pickup_options checkout_row_form">
+                            
                             <label className="login_labels">Select Pickup Station:</label>
-                                <select name="delivery_locations" id="delivery_locations" data-selected="" onChange={getFeeAndAddress}>
+                            <select name="delivery_locations" id="delivery_locations" data-selected="" onChange={getFeeAndAddress}>
                                     <option value='{ "fee": 0, "place": "Location" }' defaultValue>Location</option>
-                                    <option value='{ "fee": 300, "place": "Westlands" }'>Westlands</option>
-                                    <option value='{ "fee": 450, "place": "Kitengela" }'>Kitengela</option>
-                                    <option value='{ "fee": 650, "place": "Runda" }'>Runda</option>
-                                    <option value='{ "fee": 932, "place": "Kiambu" }'>Kiambu</option>
+                                    <option value='{ "fee": 100, "place": "Nairobi County - Within CBD" }'>Nairobi County, Within CBD - 100</option>
+                                    <option value='{ "fee": 180, "place": "Within Nairobi County - Outside CBD" }'>Within Nairobi County, Outside CBD - 180</option>
+                                    <option value='{ "fee": 300, "place": "Outside Nairobi County - Within Kenya" }'>Outside Nairobi County, Within Kenya - 300</option>
                                 </select>                    
-                            </div>
+                            </section>
+
                             : delivery &&
                             <div className="delivery_pickup_options checkout_row_form">
                                 <label className="login_labels">Select Delivery Location:</label>
                                 <select name="delivery_locations" id="delivery_locations" data-selected="" onChange={getFeeAndAddress}>
                                     <option value='{ "fee": 0, "place": "Location" }' defaultValue>Location</option>
-                                    <option value='{ "fee": 555, "place": "Mombasa Road" }'>Mombasa Road</option>
-                                    <option value='{ "fee": 467, "place": "Rosslyn  Riviera" }'>Rosslyn  Riviera</option>
-                                    <option value='{ "fee": 212, "place": "Village Market" }'>Village Market</option>
-                                    <option value='{ "fee": 765, "place": "Ngong Road" }'>Ngong Road</option>
+                                    <option value='{ "fee": 400, "place": "Within Nairobi County" }'>Within Nairobi County - 400</option>
+                                    <option value='{ "fee": 500, "place": "Outskirts of Nairobi County" }'>Outskirts of Nairobi County - 500</option>
                                 </select>
                             </div>
                         }
@@ -220,7 +266,7 @@ export default function Checkout() {
                         </div>
 
                         <div className="subtotal_row">
-                        <h5><strong>Delivery Fee:</strong></h5>
+                        <h5><strong>Shipping Fee:</strong></h5>
                         <CurrencyFormat
                             renderText={ (value) => (
                                 <p><strong>{`${value}`}</strong></p>
@@ -257,22 +303,37 @@ export default function Checkout() {
                         <p>Please provide the following information to facilitate delivery: </p>
                         <div className="checkout_row_form">
                             <h5 className="login_labels">Full Name:</h5>
-                            <input className="input_fields" type="text" name="client_name" required></input>
+                            <input onChange={formValidation} className="input_fields" type="text" id="client_name" name="client_name" required></input>
                         </div>
                         <div className="checkout_row_form">
                             <h5 className="login_labels">Phone Number:</h5>
-                            <input className="input_fields" type="text" name="client_contact_number" required></input>
+                            <input onChange={formValidation} className="input_fields" type="text" id="client_contact_number" name="client_contact_number" required></input>
                         </div>
+                        {
+                            !lnmFormFilled &&
+                            <p className="warning">{phoneWarning}</p>
+                        }
                         <div className="checkout_row_form">
                             <h5 className="login_labels" >Email:</h5>
-                            <input className="input_fields" type="text" id="email" name="client_email" required></input>
+                            <input onChange={formValidation}  className="input_fields" type="text" id="client_email" name="client_email" required></input>
                         </div>
+                        {
+                            !lnmFormFilled &&
+                            <p className="warning">{mailWarning}</p>
+                        }
                         <div className="checkout_row_form">
                             <h5 className="login_labels" >Special Requests: </h5>
-                            <textarea className="input_fields" name="client_requests" type="text" id="requests" rows="4" cols="60" required></textarea>
-                        </div>                
-                        <input type="checkbox" id="isNewMember"  name="isNewMember" value="Member"></input>
-                        <label for="isNewMember" className="login_labels">Would you like to sign up?</label>
+                            <textarea onChange={formValidation} className="input_fields" name="client_requests" type="text" id="requests" rows="4" cols="60" required></textarea>
+                        </div> 
+                        {
+                            detailsWarning !== "" &&
+                            <p className="warning final">{detailsWarning}</p>
+                        }
+
+                        <p className="warning">Please include information about specific pickup or delivery location in your special requests</p>
+
+                        {/* <input type="checkbox" id="isNewMember"  name="isNewMember" value="Member"></input>
+                        <label for="isNewMember" className="login_labels">Would you like to sign up?</label> */}
                     </form>
                     
                     {/* LIPA NA MPESA */}
@@ -287,25 +348,29 @@ export default function Checkout() {
                             <p>5. Enter Your Pin</p>
                             <p>6. Confirm the name <strong>"SHARU COSMETICS"</strong></p>
                             </div>  
-                            <form className="mpesa_process_form">
+                            <form className="mpesa_process_form" onSubmit={handleOrderDetails}>
                             <p>Please provide the following information to confirm payment</p>
                             <div className="checkout_row_form">
                                 <h5 className="login_labels">Enter Phone Number:</h5>
-                                <input className="input_fields lnm_number" name="client_mpesa_number" type="text" required></input>
+                                <input onChange={formValidation} className="input_fields lnm_number" name="client_mpesa_number" type="text" required></input>
                             </div>
+                            {
+                            !lnmFormFilled &&
+                            <p className="warning">{phoneWarning}</p>
+                            }
                             <div className="checkout_row_form">
                                 <h5 className="login_labels">M-PESA Confirmation Code:</h5>
-                                <input className="input_fields lnm_mpesa_code" name="client_mpesa_code" type="text" required></input>
+                                <input onChange={formValidation} className="input_fields lnm_mpesa_code" name="client_mpesa_code" type="text" required></input>
                             </div>
- 
-                            </form> 
-                            {
+                             {
                                 !lnmFormFilled &&
-                                <p className="warning">{warning}</p>
+                                <p className="warning final">{warning}</p>
                             }                                                         
-                            <button className="btns complete_order_btn" onClick={handlePlaceOrder}> 
+                            <button type="submit" className="btns complete_order_btn" > 
                                 Place Order
                             </button>
+                            </form> 
+
                         </div>            
                     </section>
 

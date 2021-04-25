@@ -25,7 +25,7 @@ export default function CartProduct({id, type, name, image, description, price, 
         })
      }
     return (
-        <section className="cart_product_container" >
+        <section className="cart_product_container" key={id}>
         { 
             window.location.pathname === '/cart' ? 
             <div className="cart_product" key={id} id={id} >

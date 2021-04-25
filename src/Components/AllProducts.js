@@ -4,40 +4,61 @@ import Categories from './Categories'
 import HomeProducts from './HomeProducts'
 import Footer from './Footer'
 import { useStateValue } from './StateProvider'
+import { useHistory } from 'react-router'
 
 export default function AllProducts({products}) {
 
+
     const [{cart, wishlist}, dispatch]  = useStateValue(); 
 
-    // const [ isLipsticks, setIsLipsticks ] = useState(false);
-    // const [ isShadows, setIsShadows ] = useState(false);
-    // const [ allItems, setAllItems ] = useState(false);
+    const [ isLipsticks, setIsLipsticks ] = useState(false);
+    const [ isShadows, setIsShadows ] = useState(false);
+    const [ allItems, setAllItems ] = useState(false);
 
-    // let currentProducts = [];
+    let currentItems = [];
+    // let lippies = [];
+    // let shadows = [];
 
-    // currentProducts.push(products); 
+    const history = useHistory();
 
-    // const checkProductActive = () => {
-    //     if(window.location.pathname === "/products/lipsticks") {
-    //         setIsLipsticks(true);
-    //         setIsShadows(false);
-    //         setAllItems(false);
-    //     }else if(window.location.pathname === "/products/eye_shadows"){
-    //         setIsLipsticks(false);
-    //         setIsShadows(true);
-    //         setAllItems(false);
-    //     }else {
-    //         setAllItems(true);
-    //     }
-    // }
+    const checkProductActive = (location) => {
+        if(location.pathname === "/products/lipsticks") {
 
-    // isLipsticks ? currentProducts.push(products.filter( item => item.type === "Lipsticks"))
-    // : isShadows ? currentProducts.push(products.filter( item => item.type === "Eye-Shadows"))
-    // : currentProducts;
+            // products.filter( product => product.type === "Lipsticks" && lippies.push(product) )
+            // console.log("Lipsticks Page: ", lippies)
+            products.filter( product => product.type === "Lipsticks" && currentItems.push(product) )
+            console.log("Lipsticks Page: ", currentItems)
+            setIsLipsticks(true);
+            setIsShadows(false);
+            setAllItems(false);
+        }else if(location.pathname === "/products/eye_shadows"){
 
+            products.filter( product => product.type === "Eye-Shadows" && currentItems.push(product) )
+            console.log("Eye-Shadows Page: ", currentItems)
+
+            setIsLipsticks(false);
+            setIsShadows(true);
+            setAllItems(false);
+
+        }else if(location.pathname === "/products"){
+
+            currentItems.push(products);
+            setIsLipsticks(false);
+            setIsShadows(false);
+            setAllItems(true);
+        }
+            return currentItems;
+
+    }
+
+    // useEffect( () => checkProductActive(), [])
+    useEffect(() => {
+        return history.listen((location) => {
+            checkProductActive(location);
+        })
+    },[history])
 
     return (
-        // {/* Add PRODUCT TITLE */}
         <section className="allProducts_page">
             <div className="innerProducts">
                 <div className="products_sidebar">
@@ -55,7 +76,7 @@ export default function AllProducts({products}) {
                         price={item.price}
                         quantity={item.quantity}
                     />))
-                }
+                }                   
                 </div> 
             </div>
             

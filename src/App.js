@@ -1,6 +1,5 @@
 import React, { useEffect, useState  }  from 'react';
 import "./App.css";
-
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import { auth } from "./Components/firebase";
 import { useStateValue } from './Components/StateProvider';
@@ -26,6 +25,9 @@ import { loadStripe } from '@stripe/stripe-js';
 import About from './Components/About';
 import User from './Components/User';
 import MobileNav from './Components/MobileNav';
+import Lipsticks from './Components/Lipsticks';
+import Shadows from './Components/Shadows';
+import ScrollToTop from './Components/ScrollToTop';
 
 const stripePk = loadStripe('pk_test_51HPvTxEaginv2FOA9RsSDHDBh05VKPgKZDByT2Ab0mJH83OD01DtK8FHr1kWCx9aV26fOXUCNyb902ExqamMKBDf00uKPGdX3z');
 
@@ -45,7 +47,6 @@ export default function App(){
   }
 
   const [mobileNav, setMobileNav] = useState(false);
-  const [showMobileNav, setShowMobileNav] = useState(false);
   // If mobile nav - display mob header, else display main h
   // onclick then display selections under mobile header_section_two_three
 
@@ -55,7 +56,7 @@ export default function App(){
 
   cart?.length === 0 && localStorage.removeItem('cart')
   wishlist?.length === 0 && localStorage.removeItem('wishlist')
-  
+ 
   useEffect(() => {
     getData();
 
@@ -74,20 +75,14 @@ export default function App(){
       }
     });
 
-    // Mobile Nav
-    if(window.screen.width <= 812) {
-            setMobileNav(true)
-            // const mainSection = document.querySelector(".header_section_two_three")
-            // mainSection &&
-            // mainSection.classList.add("hidden")
-    }else{
-            setMobileNav(false)
-            // document.querySelector(".header_section_two_three")
-    }
+    window.screen.width <= 812 ? setMobileNav(true) : setMobileNav(false)
+    
     }, []);
+
 
   return (
     <Router> 
+    <ScrollToTop />
     <section className='app'>
       <div className="home_page">
         <div className="main_header">
@@ -103,8 +98,8 @@ export default function App(){
                   )} 
                 /> 
                 {/* <Route exact path="/login" component={Login} /> */}
-                <Route exact path="/about-us" component={About} />
-          <Route exact path="/mobile" component={MobileNav} />                
+                {/* <Route exact path="/about-us" component={About} /> */}
+                {/* <Route exact path="/mobile" component={MobileNav} />                 */}
                 {/* <Route exact path="/user" component={User} />   */}
 
                 <Route 
@@ -112,18 +107,30 @@ export default function App(){
                   render={() => (
                     productInfo && <AllProducts products={productInfo.products} />
                   )} 
-                />                                 
-                <Route 
+                />  
+                 <Route 
+                  exact path="/lipsticks" 
+                  render={() => ( productInfo &&  <Lipsticks products={productInfo.products}  />
+                  )} 
+                />      
+                                 <Route 
+                  exact path="/eye_shadows" 
+                  render={() => ( productInfo &&  <Shadows products={productInfo.products}  />
+                  )} 
+                /> 
+
+
+                {/* <Route 
                   exact path="/products/product_:id"
                   render={(props) => (
                     productInfo && <EachProduct url={props} products={productInfo.products}/>
                   )} 
-                />
+                /> */}
                 <Route exact path="/wishlist" component={WishList} />
                 <Route exact path="/cart" component={Cart} />
                 <Route exact path="/checkout" component={Checkout} />
                 <Route exact path="/order_success" component={SuccessPage} />                
-                <Route exact path="/order_failure" component={Failure} />                    
+                {/* <Route exact path="/order_failure" component={Failure} />                     */}
                 <Route exact path="*" component={Error} />
 
               </Switch>

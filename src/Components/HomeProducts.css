@@ -29,6 +29,9 @@
   object-fit: contain;
   width: 100%;
   height: 100%;
+  /* width: 80%;
+  height: 80%; */
+
   transition: all 0.3s ease-in-out;
 }
 
@@ -49,6 +52,9 @@
 }
 .faved_product {
   color: #d00000;
+}
+.product_info p {
+  padding-top: 10px;
 }
 
 .indent_title {
@@ -75,5 +81,5 @@ h1 {
 
 .qty_icons {
   cursor: pointer;
-  /* color: #d0aaaa !important; */
+  /* color: #dec3c3 !important; */
 }

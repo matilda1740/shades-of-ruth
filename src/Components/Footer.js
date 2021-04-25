@@ -19,8 +19,8 @@ export default class Footer extends Component {
                         </div>
                         
                         <br/>
-                        <a href="tel:+25495360960">+25495360960</a> <br/>
-                        <a href="mailto:matilda1740@gmail.com">matilda1740@gmail.com</a> 
+                        <a href="tel:+254790877635">+254790877635</a> <br/>
+                        <a href="mailto:shadesofruth@gmail.com">shadesofruth@gmail.com</a> 
                     </div>                
 
                     <div className="footer_row social_row">
@@ -32,7 +32,7 @@ export default class Footer extends Component {
                                 className="footer_social_icons"
                             />
                         </a>
-                        <a href="https://api.whatsapp.com/send?phone=254795360960&text=link">
+                        <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello">
                             <FontAwesomeIcon icon={faWhatsapp} 
                                 className="footer_social_icons"
                             />
@@ -40,7 +40,9 @@ export default class Footer extends Component {
                     </div>
 
                     <div className="footer_row credits">
-                        <p>Designed by Matilda Mwendwa <strong> © </strong>All Rights Reserved Shades of Ruth</p>
+                        {/* <p>Designed by Matilda Mwendwa <strong> © </strong>All Rights Reserved Shades of Ruth</p> */}
+                        <p>Designed by Matilda Mwendwa</p>
+
                     </div>
                 </div>
                
@@ -72,16 +74,21 @@ export default class Footer extends Component {
                         <h4>SHOP</h4>
                         </div>
                         <br/>
-                        <a href="/products">Lipsticks</a> <br/>
-                        <a href="/products">Eye-Shadows</a> 
+                        <a href="/lipsticks">Lipsticks</a> <br/>
+                        <a href="/eye_shadows">Eye-Shadows</a> <br/>
+                        <a href="/products">All Products</a> 
+
 
                     </div>    
-                    <h5>PAYMENT METHODS</h5>
-                    <div className="footer_row cards_row">
+                    {/* <h5>PAYMENT METHODS</h5> */}
+                    {/* <div className="footer_row cards_row"> */}
+                    {/* <PaymentRounded />
                     <PaymentRounded />
-                    <PaymentRounded />
-                    <PaymentRounded />
+                    <PaymentRounded /> */}
+                    {/* </div> */}
 
+                                        <div className="footer_row credits">
+                        <p><strong> © </strong>All Rights Reserved Shades of Ruth</p>
                     </div>
                 </div>
                

@@ -10,18 +10,20 @@
   height: 50px;
 
   background-color: #343434;
-  color: #d0aaaa;
+  color: #dec3c3;
   margin-top: 20px;
 
   padding: 10px 20px;
 }
 .cart_subtotal input {
   width: 100%;
+  text-align: end;
 }
 .cart_subtotal * {
   background-color: #343434;
-  color: #d0aaaa;
+  color: #dec3c3;
   border: none;
+  outline: none;
   font-size: large;
 }
 .pickup_or_delivery {
@@ -44,7 +46,7 @@
   outline: none;
   margin: 0 20px;
   color: #343434;
-  /* background-color: #d0aaaa; */
+  /* background-color: #dec3c3; */
   background-color: #f8f8f8;
   cursor: pointer;
 }

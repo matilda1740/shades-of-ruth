@@ -18,7 +18,7 @@
             "type": "Lipsticks",
             "src": "/images/intentions_nobg.png",            
             "name":"Intentions Lipstick",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
+            "description": "Rich red color perfect for all occasions.",
             "price": "950",
             "quantity": "1"
         },        
@@ -27,7 +27,7 @@
             "type": "Lipsticks",
             "src": "/images/redwood_nobg.png",
             "name":"Redwood Lipstick",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
+            "description": "Nude lip with slightly pink undertones",
             "price": "950",
             "quantity": "1"
 
@@ -37,7 +37,7 @@
             "type": "Lipsticks",
             "src": "/images/plum_nobg.png",
             "name":"Plum Lipstick",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
+            "description": "Pink lipstick with purple undertones",
             "price": "950",
             "quantity": "1"
 
@@ -47,7 +47,7 @@
             "type": "Lipsticks",
             "src": "/images/ruby_nobg.png",
             "name":"Ruby Lipstick",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
+            "description": "Deep pink color",
             "price": "950",
             "quantity": "1"
 
@@ -57,7 +57,7 @@
             "type": "Lipsticks",
             "src": "/images/rose_nobg.png",
             "name":"Rose Lipstick",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
+            "description": "Deep red with Maroon undertones",
             "price": "950",
             "quantity": "1"
         },
@@ -66,8 +66,8 @@
             "type": "Eye-Shadows",
             "src": "/images/shadows_nobg.png",
             "name":"Taurus Collection",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, libero!",
-            "price": "1650",
+            "description": "Our palette has 12 shades. 8 shimmers and 4 mattes, all easily blendable!",
+            "price": "1600",
             "quantity": "1"
         }
 

@@ -88,7 +88,7 @@ export default function HomeProducts({id, type, name, image, description, price,
     }, [])
     return (
             <div key={id} className="product_info">
-                <Link to={`/products/product_${id}`}>        
+                <Link to="/products">        
                 <img src={image} alt={name}/>
                 </Link>
                 <div className="product_purchase">
@@ -96,7 +96,7 @@ export default function HomeProducts({id, type, name, image, description, price,
                     { addedToList ?                                   
                     <FavoriteRounded className="fav_icon faved_product"
                     onClick={removeFromWishlist} />  :
-                    (window.location.pathname === "/products") ?
+                    (window.location.pathname === "/products" || window.location.pathname === "/lipsticks" || window.location.pathname === "/eye_shadows") ?
                     <FavoriteBorderRounded  className="fav_icon product_info_icons"
                     onClick={addToWishlist} /> 
                     : (window.location.pathname === "/wishlist") && 
