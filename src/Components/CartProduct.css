@@ -16,7 +16,7 @@
 }
 .checkout_product_preview {
   justify-content: space-between;
-  font-size: x-small;
+  font-size: small;
 }
 .cart_item_left,
 .cart_item_right {
@@ -36,19 +36,21 @@
 .cart_item_right {
   flex-direction: column;
   justify-content: space-evenly;
-  font-size: x-small;
+  font-size: small;
 }
 .cart_quantity_div {
   width: 40%;
+  height: 50px;
   display: flex;
   justify-content: space-evenly !important;
   align-items: center;
 }
-.cart_item_right svg {
+
+.cart_quantity_div h5 {
   font-size: small;
-  font-weight: bold;
 }
+.cart_item_right svg,
 .cart_quantity_div svg {
-  font-size: small;
+  font-size: medium;
   font-weight: bold;
 }

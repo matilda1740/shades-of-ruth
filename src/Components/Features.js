@@ -7,7 +7,7 @@ export default function Features({features}) {
         <div className="features">
             <div className="each_feature">
                 <LocalAirportRounded className="feature_icons"/>
-                <h4>World Wide Shipping</h4>
+                <h4>Country Wide Shipping</h4>
                 <p>Goods are delivered to any location</p>
             </div>
             <div className="each_feature">

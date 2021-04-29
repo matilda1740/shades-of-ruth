@@ -41,7 +41,7 @@ export default function MobileNav() {
                 <h5>WISHLIST</h5>
             </NavLink>
             
-            <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello" className = "mobile_nav_btn_div">
+            <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello" className = "mobile_nav_btn_div" target="_blank" rel="noreferrer">
                 <div className="mobile_nav_btn user_account_btn">
                 <FontAwesomeIcon icon={faWhatsapp} /> 
                 <p>CONTACT US</p>

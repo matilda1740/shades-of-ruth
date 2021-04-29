@@ -13,8 +13,7 @@ import HomeProducts from './HomeProducts';
 
 export default function Cart() {
 
-    const [ {cart} ] = useStateValue();
-
+    const [ {cart}] = useStateValue();
 
     return (
         <section className="cart_page">

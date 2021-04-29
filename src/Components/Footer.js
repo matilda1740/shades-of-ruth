@@ -24,15 +24,15 @@ export default class Footer extends Component {
                     </div>                
 
                     <div className="footer_row social_row">
-                        <a href="https://www.instagram.com/shadesofruth/">
+                        <a href="https://www.instagram.com/shadesofruth/" target="_blank" rel="noreferrer">
                             <FontAwesomeIcon icon={faFacebook} className="footer_social_icons"/>
                         </a>
-                        <a href="https://www.instagram.com/shadesofruth/">
+                        <a href="https://www.instagram.com/shadesofruth/" target="_blank" rel="noreferrer">
                             <FontAwesomeIcon icon={faInstagram} 
                                 className="footer_social_icons"
                             />
                         </a>
-                        <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello">
+                        <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello" target="_blank" rel="noreferrer">
                             <FontAwesomeIcon icon={faWhatsapp} 
                                 className="footer_social_icons"
                             />

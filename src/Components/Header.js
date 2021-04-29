@@ -137,7 +137,7 @@ export default function Header({products}) {
 
                     {/* <Link to="/user" > */}
                         {/* CONTACT - ROUND 0NE */}
-                    <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello" className = "sidebar_social">                
+                    <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello" className = "sidebar_social" target="_blank" rel="noreferrer">                
                     <div className="user_account_btn">
                     <FontAwesomeIcon icon={faWhatsapp} /> 
                     <p>CONTACT US</p>

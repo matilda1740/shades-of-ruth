@@ -18,6 +18,10 @@
 .payment_success_page p,
 .payment_failure_page p {
   padding: 10px 0;
+  text-align: center;
+}
+.payment_success_div p {
+  padding: 10px 0;
 }
 .success_btns_div {
   width: 100%;

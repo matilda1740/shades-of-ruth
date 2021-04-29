@@ -20,9 +20,16 @@ import { CardTravelRounded, CommuteRounded } from '@material-ui/icons';
 // 2. SEND STRIPE IF CARD 
 // 3. ALL THIS PLUS SEND AN ORDER NOTIFICATION MESSAGE WITH FORM INFO TO BUSINESS
 export default function Checkout() {
-    const [ {cart}] = useStateValue();
+    const [ {cart}, dispatch] = useStateValue();
+
     const history = useHistory();
 
+    // RESET CART 
+    const handleCartReset = () => {
+        dispatch({
+            type: "reset_cart"
+        })
+    } 
     // P/DELIVERY
     const [pickup, setPickup] = useState(false);
     const [delivery, setDelivery] = useState(false);
@@ -38,18 +45,21 @@ export default function Checkout() {
     const [mpesaCode, setMpesaCode] = useState("");
     const [sendOrderDetails, setSendOrderDetails] = useState();
 
+    // THREE OPTIONS :
+    // 1. OUTER DIV 2. H3 3. SVG/PATH
     const handlePickupOrDelivery = (e) => {
+
+        // let pickupCont = document.querySelector(".delivery_pickup_cont");
+
         try{
-            if(e.target.classList.contains("delivery_pickup_cont")){
-                if(e.target.children[1].classList.contains("pickup")){
-                    delivery && setDelivery(false)
-                    pickup ? setPickup(false) : setPickup(true)
-                }else if(e.target.children[1].classList.contains("delivery") ){
-                    pickup && setPickup(false) 
-                    delivery ? setDelivery(false) : setDelivery(true)
-                }else {
-                    console.log("ERROR")
-                }
+            if(e.target.classList.contains("pickup") || e.target.parentNode.classList.contains("pickup")){
+                console.log("Header / div / ICON")
+                delivery && setDelivery(false)
+                pickup ? setPickup(false) : setPickup(true)
+            }
+            else if(e.target.classList.contains("delivery") || e.target.parentNode.classList.contains("delivery")){
+                pickup && setPickup(false) 
+                delivery ? setDelivery(false) : setDelivery(true)                
             }
         }catch(error){
             console.log("ERROR", error)
@@ -99,7 +109,7 @@ export default function Checkout() {
             }
             else if(e.target.name === "client_email"){
                 let mail = value.toLowerCase();
-                let mailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+                let mailRegex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
                 if(mail.match(mailRegex)){
                 setMailWarning("")
                 setClientEmail(mail)
@@ -127,7 +137,6 @@ export default function Checkout() {
         }
     }
 
-  
     const handleOrderDetails = (e) => {
 
         e.preventDefault()
@@ -150,7 +159,6 @@ export default function Checkout() {
             setWarning("")
             setLnmFormFilled(true);
             sendEmail()
-            // sendOrderDetails && sendEmail()
         }
         else {
             setLnmFormFilled(false);
@@ -160,7 +168,6 @@ export default function Checkout() {
 
     }
 
-
     const sendEmail = () => {
 
         console.log("Email Sent");
@@ -168,10 +175,12 @@ export default function Checkout() {
         try{
             window.emailjs.send("service_4g858vb", "template_44ffscs", sendOrderDetails, "user_BEqm6BdomIvJ0Y0hRhujd")
             .then( (response) => {
-            //    console.log('SUCCESS!', response.status, response.text);
-               history.push("/order_success");
-            // localStorage.clear();
-            // Clear Cart
+            history.push("/order_success");
+            try {
+                handleCartReset();
+            }catch(error){
+                console.log("Cart Clearance Error:", error)
+            }
             })
             .catch((error) =>{
             console.log('FAILED...', error);
@@ -216,12 +225,12 @@ export default function Checkout() {
                     <div className="delivery_pickup_container">
                         <p>Do you prefer Pickup or Delivery? </p>
                         <div className="checkout_delivery_options">
-                            <div className="delivery_pickup_cont" onClick={handlePickupOrDelivery}>
-                                <h3>Pick Up</h3>
-                                <CardTravelRounded className="delivery_icon pickup"/>
+                            <div className="delivery_pickup_cont pickup" onClick={handlePickupOrDelivery}>
+                                <h3 className="pickup">Pick Up</h3>
+                                <CardTravelRounded className="delivery_icon pickup" />
                             </div>
-                            <div className="delivery_pickup_cont" onClick={handlePickupOrDelivery}>
-                                <h3>Delivery</h3>
+                            <div className="delivery_pickup_cont delivery" onClick={handlePickupOrDelivery}>
+                                <h3 className="delivery">Delivery</h3>
                                 <CommuteRounded className="delivery_icon delivery"/>
                             </div>
                         </div>

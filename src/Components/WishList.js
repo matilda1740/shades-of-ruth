@@ -4,6 +4,7 @@ import './WishList.css'
 import { useStateValue } from './StateProvider'
 import HomeProducts from './HomeProducts';
 import { FavoriteRounded } from '@material-ui/icons'
+import Footer from './Footer';
 export default function WishList(){
 
         const [ {wishlist}] = useStateValue(); 
@@ -37,6 +38,7 @@ export default function WishList(){
                 </div>
                 }
 
+                <Footer />
             </section>
         )
     }

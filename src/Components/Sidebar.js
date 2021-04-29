@@ -47,13 +47,13 @@ export default function Sidebar() {
                 <SortOutlined className="sidebar_icons"/>
             </div>
             <div className="sidebar_bottom">
-                <a href="https://www.instagram.com/shadesofruth/" className = "sidebar_social">
+                <a href="https://www.instagram.com/shadesofruth/" className = "sidebar_social" target="_blank" rel="noreferrer">
                     <FontAwesomeIcon icon={faFacebook} />
                 </a>
-                <a href="https://www.instagram.com/shadesofruth/" className = "sidebar_social">
+                <a href="https://www.instagram.com/shadesofruth/" className = "sidebar_social" target="_blank" rel="noreferrer">
                     <FontAwesomeIcon icon={faInstagram} />
                 </a>
-                <a href="https://api.whatsapp.com/send?phone=254795360960&text=link" className = "sidebar_social">
+                <a href="https://api.whatsapp.com/send?phone=254795360960&text=link" className = "sidebar_social" target="_blank" rel="noreferrer">
                     <FontAwesomeIcon icon={faWhatsapp} />
                 </a>
             </div>

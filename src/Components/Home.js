@@ -24,7 +24,7 @@ export default function Home( {info} ) {
                 <div className="home_product_info">
                     <h4>Shades of Ruth Lipsticks.</h4>
                     <p>Our lipsticks are highly pigmented, with a creamy consistency that dries down to a matte, plus they smell so good</p>
-                    <Link to="/products">
+                    <Link to="/lipsticks">
                     <button className="btns call-to-action">Shop Lipsticks</button>
                     </Link>
                 </div>

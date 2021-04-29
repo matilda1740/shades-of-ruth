@@ -3,25 +3,14 @@
 //CHECK INDEX JS FOR NEW INITIAL STATE
 export const initialState = {
     cart: localStorage.getItem('cart') === null ? [] : JSON.parse(localStorage.getItem('cart')),
-    wishlist: localStorage.getItem('wishlist') === null ? [] : JSON.parse(localStorage.getItem('wishlist')),
+    wishlist: localStorage.getItem('wishlist') === null || localStorage.getItem('wishlist') === "undefined"? [] : JSON.parse(localStorage.getItem('wishlist')),
     user: null,
 };
-
-// const removeFromCart = (id, quantity) => {
-//     console.log("Removed")
-
-//     return {
-//         type: "remove_from_cart",
-//         id,
-//         quantity
-//     }
-// };
 
 export const getSubTotal = (cart) => {
   return cart?.reduce((amount, item) => item.quantity > 1 ? amount+=parseInt(item.price * item.quantity) :amount+=parseInt(item.price), 0)   
 }
 
-// THIS FUNCTION IS SO COOL
 export const getproductTotal = (cart) => cart?.reduce((amount, item) => amount+=parseInt(item.quantity), 0)
 
 export const reducer = (previousState = initialState, action) => {
@@ -37,7 +26,6 @@ export const reducer = (previousState = initialState, action) => {
 
                 if (!itemExists){
                     addedCart.push(action.item);
-                    console.log("NEW CART ITEMS: ", action.item)
                 }
             }catch(error){
                 console.log(error);
@@ -58,7 +46,18 @@ export const reducer = (previousState = initialState, action) => {
                 ...previousState,
                 cart: [...updatedCart]
             };
-        // RIGHT WAY TO ACCESS ACTION ID = action.id chack console.log(action) FOR DETAILS
+        case "reset_cart":
+            let resetCart = [...previousState.cart]; 
+            if(resetCart.length > 0){
+            resetCart.splice(0, resetCart.length)
+            localStorage.removeItem('cart');
+            console.log("Cart Cleared") 
+            }
+            return {
+                ...previousState, 
+                cart: [...resetCart]
+            };
+
         case "increase_qty": 
             let increasedCart = [...previousState.cart]; // copy of cart
             
@@ -72,7 +71,8 @@ export const reducer = (previousState = initialState, action) => {
             return {
                 ...previousState,
                 cart: increasedCart
-            }
+            };
+
         case "reduce_quantity":
             let currentCartCopy = [...previousState.cart]; // copy of cart
 

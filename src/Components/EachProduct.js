@@ -120,13 +120,13 @@ export default function EachProduct(props) {
                         <button className="btns">
                             <FavoriteBorderRounded  className="fav_icon product_info_icons"/> 
                         ADD TO WISHLIST</button>
-                        <a href="https://www.instagram.com/shadesofruth/" className = "social">
+                        <a href="https://www.instagram.com/shadesofruth/" className = "social" target="_blank" rel="noreferrer">
                             <FontAwesomeIcon icon={faFacebook} />
                         </a>
-                        <a href="https://www.instagram.com/shadesofruth/" className = "social">
+                        <a href="https://www.instagram.com/shadesofruth/" className = "social" target="_blank" rel="noreferrer">
                             <FontAwesomeIcon icon={faInstagram} />
                         </a>
-                        <a href="https://api.whatsapp.com/send?phone=254795360960&text=link" className = "social">
+                        <a href="https://api.whatsapp.com/send?phone=254795360960&text=link" className = "social" target="_blank" rel="noreferrer">
                             <FontAwesomeIcon icon={faWhatsapp} />
                         </a>                    
                     </div>

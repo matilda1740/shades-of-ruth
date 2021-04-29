@@ -112,6 +112,10 @@ li {
   }
   /* HOME.CSS */
 
+  .home_img,
+  .checkout_product_preview > img {
+    width: 60% !important;
+  }
   .products_home {
     height: auto !important;
   }
@@ -154,6 +158,12 @@ li {
   }
   .checkout_product_preview .cart_quantity_div {
     margin: 10px 0;
+  }
+  .cart_quantity_div {
+    width: 60% !important;
+  }
+  .checkout_product_preview .item_name {
+    padding-top: 10px;
   }
   .checkout_product_subtotal h5 {
     font-size: small;
@@ -244,9 +254,11 @@ li {
   }
   .payment_success_div p {
     font-size: small;
+    text-align: center;
   }
   .success_btns_div {
     height: 30%;
+    align-items: center;
   }
 }
 /************** MEDIUM SCREENS *******************/

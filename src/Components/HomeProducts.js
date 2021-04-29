@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './HomeProducts.css'
-import { ShoppingBasketRounded, FavoriteBorderRounded , FavoriteRounded, DeleteRounded, AddRounded, RemoveRounded, NavigateBeforeRounded, NavigateNextRounded  } from '@material-ui/icons'
+import { ShoppingBasketRounded, FavoriteBorderRounded , FavoriteRounded, DeleteRounded, AddRounded, RemoveRounded, NavigateBeforeRounded, NavigateNextRounded, AddShoppingCartRounded  } from '@material-ui/icons'
 import { useStateValue } from './StateProvider'
 import CurrencyFormat from 'react-currency-format';
 import { useEffect } from 'react';
@@ -38,6 +38,7 @@ export default function HomeProducts({id, type, name, image, description, price,
                 image,
                 description,
                 price,
+                quantity
             },
         })
         setAddedToList(true);
@@ -48,7 +49,8 @@ export default function HomeProducts({id, type, name, image, description, price,
         e.target.classList.remove("faved_product")
         dispatch({
             type: "remove_from_wishlist",
-            id
+            id,
+            quantity
         });
         setAddedToList(false);
     };
@@ -56,7 +58,8 @@ export default function HomeProducts({id, type, name, image, description, price,
     const removeFromCart = (e) => {
         dispatch({
             type: "remove_from_cart",
-            id
+            id,
+            quantity
         });
         setAddedToCart(false);
     };  
@@ -102,7 +105,7 @@ export default function HomeProducts({id, type, name, image, description, price,
                     : (window.location.pathname === "/wishlist") && 
                     <DeleteRounded className="product_info_icons" onClick={removeFromWishlist} />
                     }
-                    <ShoppingBasketRounded
+                    <AddShoppingCartRounded
                         className="product_info_icons"
                         onClick={cartEvents}
                         />  
