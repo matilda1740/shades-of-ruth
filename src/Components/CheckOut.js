@@ -10,6 +10,9 @@ import { useStateValue } from './StateProvider';
 import CurrencyFormat from 'react-currency-format';
 
 import { CardTravelRounded, CommuteRounded } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+
+import { NavigateBeforeRounded } from '@material-ui/icons';
 
 // ASK USER 1. ARE YOU A MEMBER - LOGIN 2. IF NOT Sign UP or proceed without signing up
 // EACH PRODUCT WITH ITS TOTAL + PRODUCT TOTAL THEN RENDER SUBTOTAL AFTER DELIVERY FEE
@@ -21,15 +24,8 @@ import { CardTravelRounded, CommuteRounded } from '@material-ui/icons';
 // 3. ALL THIS PLUS SEND AN ORDER NOTIFICATION MESSAGE WITH FORM INFO TO BUSINESS
 export default function Checkout() {
     const [ {cart}, dispatch] = useStateValue();
-
     const history = useHistory();
 
-    // RESET CART 
-    const handleCartReset = () => {
-        dispatch({
-            type: "reset_cart"
-        })
-    } 
     // P/DELIVERY
     const [pickup, setPickup] = useState(false);
     const [delivery, setDelivery] = useState(false);
@@ -37,6 +33,14 @@ export default function Checkout() {
     const [address, setAddress] = useState("");
     const [pdOption, setPDOption] = useState("");
 
+    // FORM VALIDATION WARNINGS
+    const [ lnmFormFilled, setLnmFormFilled] = useState(false);
+    const [ detailsWarning, setDetailsWarning ] = useState("")
+    const [ phoneWarning, setPhoneWarning ] = useState("")
+    const [ mailWarning, setMailWarning ] = useState("")
+    const [ warning, setWarning ] = useState("")
+
+    // CLIENT DETAILS
     const [clientName, setClientName] = useState("");
     const [clientNumber, setClientNumber] = useState(0);
     const [clientEmail, setClientEmail] = useState("");
@@ -45,15 +49,18 @@ export default function Checkout() {
     const [mpesaCode, setMpesaCode] = useState("");
     const [sendOrderDetails, setSendOrderDetails] = useState();
 
-    // THREE OPTIONS :
-    // 1. OUTER DIV 2. H3 3. SVG/PATH
+    const cartInfo = []; 
+    cart.forEach( item => cartInfo.push({ "Name: ":item.name, "Quantity: ":item.quantity}))
+
+    const handleCartReset = () => {
+        dispatch({
+            type: "reset_cart"
+        })
+    } 
+
     const handlePickupOrDelivery = (e) => {
-
-        // let pickupCont = document.querySelector(".delivery_pickup_cont");
-
         try{
             if(e.target.classList.contains("pickup") || e.target.parentNode.classList.contains("pickup")){
-                console.log("Header / div / ICON")
                 delivery && setDelivery(false)
                 pickup ? setPickup(false) : setPickup(true)
             }
@@ -74,16 +81,6 @@ export default function Checkout() {
     }
 
     const amount = parseInt(getSubTotal(cart)) + parseInt(fee)
-
-    // LIPA NA MPESA SECTION
-    const [ lnmFormFilled, setLnmFormFilled] = useState(false);
-    const [ detailsWarning, setDetailsWarning ] = useState("")
-    const [ phoneWarning, setPhoneWarning ] = useState("")
-    const [ mailWarning, setMailWarning ] = useState("")
-    const [ warning, setWarning ] = useState("")
-
-    const cartInfo = []; 
-    cart.forEach( item => cartInfo.push({ "Name: ":item.name, "Quantity: ":item.quantity}))
 
     const formValidation = (e) => {
 
@@ -169,9 +166,8 @@ export default function Checkout() {
     }
 
     const sendEmail = () => {
-
-        console.log("Email Sent");
-        console.log("Order: " , sendOrderDetails);
+        // console.log("Email Sent");
+        // console.log("Order: " , sendOrderDetails);
         try{
             window.emailjs.send("service_4g858vb", "template_44ffscs", sendOrderDetails, "user_BEqm6BdomIvJ0Y0hRhujd")
             .then( (response) => {
@@ -186,12 +182,10 @@ export default function Checkout() {
             console.log('FAILED...', error);
                history.push("/order_failure");
             }); 
-            
         }catch(error)   {
             console.log("ERROR: ", error)
         }
     }
-
 
     return (
         <div className="checkout_page">
@@ -388,8 +382,16 @@ export default function Checkout() {
             </div>
             </>
             :
-            <div className="nothing_in_checkout">
-                <p>Sorry you have no items in your cart :</p>
+            <div className="nothing_in_cart">
+                <p>You have no products in your cart</p>
+                <Link to="/" className="back_to_home_div btns">
+                <NavigateBeforeRounded />
+                <button>Back to Home</button>
+                </Link>
+                 <Link to="/products" className="back_to_home_div btns">
+                <NavigateBeforeRounded />
+                <button>Shop Products</button>
+                </Link>               
             </div>
 
             }

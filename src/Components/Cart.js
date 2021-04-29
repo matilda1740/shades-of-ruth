@@ -9,6 +9,7 @@ import CurrencyFormat from 'react-currency-format';
 import { getSubTotal } from './reducer'
 import Process from './Process';
 import HomeProducts from './HomeProducts';
+import { NavigateBeforeRounded } from '@material-ui/icons';
 // import {getproductTotal} from './reducer'
 
 export default function Cart() {
@@ -18,7 +19,19 @@ export default function Cart() {
     return (
         <section className="cart_page">
         { 
-            (!cart?.length) ? <h4>You have no products in your cart</h4>
+            (!cart?.length) ? 
+
+            <div className="nothing_in_cart">
+                <p>You have no products in your cart</p>
+                <Link to="/" className="back_to_home_div btns">
+                <NavigateBeforeRounded />
+                <button>Back to Home</button>
+                </Link>
+                    <Link to="/products" className="back_to_home_div btns">
+                <NavigateBeforeRounded />
+                <button>Shop Products</button>
+                </Link>               
+            </div>
             :
             <>
             <Process/>
