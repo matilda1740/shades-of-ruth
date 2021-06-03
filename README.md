@@ -1,2 +1,2 @@
 # shades-of-ruth
-Shades of Ruth E-commerce Web App
+Shades of Ruth E-commerce Web App built with React JS. Check it out:  https://shadesofruth.com/
