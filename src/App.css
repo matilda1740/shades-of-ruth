@@ -100,6 +100,9 @@ li {
   .innerProducts {
     flex-direction: column;
   }
+  .timer_section {
+    width: 100% !important;
+  }
   .timing_cont p {
     font-size: small;
   }
@@ -311,10 +314,10 @@ li {
 
 /* LARGE SCREENS */
 @media screen and (min-width: 1200px) {
-  .timing_cont {
+  /* .timing_section {
     width: 25% !important;
     margin: 0 2.5%;
-  }
+  } */
   /* ALL PAGES - HEADER */
   .show_lips,
   .show_eyes {

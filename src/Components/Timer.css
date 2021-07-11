@@ -1,10 +1,9 @@
 .timer_section {
-  width: 100%;
+  width: 25%;
+  margin: 0 2.5%;
   height: 100px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   margin-top: 10px;
 }
