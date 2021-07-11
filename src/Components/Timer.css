@@ -1,0 +1,47 @@
+.timer_section {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+}
+.timer_section h3 {
+  width: 100%;
+}
+.timing_cont {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.timing_cont p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 22%;
+  margin: 20px 0 0 3%;
+  height: 50px;
+  /* background-color: #f8f8f8; */
+
+  background-color: #c70039;
+  color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+.timing_cont p:first-child {
+  margin-left: 0 !important;
+}
+.timing_cont p span {
+  padding: 5px 0 0 0 !important;
+}
+.timesup {
+  justify-content: center;
+
+  align-self: center;
+}
+.timesup p {
+  width: 80% !important;
+}

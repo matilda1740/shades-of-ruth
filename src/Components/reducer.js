@@ -2,9 +2,11 @@
 
 //CHECK INDEX JS FOR NEW INITIAL STATE
 export const initialState = {
-    cart: localStorage.getItem('cart') === null ? [] : JSON.parse(localStorage.getItem('cart')),
+    cart: localStorage.getItem('cart') === null || localStorage.getItem('cart') === "undefined" ? [] : JSON.parse(localStorage.getItem('cart')),
     wishlist: localStorage.getItem('wishlist') === null || localStorage.getItem('wishlist') === "undefined"? [] : JSON.parse(localStorage.getItem('wishlist')),
+    isCoupon: false,
     user: null,
+    finalAmount: 0
 };
 
 export const getSubTotal = (cart) => {
@@ -51,16 +53,31 @@ export const reducer = (previousState = initialState, action) => {
             if(resetCart.length > 0){
             resetCart.splice(0, resetCart.length)
             localStorage.removeItem('cart');
-            console.log("Cart Cleared") 
             }
             return {
                 ...previousState, 
                 cart: [...resetCart]
             };
+        case "coupon_code": 
+            let couponBoolean = previousState.isCoupon;
+            let couponFinal = previousState.finalAmount;
+
+            if(action.boolean){
+                couponBoolean = true
+                couponFinal = action.total * 0.9;
+            } else{
+                couponBoolean = false
+                couponFinal = action.total;              
+            }
+
+            return {
+                ...previousState, 
+                isCoupon: couponBoolean,
+                finalAmount: couponFinal
+            };
 
         case "increase_qty": 
-            let increasedCart = [...previousState.cart]; // copy of cart
-            
+            let increasedCart = [...previousState.cart]; 
             try{
                 let productId = increasedCart.find( product => product.id === action.id)
                 productId ? productId.quantity = parseInt(productId.quantity) + 1 : console.log("error", productId);
@@ -74,8 +91,7 @@ export const reducer = (previousState = initialState, action) => {
             };
 
         case "reduce_quantity":
-            let currentCartCopy = [...previousState.cart]; // copy of cart
-
+            let currentCartCopy = [...previousState.cart]; 
             try{
                 let itemExists = currentCartCopy.find( product => product.id === action.id);
                 itemExists.quantity <= 1 ? 
@@ -132,6 +148,7 @@ export const reducer = (previousState = initialState, action) => {
             return {
 
             };
+        
         default:
             return previousState;
     }

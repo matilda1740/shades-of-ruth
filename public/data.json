@@ -19,7 +19,7 @@
             "src": "/images/intentions_nobg.png",            
             "name":"Intentions Lipstick",
             "description": "Rich red color perfect for all occasions.",
-            "price": "950",
+            "price": "800",
             "quantity": "1"
         },        
         {
@@ -28,7 +28,7 @@
             "src": "/images/redwood_nobg.png",
             "name":"Redwood Lipstick",
             "description": "Nude lip with slightly pink undertones",
-            "price": "950",
+            "price": "800",
             "quantity": "1"
 
         },        
@@ -38,7 +38,7 @@
             "src": "/images/plum_nobg.png",
             "name":"Plum Lipstick",
             "description": "Pink lipstick with purple undertones",
-            "price": "950",
+            "price": "800",
             "quantity": "1"
 
         },
@@ -48,7 +48,7 @@
             "src": "/images/ruby_nobg.png",
             "name":"Ruby Lipstick",
             "description": "Deep pink color",
-            "price": "950",
+            "price": "800",
             "quantity": "1"
 
         },                
@@ -58,7 +58,7 @@
             "src": "/images/rose_nobg.png",
             "name":"Rose Lipstick",
             "description": "Deep red with Maroon undertones",
-            "price": "950",
+            "price": "800",
             "quantity": "1"
         },
         {

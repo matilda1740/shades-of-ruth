@@ -2,10 +2,12 @@ import React, { useEffect } from 'react'
 import Categories from './Categories'
 import Footer from './Footer';
 import HomeProducts from './HomeProducts';
+import Timer from './Timer'
 
 export default function Lipsticks({products}) {
     return (
         <section className="lipsticks_page">
+            <Timer />
             <div className="innerProducts">
                 <div className="products_sidebar">
                     <Categories products={products}/>

@@ -234,7 +234,10 @@ select {
   width: 70%;
   margin-left: 30%;
 }
-
+.coupon_error {
+  margin-left: 0 !important;
+  width: 100%;
+}
 .final {
   padding-bottom: 10px !important;
 }

@@ -8,6 +8,7 @@
   height: 100%;
   display: flex;
 }
+
 .products_container {
   display: flex;
   flex-flow: row wrap;

@@ -1,11 +1,13 @@
 import React from 'react'
 import './Categories.css';
+import Timer from './Timer'
 
 import { NavigateNextRounded } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 export default function Categories({products}) {
     return (
         <div className="categories_div">
+        {/* <Timer/>  */}
         <h5>OUR LIPSTICKS</h5>
         {   products &&
             products.map( (item) => (

@@ -1,0 +1,32 @@
+.coupon_section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.coupon_section .login_labels {
+  width: 30%;
+}
+.coupon_section #coupon_form {
+  width: 70%;
+  height: 100%;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 0 10px !important;
+  border-radius: 2px !important;
+}
+#coupon_form input[type="text"] {
+  width: 80%;
+  border: none;
+  outline: none;
+  background-color: #f8f8f8;
+}
+#coupon_form button {
+  width: 20%;
+  height: 100%;
+  background-color: #d3d3d3;
+  border-radius: 2px !important;
+  margin: 0 !important;
+}

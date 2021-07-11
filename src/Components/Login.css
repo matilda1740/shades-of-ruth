@@ -74,15 +74,19 @@
 .login_form .input_fields,
 .checkout_row_form .input_fields,
 .update_form .input_fields,
-.btn_login_page {
+.btn_login_page,
+.coupon_section #coupon_form {
   padding: 10px;
   cursor: pointer;
   outline: none;
   border: none;
-  border-radius: 25px;
+  /* border-radius: 25px; */
+  border-radius: 8px;
+
   transition: 0.2s ease-in-out;
 }
-.input_fields {
+.input_fields,
+.coupon_section #coupon_form {
   margin: 10px 20px 10px 20px;
   box-shadow: 5px 5px 5px #dec3c3;
 }
@@ -96,7 +100,8 @@
   margin: 20px 0;
 }
 .input_fields:hover,
-.input_fields:focus {
+.input_fields:focus,
+.coupon_section #coupon_form:hover {
   box-shadow: 3px 3px 5px #343434;
   /* box-shadow: 3px 3px 5px #68acac; */
 }

@@ -28,6 +28,7 @@ import MobileNav from './Components/MobileNav';
 import Lipsticks from './Components/Lipsticks';
 import Shadows from './Components/Shadows';
 import ScrollToTop from './Components/ScrollToTop';
+import Coupon from './Components/Coupon';
 
 const stripePk = loadStripe('pk_test_51HPvTxEaginv2FOA9RsSDHDBh05VKPgKZDByT2Ab0mJH83OD01DtK8FHr1kWCx9aV26fOXUCNyb902ExqamMKBDf00uKPGdX3z');
 
@@ -36,6 +37,7 @@ export default function App(){
   const [{cart, wishlist}, dispatch] = useStateValue();
   const [productInfo, setProductInfo] = useState();
 
+  
   const getData = async () => {
     try{
       const response = await axios.get('data.json');
@@ -47,8 +49,6 @@ export default function App(){
   }
 
   const [mobileNav, setMobileNav] = useState(false);
-  // If mobile nav - display mob header, else display main h
-  // onclick then display selections under mobile header_section_two_three
 
   // LOCAL STORAGE
   cart?.length !== 0 && localStorage.setItem('cart', JSON.stringify(cart))
@@ -128,6 +128,7 @@ export default function App(){
                 /> */}
                 <Route exact path="/wishlist" component={WishList} />
                 <Route exact path="/cart" component={Cart} />
+                <Route exact path="/coupon" component={Coupon} />                
                 <Route exact path="/checkout" component={Checkout} />
                 <Route exact path="/order_success" component={SuccessPage} />                
                 {/* <Route exact path="/order_failure" component={Failure} />                     */}
@@ -143,5 +144,6 @@ export default function App(){
 
   )
 }
+
 
 

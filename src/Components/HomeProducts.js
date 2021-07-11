@@ -91,6 +91,8 @@ export default function HomeProducts({id, type, name, image, description, price,
     }, [])
     return (
             <div key={id} className="product_info">
+                <div className="sales_badge">Sale!</div>
+
                 <Link to="/products">        
                 <img src={image} alt={name}/>
                 </Link>
@@ -110,12 +112,20 @@ export default function HomeProducts({id, type, name, image, description, price,
                         onClick={cartEvents}
                         />  
                 </div>
-                <h4><CurrencyFormat
+
+                <div className="product_purchase product_price">
+                    <h4><s><CurrencyFormat
+                        value={950}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        prefix={'Ksh. '} /></s></h4> 
+                        <h4><CurrencyFormat
                         value={price}
                         displayType={'text'}
                         thousandSeparator={true}
-                        prefix={'Ksh. '} />
-                </h4>                    
+                        prefix={'Ksh. '} /></h4> 
+                </div>
+                   
                 <p>{description}</p>
                 
             </div>
