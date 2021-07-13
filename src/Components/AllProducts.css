@@ -22,7 +22,7 @@
 .shadows_page {
   width: 100%;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
 }
 .shadows_page .products_container {

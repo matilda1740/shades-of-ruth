@@ -3,11 +3,12 @@ import './AllProducts.css'
 import Categories from './Categories'
 import Footer from './Footer'
 import HomeProducts from './HomeProducts'
+import Timer from './Timer'
 
 export default function Shadows({products}) {
     return (
         <section className="shadows_page">
-        
+            <Timer />   
         <div className="innerProducts">
             <div className="products_sidebar">
                 <Categories products={products}/>

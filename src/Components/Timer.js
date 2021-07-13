@@ -35,7 +35,15 @@ export default function Timer() {
 
     return (
         <section className="timer_section">
-            <h3>LIPSTICKS MEGA SALE !!!</h3>
+        { 
+            window.location.pathname === "/products" ?
+            <h3>PRODUCTS MEGA SALE !!!</h3>
+             : window.location.pathname === "/lipsticks" ?
+             <h3>LIPSTICKS MEGA SALE !!!</h3>
+            : window.location.pathname === "/eye_shadows" && 
+            <h3>EYE-SHADOWS MEGA SALE !!!</h3>
+        }
+            
             { !timesUp ?
                 <div className="timing_cont">
                     <p>Days<span>{time.days}</span> </p>

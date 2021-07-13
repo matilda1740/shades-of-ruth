@@ -91,8 +91,8 @@ export default function HomeProducts({id, type, name, image, description, price,
     }, [])
     return (
             <div key={id} className="product_info">
-                
-                { type === "Lipsticks" && <div className="sales_badge">Sale!</div>}
+                               
+                <div className= { type === "Lipsticks" ? "sales_badge" : window.location.pathname === "/products" ? "sales_badge" : window.location.pathname === "/eye_shadows" && "sales_badge lower" }>Sale!</div>
 
                 <Link to="/products">        
                 <img src={image} alt={name}/>
@@ -128,11 +128,18 @@ export default function HomeProducts({id, type, name, image, description, price,
                         prefix={'Ksh. '} /></h4> 
                 </div>
                 :
-                <h4><CurrencyFormat
+                <div className="product_purchase product_price">
+                    <h4><s><CurrencyFormat
+                        value={1600}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        prefix={'Ksh. '} /></s></h4> 
+                        <h4><CurrencyFormat
                         value={price}
                         displayType={'text'}
                         thousandSeparator={true}
                         prefix={'Ksh. '} /></h4> 
+                </div>
                 }
                 {/* <div className="product_purchase product_price">
                     <h4><s><CurrencyFormat
