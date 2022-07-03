@@ -6,7 +6,7 @@
   padding: 10px 0;
   text-align: center;
   letter-spacing: 1px;
-  /* background-color: #f8f8f8;
+  /* background-color: #f4f4f4;
   height: 100px;
   width: 90%; */
 }
@@ -17,11 +17,12 @@
 .wishlist_page {
   height: 100%;
   width: 100%;
-
   display: flex;
   flex-direction: column;
 }
 
-.empty_list {
+.empty_list,.nothing_in_cart {
   display: flex;
+  align-items: center;
+  min-height: 320px;
 }

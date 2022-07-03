@@ -7,7 +7,7 @@ import Timer from './Timer'
 export default function Lipsticks({products}) {
     return (
         <section className="lipsticks_page">
-            <Timer />
+            {/* <Timer /> */}
             <div className="innerProducts">
                 <div className="products_sidebar">
                     <Categories products={products}/>

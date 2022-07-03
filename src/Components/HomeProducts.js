@@ -91,23 +91,37 @@ export default function HomeProducts({id, type, name, image, description, price,
     }, [])
     return (
             <div key={id} className="product_info">
-                               
-                <div className= { type === "Lipsticks" ? "sales_badge" : window.location.pathname === "/products" ? "sales_badge" : window.location.pathname === "/eye_shadows" && "sales_badge lower" }>Sale!</div>
+{/*                                
+                <div className= { type === "Lipsticks" ? "sales_badge" : window.location.pathname === "/products" ? "sales_badge" : window.location.pathname === "/eye_shadows" && "sales_badge lower" }>Sale!</div> */}
 
                 <Link to="/products">        
                 <img src={image} alt={name}/>
                 </Link>
                 <div className="product_purchase">
                     <h4>{name}</h4>
-                    { addedToList ?                                   
-                    <FavoriteRounded className="fav_icon faved_product"
-                    onClick={removeFromWishlist} />  :
-                    (window.location.pathname === "/products" || window.location.pathname === "/lipsticks" || window.location.pathname === "/eye_shadows") ?
-                    <FavoriteBorderRounded  className="fav_icon product_info_icons"
-                    onClick={addToWishlist} /> 
-                    : (window.location.pathname === "/wishlist") && 
-                    <DeleteRounded className="product_info_icons" onClick={removeFromWishlist} />
+                    { 
+                        addedToList 
+                        ?                                   
+                        <FavoriteRounded className="fav_icon faved_product"
+                        onClick={removeFromWishlist} />  
+                        :
+                        (window.location.pathname === "/wishlist") 
+                        ? 
+                        <DeleteRounded className="product_info_icons" onClick={removeFromWishlist} />
+                        :
+                        <FavoriteBorderRounded  className="fav_icon product_info_icons"
+                        onClick={addToWishlist} />                      
                     }
+                    {/* (
+                        window.location.pathname === "/products" || window.location.pathname === "/lipsticks" || window.location.pathname === "/eye_shadows"
+                    ) 
+                    ?
+                    <FavoriteBorderRounded  className="fav_icon product_info_icons"
+                    onClick={addToWishlist} />  
+                    : 
+                    (window.location.pathname === "/wishlist") && 
+                    <DeleteRounded className="product_info_icons" onClick={removeFromWishlist} />
+                    */}                    
                     <AddShoppingCartRounded
                         className="product_info_icons"
                         onClick={cartEvents}
@@ -116,12 +130,12 @@ export default function HomeProducts({id, type, name, image, description, price,
 
                 { type === "Lipsticks" ? 
                 <div className="product_purchase product_price">
-                    <h4><s><CurrencyFormat
+                    {/* <h4 className="unitPrice"><s><CurrencyFormat
                         value={950}
                         displayType={'text'}
                         thousandSeparator={true}
-                        prefix={'Ksh. '} /></s></h4> 
-                        <h4><CurrencyFormat
+                        prefix={'Ksh. '} /></s></h4>  */}
+                        <h4 className=""><CurrencyFormat
                         value={price}
                         displayType={'text'}
                         thousandSeparator={true}
@@ -129,11 +143,11 @@ export default function HomeProducts({id, type, name, image, description, price,
                 </div>
                 :
                 <div className="product_purchase product_price">
-                    <h4><s><CurrencyFormat
+                    {/* <h4><s><CurrencyFormat
                         value={1600}
                         displayType={'text'}
                         thousandSeparator={true}
-                        prefix={'Ksh. '} /></s></h4> 
+                        prefix={'Ksh. '} /></s></h4>  */}
                         <h4><CurrencyFormat
                         value={price}
                         displayType={'text'}

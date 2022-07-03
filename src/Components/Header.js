@@ -3,7 +3,7 @@ import "./Header.css"
 import { Link, useHistory} from 'react-router-dom';
 import { useStateValue } from './StateProvider';
 import {getproductTotal} from './reducer'
-import { auth } from "./firebase";
+import { auth } from "../firebase";
 import Search from './Search'
 import MobileNav from './MobileNav';
 
@@ -106,7 +106,19 @@ export default function Header({products}) {
                         }
                         </div> */}
                     </Link>                       
-                
+                    <Link to="/brushes" className="nav_eyes">
+                        <p  className="trigger_show">Brushes</p>
+                        {/* <div className="show_eyes"> 
+                        {   products &&
+                            products.map( item => (
+                                item.type === "Eye-Shadows" &&
+                                <div className="dropdown_products" key={item.id}>
+                                <p>{item.name}</p>
+                                </div>
+                            ))
+                        }
+                        </div> */}
+                    </Link>                   
                 </div>
                 </div> 
 

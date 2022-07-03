@@ -28,6 +28,16 @@ export default function Categories({products}) {
                 </div>
             ))
         }
+        <h5>OUR BRUSHES</h5>
+        {   products &&
+            products.map( (item) => (
+                <div className="cat_product" key={item.id}>
+                { item.type === "Brushes" && 
+                    <ul><li><Link to="/brushes"><NavigateNextRounded />{item.name}</Link></li></ul>
+                }
+                </div>
+            ))
+        }        
         <h5>EVERYTHING SHADES OF RUTH</h5>
         <div className="cat_product">
             <Link to="/products">

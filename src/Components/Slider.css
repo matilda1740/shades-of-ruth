@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
   box-shadow: 0 10px 10px rgba(160, 54, 54, 0.1);
   position: relative;
   overflow: hidden;
@@ -63,11 +63,11 @@
   margin-top: 10px !important;
   padding: 10px 20px !important;
   transition: all 0.5s ease-in-out;
-  border: 1px solid #68acac !important;
+  border: 1px solid #341d17 !important;
   outline: none;
-  /* background: linear-gradient(to right, #68acac 50%, #f8f8f8 50%); */
-  background: linear-gradient(to right, #f8f8f8 50%, #68acac 50%);
-  /* border: 1px solid #be8989 !important; */
+  /* background: linear-gradient(to right, #341D17 50%, #f4f4f4 50%); */
+  background: linear-gradient(to right, #f4f4f4 50%, #341d17 50%);
+  /* border: 1px solid #F3D9D5 !important; */
   background-size: 205% 105%;
   background-position: right bottom;
 }

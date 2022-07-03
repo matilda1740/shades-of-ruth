@@ -550,7 +550,6 @@ export default function Checkout() {
                     </div>
 
             }
-            <Footer />
         </div>
     )
 }

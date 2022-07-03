@@ -4,7 +4,6 @@ import './WishList.css'
 import { useStateValue } from './StateProvider'
 import HomeProducts from './HomeProducts';
 import { FavoriteRounded, NavigateBeforeRounded } from '@material-ui/icons'
-import Footer from './Footer';
 import { Link } from 'react-router-dom';
 export default function WishList(){
 
@@ -36,6 +35,7 @@ export default function WishList(){
                 : 
                 <div className="nothing_in_cart">
                     <p>You have no products in your WishList</p>
+                    <div className="nothing_navigation">
                     <Link to="/" className="back_to_home_div btns">
                     <NavigateBeforeRounded />
                     <button>Back to Home</button>
@@ -43,11 +43,11 @@ export default function WishList(){
                     <Link to="/products" className="back_to_home_div btns">
                     <NavigateBeforeRounded />
                     <button>Shop Products</button>
-                    </Link>               
+                    </Link>  
+                    </div>
+                
                 </div>
                 }
-
-                <Footer />
             </section>
         )
     }

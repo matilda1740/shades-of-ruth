@@ -17,7 +17,7 @@ li {
 .main_header {
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: #dec3c3;
+  background-color: #f3d9d5;
   width: 100%;
   height: 100%;
 }
@@ -74,13 +74,22 @@ li {
   height: 100%;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+}
+.nothing_in_cart p, .nothing_navigation {
+    margin: 20px 0 ;
+    text-align: center;
+}
+.nothing_navigation {
+  display: flex;
 }
 .back_to_home_div {
   display: flex;
   justify-content: space-evenly;
   width: 175px;
   transition: all 0.3s ease-in-out;
-  background-color: #68acac !important;
+  background-color: #341d17 !important;
 
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
 }
@@ -91,6 +100,7 @@ li {
   border: none;
   outline: none;
   background-color: transparent;
+  color: #f3d9d5;
 }
 /* MEDIA QUERIES FOR ALL PAGES*/
 
@@ -192,7 +202,7 @@ li {
   .checkout_product_subtotal h5 {
     font-size: small;
   }
-  .nothing_in_cart {
+  . {
     flex-direction: column !important;
     justify-content: space-evenly !important;
     height: 200px;

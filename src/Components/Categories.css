@@ -5,7 +5,7 @@
   display: flex;
   flex-flow: column;
   /* justify-content: center; */
-  /* background-color: #dec3c3; */
+  /* background-color: #F3D9D5; */
 }
 .cat_product {
   display: flex;
@@ -28,7 +28,7 @@
 }
 
 .categories_div li a:hover {
-  color: #f8f8f8;
+  color: #f4f4f4;
 }
 
 .cat_product a {
@@ -37,7 +37,7 @@
 .shop_now {
   width: 70% !important;
   margin: 10px 0 0 0 !important;
-  background-color: #68acac !important;
+  background-color: #341d17 !important;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
 }

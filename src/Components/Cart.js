@@ -23,6 +23,7 @@ export default function Cart() {
 
             <div className="nothing_in_cart">
                 <p>You have no products in your cart</p>
+                <div className="nothing_navigation">
                 <Link to="/" className="back_to_home_div btns">
                 <NavigateBeforeRounded />
                 <button>Back to Home</button>
@@ -30,7 +31,8 @@ export default function Cart() {
                     <Link to="/products" className="back_to_home_div btns">
                 <NavigateBeforeRounded />
                 <button>Shop Products</button>
-                </Link>               
+                </Link>    
+                </div>           
             </div>
             :
             <>
@@ -77,8 +79,6 @@ export default function Cart() {
             
             </> 
         }
-
-            <Footer />            
         </section>
 
     )

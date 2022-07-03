@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Error.css'
+import { NavigateBeforeRounded } from '@material-ui/icons';
 
 export default function Error() {
     return (
@@ -10,8 +11,10 @@ export default function Error() {
                 <img src="/images/error_nobg.png" alt="404" srcset=""/>
                 <h2 className="error_text">Oops! Page Not Found</h2>
                 <p className="error_text">ⓘ The page you are looking for cannot be found</p>
-                <Link to="/">
-                    <button className="btns error_btn">Home Page</button>
+
+                <Link to="/" className="error_btn btns">
+                    <NavigateBeforeRounded />
+                    <button>Home Page</button>
                 </Link>
             </div>
         </div>

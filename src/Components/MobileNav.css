@@ -1,5 +1,5 @@
 .mobile_nav_section {
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
   width: 100%;
   height: 100%;
   display: flex;
@@ -44,7 +44,7 @@
 }
 
 .mobile_nav_section a.active {
-  /* color: #dec3c3; */
+  /* color: #F3D9D5; */
   color: #d0aaaa;
 }
 .mobile_nav_section a svg {

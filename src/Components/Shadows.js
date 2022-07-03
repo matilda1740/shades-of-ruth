@@ -8,7 +8,7 @@ import Timer from './Timer'
 export default function Shadows({products}) {
     return (
         <section className="shadows_page">
-            <Timer />   
+            {/* <Timer />    */}
         <div className="innerProducts">
             <div className="products_sidebar">
                 <Categories products={products}/>

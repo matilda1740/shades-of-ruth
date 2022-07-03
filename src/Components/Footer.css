@@ -1,6 +1,6 @@
 .footer {
   /* background-color: #343434; */
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
   box-shadow: 0 10px 10px rgba(160, 54, 54, 0.2);
   border-radius: 5px;
   /* height: 300px; */
@@ -70,7 +70,8 @@
 .fr_sub {
   height: 33.333333333%;
   justify-content: center;
-  background-color: #68acac;
+  background-color: #341d17;
+  color: #f3d9d5;
 }
 .fr_sub p {
   padding: 0 5px;
@@ -80,8 +81,9 @@
   align-items: center;
   justify-content: space-evenly;
   width: 70%;
-  /* border: 1.5px solid #dec3c3; */
-  border: 1.5px solid #000;
+  /* border: 1.5px solid #F3D9D5; */
+  border: 1.5px solid #f3d9d5;
+  color: #f3d9d5;
   border-radius: 2px;
 }
 .fr_sub form input {
@@ -92,7 +94,8 @@
   background-color: transparent;
 }
 .fr_sub form input::placeholder {
-  color: #000;
+  /* color: #000; */
+  color: #f3d9d5;
 }
 .fr_sub form svg {
   font-size: medium !important;
@@ -104,9 +107,9 @@
 
 .footer_column a:hover {
   cursor: pointer;
-  color: #68acac;
+  color: #341d17;
 }
 .fr_sub form svg:hover {
   cursor: pointer;
-  color: #dec3c3;
+  color: #f3d9d5;
 }

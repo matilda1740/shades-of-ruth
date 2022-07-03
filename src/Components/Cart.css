@@ -9,8 +9,8 @@
   width: 100%;
   height: 50px;
 
-  background-color: #343434;
-  color: #dec3c3;
+  background-color: #341d17;
+  color: #f3d9d5;
   margin-top: 20px;
 
   padding: 10px 20px;
@@ -20,8 +20,8 @@
   text-align: end;
 }
 .cart_subtotal * {
-  background-color: #343434;
-  color: #dec3c3;
+  background-color: #341d17;
+  color: #f3d9d5;
   border: none;
   outline: none;
   font-size: large;
@@ -45,8 +45,11 @@
   border: none;
   outline: none;
   margin: 0 20px;
-  color: #343434;
-  /* background-color: #dec3c3; */
-  background-color: #f8f8f8;
+  /* color: #343434; */
+  color: #f3d9d5;
+  background-color: #f4f4f4;
   cursor: pointer;
+}
+.shopping_or_checkout button {
+  color: #341d17;
 }

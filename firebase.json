@@ -1,8 +1,7 @@
 {
   "hosting": {
-    "site": "shades-of-ruth",
     "public": "build",
-"ignore": [
+    "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
@@ -13,6 +12,5 @@
         "destination": "/index.html"
       }
     ]
-  }    
+  }
 }
-

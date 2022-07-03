@@ -2,8 +2,8 @@
   position: fixed;
   width: 100vw;
   height: 80px;
-  /* background-color: #dec3c3; */
-  background-color: #dec3c3;
+  /* background-color: #F3D9D5; */
+  background-color: #f3d9d5;
 
   box-shadow: 0 5px 5px rgba(160, 54, 54, 0.1);
 
@@ -116,7 +116,7 @@
   width: 150px;
 }
 .dropdown_products p:hover {
-  color: #dec3c3;
+  color: #f3d9d5;
 }
 
 /* ANIMATION - PRODUCTS */
@@ -147,14 +147,14 @@
   padding: 10px;
   display: flex;
   align-items: center;
-  background-color: #68acac;
-  /* background-color: #be8989; */
+  background-color: #341d17;
+  color: #f3d9d5;
 
   /* #BE8989 */
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
   transition: all 0.3s ease-in-out;
-  color: black !important;
+  /* color: black !important; */
 }
 
 .user_account_btn p {

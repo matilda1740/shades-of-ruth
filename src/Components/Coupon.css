@@ -11,7 +11,7 @@
 .coupon_section #coupon_form {
   width: 70%;
   height: 100%;
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
   display: flex;
   justify-content: space-between;
   padding: 0 0 0 10px !important;
@@ -21,7 +21,7 @@
   width: 80%;
   border: none;
   outline: none;
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
 }
 #coupon_form button {
   width: 20%;

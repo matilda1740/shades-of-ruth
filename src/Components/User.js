@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./User.css"
 
-import { auth } from "./firebase";
+import { auth } from "../firebase.js";
 
 
 export default function User() {

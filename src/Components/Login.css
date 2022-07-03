@@ -32,12 +32,12 @@
 .register_form,
 .login_form,
 .signInMethods {
-  background-color: #f8f8f8;
-  /* box-shadow: 8px 5px 5px #dec3c3; */
-  /* border: 1px solid #dec3c3; */
+  background-color: #f4f4f4;
+  /* box-shadow: 8px 5px 5px #F3D9D5; */
+  /* border: 1px solid #F3D9D5; */
   box-shadow: 0 0 10px rgba(160, 54, 54, 0.1);
 
-  border: 1px solid #68acac;
+  border: 1px solid #341d17;
 
   width: 100%;
   height: 100%;
@@ -88,7 +88,7 @@
 .input_fields,
 .coupon_section #coupon_form {
   margin: 10px 20px 10px 20px;
-  box-shadow: 5px 5px 5px #dec3c3;
+  box-shadow: 5px 5px 5px #f3d9d5;
 }
 .register_form .input_fields {
   width: 60%;
@@ -103,18 +103,18 @@
 .input_fields:focus,
 .coupon_section #coupon_form:hover {
   box-shadow: 3px 3px 5px #343434;
-  /* box-shadow: 3px 3px 5px #68acac; */
+  /* box-shadow: 3px 3px 5px #341D17; */
 }
 .btn_login_page {
   margin: 20px 30px 20px 20px;
-  background-color: #dec3c3;
+  background-color: #f3d9d5;
   justify-content: center;
   width: 30%;
 }
 .btn_login_page:hover,
 .btn_login_page:focus {
   box-shadow: 3px 2px 5px #343434;
-  /* box-shadow: 3px 3px 5px #68acac; */
+  /* box-shadow: 3px 3px 5px #341D17; */
 }
 .signInMethods .btn_login_page {
   width: 50%;

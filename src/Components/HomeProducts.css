@@ -81,7 +81,7 @@ h1 {
 
 .qty_icons {
   cursor: pointer;
-  /* color: #dec3c3 !important; */
+  /* color: #F3D9D5 !important; */
 }
 
 /**************SALE***************/
@@ -91,7 +91,7 @@ h1 {
   border-radius: 50%;
   background-color: #c70039;
   margin: -7.5% -100% 0 0;
-  color: #f8f8f8;
+  color: #f4f4f4;
   display: flex;
 
   justify-content: center;
@@ -100,12 +100,18 @@ h1 {
 .lower {
   margin-top: -3.5%;
 }
-.product_price h4:first-child {
-  color: #c0c0c0;
-}
-.product_price h4:last-child {
-  background-color: #c70039;
+.product_price h4 {
   border: none;
   border-radius: 25px;
-  color: #f8f8f8;
+  background-color: #341d17;
+  color: #f3d9d5;
+}
+
+.product_price .unitPrice {
+  background-color: transparent;
+  color: #cdcdcd;
+}
+.product_price .activeSale {
+  background-color: #c70039;
+  color: #f4f4f4;
 }

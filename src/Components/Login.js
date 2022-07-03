@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
 import { useHistory } from 'react-router-dom';
-import { auth } from './firebase'
+import { auth } from './firebase.js'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle} from "@fortawesome/free-brands-svg-icons";

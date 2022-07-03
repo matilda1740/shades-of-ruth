@@ -76,7 +76,7 @@ select {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
   border-radius: 8px;
 }
 .subtotal_row {
@@ -85,11 +85,11 @@ select {
   align-items: center;
   justify-content: space-between;
   transition: all 0.2s linear;
-  border-left: 1px solid #f8f8f8;
+  border-left: 1px solid #f4f4f4;
 }
 .subtotal_row:hover {
-  color: #68acac;
-  border-left: 1px solid #68acac;
+  color: #341d17;
+  border-left: 1px solid #341d17;
 }
 
 .checkout_product_subtotal * {
@@ -99,8 +99,8 @@ select {
 
 .checkout_product_subtotal input {
   text-align: right;
-  /* background-color: #68acac; */
-  background-color: #f8f8f8;
+  /* background-color: #341D17; */
+  background-color: #f4f4f4;
 
   border: none;
 }
@@ -163,21 +163,21 @@ select {
 }
 .delivery_pickup_cont,
 .payment_choice {
-  border: 1px solid #dec3c3;
+  border: 1px solid #f3d9d5;
 
   height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s linear;
 }
 .delivery_pickup_cont:hover,
 .payment_choice:hover {
-  box-shadow: 5px 3px 5px #dec3c3;
+  box-shadow: 5px 3px 5px #f3d9d5;
   transform: scale(1.03);
 }
 .delivery_icon {
@@ -202,7 +202,7 @@ select {
   transition: all 0.3s ease-in-out;
 }
 #delivery_locations:hover {
-  box-shadow: 5px 3px 5px #dec3c3;
+  box-shadow: 5px 3px 5px #f3d9d5;
   transform: scale(1.03);
 }
 .delivery_locations::after {
@@ -216,7 +216,7 @@ select {
 .complete_order_btn {
   border-radius: 8px !important;
   margin: 0 !important;
-  background-color: #68acac;
+  background-color: #341d17;
   transition: all 0.3s ease-in-out;
   width: 100%;
 }

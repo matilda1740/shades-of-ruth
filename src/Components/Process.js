@@ -14,25 +14,25 @@ export default function Process({chekoutActive, cartActive}) {
     const checkPageActive = () => {
         if(window.location.pathname === "/cart") {
             setIsCartActive(true)
-            document.querySelector(".num_cart").style = "background-color:#dec3c3";
+            document.querySelector(".num_cart").style = "background-color:#F3D9D5";
             setIsCheckoutActive(false)
             setIsCompletionActive(false)
         }else if (window.location.pathname === "/checkout"){
             setIsCartActive(true)
             setIsCheckoutActive(true)
-            document.querySelector(".num_cart").style = "background-color:#dec3c3";            
-            document.querySelector(".num_checkout").style = "background-color:#dec3c3";
+            document.querySelector(".num_cart").style = "background-color:#F3D9D5";            
+            document.querySelector(".num_checkout").style = "background-color:#F3D9D5";
             setIsCompletionActive(false)
         }else if (window.location.pathname === "/order_success"){
-            document.querySelector(".num_cart").style = "background-color:#dec3c3";            
-            document.querySelector(".num_checkout").style = "background-color:#dec3c3";
-            document.querySelector(".num_payment").style = "background-color:#dec3c3";
+            document.querySelector(".num_cart").style = "background-color:#F3D9D5";            
+            document.querySelector(".num_checkout").style = "background-color:#F3D9D5";
+            document.querySelector(".num_payment").style = "background-color:#F3D9D5";
             setIsCartActive(true)
             setIsCheckoutActive(true)
             setIsCompletionActive(true)
         }else if (window.location.pathname === "/order_failure"){
-            document.querySelector(".num_cart").style = "background-color:#dec3c3";            
-            document.querySelector(".num_checkout").style = "background-color:#dec3c3";
+            document.querySelector(".num_cart").style = "background-color:#F3D9D5";            
+            document.querySelector(".num_checkout").style = "background-color:#F3D9D5";
             document.querySelector(".num_payment").style = "background-color:red";
 
             setIsCartActive(true)
