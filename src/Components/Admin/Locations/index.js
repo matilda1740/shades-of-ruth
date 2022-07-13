@@ -1,22 +1,25 @@
 import React, { useState } from 'react'
-import Form, { FormContext } from '../../../ReusableComponents/Form.js'
-import FormInput from '../../../ReusableComponents/FormInput'
+import Form, { FormContext } from '../../ReusableComponents/Form/index.js'
+import FormInput from '../../ReusableComponents/FormInput'
 import styled from "styled-components";
 import { AddLocationOutlined } from '@material-ui/icons';
 
 export const LocationFormStyle = styled.div`
     width: 100%;
-    height: 100%;
+    height: 240px;
     display: flex;
     flex-direction: column;
+        background-color: #f4f4f4;
+    box-shadow: 3px 11px 120px 1px rgba(14,36,83,0.75);
+    border-radius: 12px;
   .form_row{
     width: 100%;
-    height: 60px;
+    /* height: 60px; */
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px;
+    padding: 10px 20px;
   }
 `;
 

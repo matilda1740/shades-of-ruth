@@ -11,8 +11,9 @@ const FormStyle = styled.form`
     overflow-y: scroll;
 
     &.form_row {
-        flex-direction: row;
+        flex-flow: row wrap;
         padding: 0px;
+    overflow-y: hidden;
     }
 `;
 
@@ -86,6 +87,30 @@ export const FormEachPhoneContainer = styled.div`
     }
 `;
 
+export const ImageColumn = styled.div`
+    height: 100%;
+    width: 27.5%;
+    margin-right: 2.5%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    @media screen and (max-width: 786px) {
+        width: 100%;
+        margin-right: 0;
+    }
+`;
+
+export const FormColumn = styled.div`
+    height: 100%;
+    width: 67.5%;
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 786px) {
+    width: 100%;
+    }
+`;
+
+
 export const FormContext = React.createContext({
     form: {},
 });
@@ -93,20 +118,23 @@ export const FormContext = React.createContext({
 
 export default function Form(props) {
 
-const { icon, children, initialValues, variant, handleSubmit = () => {} } = props;
+const { icon, children,variant, handleSubmit = () => {} } = props;
 
-const [form, setForm] = useState(initialValues);
+const [form, setForm] = useState({});
 
 const handleFormChange = (event) => {
     const { name, value } = event.target;
-    setForm({
-        ...form,
-        [name]: value
-    });
+    try {
+        setForm({
+            ...form,
+            [name]: value
+        });
+    }catch (error) {console.log(error)}
+
 };
 
 return (
-<FormStyle onSubmit={handleSubmit(form)} className={variant}>
+<FormStyle onSubmit={(event) => handleSubmit(event,form)} className={variant}>
     <FormContext.Provider value={{
         form,
         handleFormChange
@@ -117,6 +145,7 @@ return (
             text={props.btnText}
             icon={icon}
             variant={props.btnVariant}
+            position={props.btnPosition}
         />            
     </FormContext.Provider>
 </FormStyle>

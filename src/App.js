@@ -23,10 +23,11 @@ import Coupon from './Components/Coupon';
 import DisplayCat from './Components/DisplayCat';
 
 import { useAxiosGet } from "./Hooks/axiosHooks";
-import BranchForm from './Components/Admin/Modals/Branches';
+import BranchForm from './Components/Admin/Branches';
 import Admin from './Components/Admin';
 import Customer from './Components/Customer';
-import LocationForm from './Components/Admin/Modals/Locations';
+import LocationForm from './Components/Admin/Locations';
+import {Products as AdminProducts} from './Components/Admin/Products';
 
 export default function App(){
 
@@ -77,9 +78,11 @@ export default function App(){
     <ScrollToTop />
     <section className='app'>
       <Switch>
-        <Route exact path="/admin" 
+        <Route exact path="/admin/branches" 
           render={() => (<Admin content={<BranchForm />} />)} />
-        <Route exact path="/admin/add/locations" 
+        <Route exact path="/admin/products" 
+          render={() => (<Admin content={<AdminProducts />} />)} />
+        <Route exact path="/admin/locations" 
           render={() => (<Admin content={<LocationForm />} />)} />
 
         <Route 

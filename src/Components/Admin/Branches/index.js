@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Form, { FormContext } from '../../../ReusableComponents/Form.js'
-import FormInput from '../../../ReusableComponents/FormInput'
+import Form, { FormContext } from '../../ReusableComponents/Form/index.js'
+import FormInput from '../../ReusableComponents/FormInput'
 import styled from "styled-components";
 import { PostAddOutlined } from '@material-ui/icons';
 
@@ -12,6 +12,9 @@ export const BranchFormStyle = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0px 20px;
+    background-color: #f4f4f4;
+    box-shadow: 3px 11px 120px 1px rgba(14,36,83,0.75);
+    border-radius: 12px;
 `;
 
 export default function BranchForm() {

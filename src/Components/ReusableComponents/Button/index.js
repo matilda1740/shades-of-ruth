@@ -51,10 +51,10 @@ const ButtonStyle = styled.button`
 
 const Button = (props) => {
 
-    const { variant, text, type="button", position, icon} = props;
+    const { variant, text, type="button", position, icon, handleClick} = props;
 
     return (
-        <ButtonStyle className={`${variant}_btn ${position}`}>{icon}{text}</ButtonStyle>
+        <ButtonStyle onClick={handleClick} className={`${variant}_btn ${position}`}>{icon}{text}</ButtonStyle>
     );
 }
 export default Button;

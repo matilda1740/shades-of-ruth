@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect, useContext} from 'react';
 import styled from 'styled-components';
-import { FormContext } from '../Form.js';
+import { FormContext } from '../Form';
 
 const FormStyleInput = styled.div`
     /* Common Style fo Full and Half */
@@ -69,12 +69,24 @@ const FormStyleInput = styled.div`
         align-items: center;    
         }
     }
+    &.column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        label {
+            margin-bottom:8px;
+        }
+    }
     &.covered{
+
         input{ 
         padding: 10px;
         border: 1px solid rgba(18, 53, 91, 0.2) ;
         border-radius: 8px;
         margin-right: 8px;
+        overflow-x: scroll;
+        :webkit-scrollbar{ display: none; }
         }
     }
 `;
@@ -101,7 +113,7 @@ const FormInput = (props) => {
                 type={type}
                 placeholder={placeholder}
                 name={name}
-                // value={form[name]} 
+                value={form[name] || ""} 
                 ref={ref}
                 onFocus={() => setFocus(true)}
                 onBlur={() => setFocus(false)}

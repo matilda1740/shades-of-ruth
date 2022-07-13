@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 export const SidebarCard = styled.section`
     width: 17.5%;
-    height: 100%;
-    background-color: #f5f5f5;
+    height: 90%;
+    background-color: rgba(14, 36, 83, 1);
+    box-shadow: 3px 11px 61px 1px rgba(14,36,83,0.75);
     position: fixed;
+    border-radius: 16px;
 
     .logo_container {
         display: flex;
@@ -33,20 +35,22 @@ export const DashboardLinks = styled.a`
     border-color: transparent;
     border-radius: 0px 12px 12px 0px;
     transition:all 0.3s ease-in-out;
+
     :hover{
-        border-left: 4px solid #80458D;
+        border-left: 4px solid #759AE8;
         cursor: pointer;
         svg,p {
-            color : #80458D;
+            color : #759AE8;
         }
+        /* background-color: rgba(14, 36, 83, 0.98); */
     }
     svg {
-        color : #000;
+        color : #eeeeee7d;
         margin-right:10px;
         font-size: 1.6rem;
     }
     p{
-        color : #000;
+        color : #eeeeee7d;
         font-size: 16px;
         font-weight: 900;
     }
