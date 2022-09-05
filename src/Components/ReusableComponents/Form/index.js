@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button';
+import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
 
 const FormStyle = styled.form`
     width:100%;
@@ -13,7 +15,11 @@ const FormStyle = styled.form`
     &.form_row {
         flex-flow: row wrap;
         padding: 0px;
-    overflow-y: hidden;
+        overflow-y: hidden;
+        justify-content: space-between;
+    }
+    .error_message {
+        color: rgb(209, 4, 4);
     }
 `;
 
@@ -54,9 +60,9 @@ export const FormEachPhoneContainer = styled.div`
         color: rgba(18, 53, 91, 1);
     }   
     :focus {
-    color: rgba(88, 50, 218, 1);
+    color:#7f156b;
     ::placeholder{
-        color: rgba(88, 50, 218, 1);
+        color:#7f156b;
     }
     }
     }
@@ -88,7 +94,7 @@ export const FormEachPhoneContainer = styled.div`
 `;
 
 export const ImageColumn = styled.div`
-    height: 100%;
+    /* height: 100%; */
     width: 27.5%;
     margin-right: 2.5%;
     display: flex;
@@ -101,10 +107,16 @@ export const ImageColumn = styled.div`
 `;
 
 export const FormColumn = styled.div`
-    height: 100%;
+    /* height: 100%; */
     width: 67.5%;
     display: flex;
     flex-direction: column;
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between
+    }
     @media screen and (max-width: 786px) {
     width: 100%;
     }
@@ -146,7 +158,14 @@ return (
             icon={icon}
             variant={props.btnVariant}
             position={props.btnPosition}
-        />            
+        /> 
+        {
+            props.linkStatus && 
+            <div className="auth_footer">
+                <p>{props.linkText}</p>
+                <Link to={props.linkHref}>{props.linkTrigger}<KeyboardDoubleArrowRightRoundedIcon/></Link>
+            </div>             
+        }
     </FormContext.Provider>
 </FormStyle>
 )

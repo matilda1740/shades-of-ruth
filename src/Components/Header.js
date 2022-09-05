@@ -93,7 +93,7 @@ export default function Header({products}) {
                         </div>   */}
                     </Link>
 
-                    <Link to="/eye_shadows" className="nav_eyes">
+                    <Link to="/eye-shadows" className="nav_eyes">
                         <p  className="trigger_show">Eye-Shadows</p>
                         {/* <div className="show_eyes"> 
                         {   products &&

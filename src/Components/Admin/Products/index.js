@@ -1,117 +1,151 @@
 import { Delete, Edit, LibraryAddOutlined  } from '@material-ui/icons';
+import { Avatar } from '@mui/material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import React from 'react'
+import styled from 'styled-components';
+import { useAxiosGet } from "../../../Hooks/axiosHooks"
+import { useFirestoreGet } from '../../../Hooks/firebaseHooks';
 import Button from '../../ReusableComponents/Button';
 import DataTable from '../../ReusableComponents/DataTable'
+import Loader from '../../ReusableComponents/Loader';
 import ModalOverlay from "../../ReusableComponents/ModalOverlay"
-import AddEditProduct from './AddEditProduct'
+import SectionHeading from '../../ReusableComponents/SectionHeading';
+import UpdateForms from '../UpdateForms'
+
+
+export const ModuleStyle = styled.div`
+  width: 94%;
+  margin: 0 3%;
+  display: flex;
+  flex-direction: column;
+`;
+export const StatusBox = styled.div`
+    width: fit-content;
+    height: fit-content;
+    text-transform: capitalize;
+    border-radius: 8px;
+    padding: 4px 8px;
+
+    &.cancelled, &.banned, &.out{
+        background-color: rgba(231, 24, 27, 0.95);
+    }
+    &.processing, &.suspended{
+        background-color: rgba(15, 73, 201, 0.95);
+    }
+    &.delivered, &.active, &.in{
+        background-color: rgba(36, 133, 55, 0.95);
+    }
+`;
 
 export function Products() {
+  const { data, error, loaded } = useFirestoreGet("products");
 
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const handleEditClick = (data) => {
+      // TRIGGER POP UP FORM
+      // console.log(data)
+  }
 
-    const handleModal = () => setIsModalOpen(!isModalOpen);
-
-    // API TO GET ALL PRODUCTS FROM FIREBASE
-
-    const handleEditClick = (id) => {
-        // TRIGGER POP UP FORM
-    }
-
-    const handleSaveClick = (id) => {
-        // TRIGGER POP UP FORM
-    }    
-
-    const handleDeleteClick = (id) => {
-        // GET ROW DETAILS & TRIGGER ARE YOU SURE POP UP - IF YES DELETE - IF NO CLOSE
-        // IF YES - REMOVE FROM TABLE USING FILTER - TRIGGER FIREBASE DELETE
-        
-    }
-
-const columns = [
-    { field: 'id', headerName: 'productID', width: 100 },
-    {
-        field: 'name',
-        headerName: 'Product Name',
-        description: '',
-        sortable: false,
-        width: 120,
-    },
-    {
-        field: 'type',
-        headerName: 'Product Type',
-        description: '',
-        sortable: false,
-        width: 160,
-    }, 
-    {
-        field: 'price',
-        headerName: 'Product Price',
-        description: '',
-        sortable: false,
-        width: 180,
-    }, 
-    {
-        field: 'description',
-        headerName: 'Product Description',
-        description: '',
-        sortable: false,
-        width: 180,
-    }, 
-    {
-        field: 'createdAt',
-        headerName: 'Date Created',
-        description: '',
-        sortable: false,
-        width: 180,
-    }, 
-    {
-        field: 'updatedAt',
-        headerName: 'Date Updated',
-        description: '',
-        sortable: false,
-        width: 180,
-    },
-    {
-      field: 'actions',
-      type: 'actions',
-      headerName: 'Actions',
-      width: 100,
-      cellClassName: 'actions',
-      getActions: ({ id }) => {
-        return [
-          <GridActionsCellItem
-            icon={<Edit />}
-            label="Edit"
-            className="textPrimary"
-            onClick={handleEditClick(id)}
-            color="inherit"
-          />,
-          <GridActionsCellItem
-            icon={<Delete />}
-            label="Delete"
-            onClick={handleDeleteClick(id)}
-            color="inherit"
-          />,
-        ];
-      }
-    }
-]
-  return (
-    <>
-        {/* <DataTable /> */}
-        <Button
-          icon={<LibraryAddOutlined/>}
-          text={"Add New Product"}
-          variant={"primary"}
-          position={"end"}
-          handleClick={handleModal}
-        />
-
+  const columns = [
+      { field: 'id', hideable: true },
+      {
+        field: "image",
+        headerName: "Product",
+          width: 80,
+        renderCell: (params) => (
+                <Avatar src={params.value} alt="Image" />
+            ),      
+      },
+      {
+          field: 'name',
+          headerName: 'Name',
+          description: '',
+          sortable: false,
+          width: 100,
+      },
+      {
+          field: 'type',
+          headerName: 'Type',
+          description: '',
+          sortable: false,
+          width: 100,
+      }, 
+      {
+          field: 'price',
+          headerName: 'Price',
+          description: '',
+          sortable: false,
+          width: 80,
+      },
         {
-          isModalOpen && 
-          <ModalOverlay content={<AddEditProduct closeModal={handleModal}/>} />
+            field: "status",
+            headerName: "Status",
+            sortable: false,
+            width: 120,        
+            renderCell: (params) => (
+                <StatusBox className={params.value}>{params.value}</StatusBox>
+            ),      
+        }, 
+      // {
+      //     field: 'description',
+      //     headerName: 'Product Description',
+      //     description: '',
+      //     sortable: false,
+      //     width: 220,
+      // }, 
+      {
+          field: 'createdAt',
+          headerName: 'Date Created',
+          description: '',
+          sortable: false,
+          width: 140,
+          valueFormatter: (params) => params.value == null ? " " : new Date(params.value.seconds*1000).toLocaleDateString(),
+      }, 
+      {
+          field: 'updatedAt',
+          headerName: 'Date Updated',
+          description: '',
+          sortable: false,
+          width: 140,
+          valueFormatter: (params) => params.value == null ? " " : new Date(params.value.seconds*1000).toLocaleDateString(),
+
+      },
+      {
+        field: 'actions',
+        type: 'actions',
+        headerName: 'Actions',
+        width: 100,
+        cellClassName: 'actions',
+        getActions: ({ id }) => {
+          return [
+            <GridActionsCellItem
+              icon={<Edit />}
+              label="Edit"
+              className="textPrimary"
+              onClick={handleEditClick(id)}
+              color="inherit"
+            />,
+            <GridActionsCellItem
+              icon={<Delete />}
+              label="Delete"
+              color="inherit"
+            />,
+          ];
         }
-    </>
+      }
+  ]
+  return (
+    <ModuleStyle>
+      <SectionHeading
+        title="Products"
+        addText="New Product"
+        pushlink="/admin/products/create"
+        type="products"
+      />     
+      {
+        loaded && error ? <p>Error Loading Products</p> 
+            : loaded && !error ? <DataTable handleEditClick={handleEditClick} rows={data} cols={columns} />
+        : <Loader />
+      }
+    </ModuleStyle>
   );
 }

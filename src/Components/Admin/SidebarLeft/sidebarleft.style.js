@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
 export const SidebarCard = styled.section`
-    width: 17.5%;
+    width: 19%;
     height: 90%;
     background-color: rgba(14, 36, 83, 1);
     box-shadow: 3px 11px 61px 1px rgba(14,36,83,0.75);
-    position: fixed;
     border-radius: 16px;
+    margin-right: 1%;
+
+    * {
+        background-color: rgba(14, 36, 83, 1);
+        color : #f4f4f4;
+    }
 
     .logo_container {
         display: flex;
@@ -27,39 +32,37 @@ export const SidebarCard = styled.section`
 `;
 
 export const DashboardLinks = styled.a`
-    height: 54px;
-    width: 100%;
+    height: 48px;
+    width: calc(100% - 32px);
     display: flex;
     align-items: center;
-    padding: 0px 30px 0 26px;
+    margin: 4px 16px;
+    padding: 0px 16px;
     border-color: transparent;
-    border-radius: 0px 12px 12px 0px;
+    border-radius: 12px;
     transition:all 0.3s ease-in-out;
+    * {background-color: transparent;}
 
     :hover{
-        border-left: 4px solid #759AE8;
         cursor: pointer;
-        svg,p {
-            color : #759AE8;
-        }
-        /* background-color: rgba(14, 36, 83, 0.98); */
+        background-color: rgba(255, 255, 255, 0.1);
+        * {background-color: transparent;}
     }
     svg {
-        color : #eeeeee7d;
         margin-right:10px;
-        font-size: 1.6rem;
+        font-size: 1.25rem;
     }
     p{
-        color : #eeeeee7d;
         font-size: 16px;
         font-weight: 900;
     }
     &.dash_selected {
-        border-left: 4px solid #f3d9d5;
+        background-color: rgba(255, 255, 255, 0.1);
         p, svg{
-            color: #f3d9d5;
+            color: rgba(14, 36, 83, 1);
         }
     }
+
 `;
 
 export const MobileHeader = styled.section`

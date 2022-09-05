@@ -40,7 +40,7 @@ export default function Timer() {
             <h3>PRODUCTS MEGA SALE !!!</h3>
              : window.location.pathname === "/lipsticks" ?
              <h3>LIPSTICKS MEGA SALE !!!</h3>
-            : window.location.pathname === "/eye_shadows" && 
+            : window.location.pathname === "/eye-shadows" && 
             <h3>EYE-SHADOWS MEGA SALE !!!</h3>
         }
             

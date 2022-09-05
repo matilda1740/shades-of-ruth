@@ -6,7 +6,7 @@ import avatar from '../../common/assets/avatar.png'
 // STYLING
 const ImageInputStyle = styled.div`
     width: 100%;
-    height: 160px;
+    height: 240px;
     display: flex;
     margin: 0px 0 10px 0;
     flex-direction: column;
@@ -21,7 +21,7 @@ const ImageInputStyle = styled.div`
 
         label {
             width: 100%;
-    height: 160px;
+    height: 240px;
             img {
                 object-fit: contain;
                 width: 100%;

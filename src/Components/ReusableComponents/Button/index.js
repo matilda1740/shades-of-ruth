@@ -6,40 +6,63 @@ const ButtonStyle = styled.button`
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    padding: 5px 10px;
-    border-radius: 25px;
+    padding: 10px 0px;
     border: none;
     outline: none;
     transition: all 0.3s ease-in-out; 
+    min-width: 160px;
+    min-height: 30px;
+    margin: 12px 1px;
 
     :hover {
         cursor: pointer;
-        transform: scale(1.02);
+        transform: scale(1.01);
     }
 
     svg { 
         margin: 0 8px;
         font-weight: 500;
+        width: 16px; height: 16px;
     }
     &.primary_btn {
         width: fit-content;
         height: fit-content;
-        min-width: 200px;
-        min-height: 30px;
-        margin: 12px 20px 12px 40px;
-        color: #f3d9d5;
-        background-color: #341d17;    
+        color: #f4f4f4;
+        background-color: #530E24;   
+        border-radius: 8px;
+        
+    }
+    &.secondary_btn, &.outlined_btn, &.nobg_btn{
+        width: 100%;
+        height: fit-content;
+        border-radius: 8px;
+    }
+    &.secondary_btn {
+        color: #f4f4f4;
+        background-color: rgba(14, 36, 83, 1);  
+    }
+    &.outlined_btn {
+        background-color: transparent;  
+        color: rgba(14, 36, 83, 1);
+        border: 0.5px solid rgba(14, 36, 83, 0.8);
+    }
+    &.nobg_btn {
+        background-color: transparent;  
+        border: none;
+        color: rgba(14, 36, 83, 1);
+        margin: 4px 1px;
+        padding: 5px 0px;
+        font-weight: bold;
     }
 
     /* BUTTON POSITIONS */
     &.beginning {
-        align-self: flex-start;
+        margin-right: auto;
     }
     &.end {
-        align-self: flex-end;
+        margin-left: auto;
     }
     &.center {
-        align-self: center ;
     }
 
     @media screen and (max-width: 480px) {

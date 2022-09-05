@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import { FormContext } from '../Form';
 
 const FormStyleInput = styled.div`
-    /* Common Style fo Full and Half */
     font-weight: 300;
-    margin: 10px 0 15px 0;
+    margin: 10px 0 10px 0;
     label {
         color: rgba(18, 53, 91, 0.5);
         margin-bottom: 5px;
@@ -31,7 +30,7 @@ const FormStyleInput = styled.div`
         }
     }
     &.half {
-        width: 50%;
+        width: 49%;
         display: flex;
         flex-direction: column;
         label,input {
@@ -43,17 +42,16 @@ const FormStyleInput = styled.div`
             color: #80458D;
         }
         input { 
-        border: 1px solid #80458D !important;
+            color:  rgba(128, 69, 141, 01) !important;
         }
         *{
             font-weight: 300;
             color: #80458D;
           ::placeholder{
             font-weight: 500;
-            color: #80458D;
+            color: #80458D !important;
         }    
         }
-
         input { font-weight: 500; }
     }
 
@@ -89,6 +87,19 @@ const FormStyleInput = styled.div`
         :webkit-scrollbar{ display: none; }
         }
     }
+
+    &.secondary {
+        label {
+            color: rgba(255, 255, 255, 0.9);
+        }   
+        input{ 
+            background-color: rgba(232, 240, 254, 1);
+            ::placeholder{
+                color: rgba(0, 0, 0, 0.5);
+            }   
+        }
+    }
+
 `;
 
 const FormInput = (props) => {

@@ -12,11 +12,12 @@ export const AdminWrapper = styled.section`
 export const ModuleSection = styled.section`
     display:flex;
     flex-direction: column; 
+    align-items: center;
+    /* justify-content: center; */
     background-color: transparent;
     /* padding:40px 30px; */
     /* width: 75%; */
-    width: 80%;
-    margin: 0 0px 0 20%;
+    width: calc(80% - 40px);
     padding-right: 10px;
     border-right: 4px solid #F3F5F7;
      @media screen and (max-width: 480px) {

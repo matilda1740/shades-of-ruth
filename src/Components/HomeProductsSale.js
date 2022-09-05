@@ -92,7 +92,7 @@ export default function HomeProducts({id, type, name, image, description, price,
     return (
             <div key={id} className="product_info">
                                
-                <div className= { type === "Lipsticks" ? "sales_badge" : window.location.pathname === "/products" ? "sales_badge" : window.location.pathname === "/eye_shadows" && "sales_badge lower" }>Sale!</div>
+                <div className= { type === "Lipsticks" ? "sales_badge" : window.location.pathname === "/products" ? "sales_badge" : window.location.pathname === "/eye-shadows" && "sales_badge lower" }>Sale!</div>
 
                 <Link to="/products">        
                 <img src={image} alt={name}/>
@@ -102,7 +102,7 @@ export default function HomeProducts({id, type, name, image, description, price,
                     { addedToList ?                                   
                     <FavoriteRounded className="fav_icon faved_product"
                     onClick={removeFromWishlist} />  :
-                    (window.location.pathname === "/products" || window.location.pathname === "/lipsticks" || window.location.pathname === "/eye_shadows") ?
+                    (window.location.pathname === "/products" || window.location.pathname === "/lipsticks" || window.location.pathname === "/eye-shadows") ?
                     <FavoriteBorderRounded  className="fav_icon product_info_icons"
                     onClick={addToWishlist} /> 
                     : (window.location.pathname === "/wishlist") && 

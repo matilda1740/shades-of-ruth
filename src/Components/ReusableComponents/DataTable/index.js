@@ -8,6 +8,17 @@ const TableCustomStyle = styled.div`
 border-radius: 16px;
 padding: 0 12px;
 border: 1px solid rgba(18, 53, 91, 0.1);
+color: #f4f4f4;
+background-color: rgba(14, 36, 83, 1);
+box-shadow: 3px 11px 61px 1px rgba(14,36,83,0.75);
+
+    *{
+    text-transform: capitalize;
+
+    }
+}
+
+p{ 
 }
 
 /* TOOLBAR */
@@ -16,16 +27,17 @@ border: 1px solid rgba(18, 53, 91, 0.1);
     justify-content: flex-end !important;
     width: 100%;
     margin-left: auto;
+
     button{
         height: 40px;
         width: 120px;
         border-radius: 16px;
         padding: 12px 24px;
         margin: 10px 10px;
-        color: rgba(88, 50, 218, 1);
-        /* border: 1px solid rgba(88, 50, 218, 0.2); */
-        background-color: rgba(88, 50, 218, 0.15);
+        color:#7f156b;
+        background-color: rgba(255, 255, 255, 0.8);
         font-family: 'Maison Neue';
+    text-transform: uppercase;
     }
 }
 /* THE SORTING BUTTONS */
@@ -34,15 +46,15 @@ border: 1px solid rgba(18, 53, 91, 0.1);
     width: 30px;
     height: 30px;
     margin: 0px 0px 0 10px !important;
-    background-color: rgba(88, 50, 218, 0.2);
+        background-color: rgba(255, 255, 255, 0.8);
     visibility: visible;
     svg { 
-        color: rgba(88, 50, 218, 1); 
+        color:#7f156b; 
         opacity: 1 !important;
 
     }
     :hover {
-        background-color: #5832DA;
+        background-color:#7F156B;
         svg { color: #fff; }
     }
     }
@@ -60,7 +72,7 @@ border: 1px solid rgba(18, 53, 91, 0.1);
         svg { color: rgba(18, 53, 91, 0.5);}
 
         :hover { 
-            svg { color: #5832DA;}
+            svg { color:#7F156B;}
 
         }
     }
@@ -68,96 +80,86 @@ border: 1px solid rgba(18, 53, 91, 0.1);
 }
 /* ROWS */
 .MuiDataGrid-root .MuiDataGrid-row{
+    transition: all 0.3s ease;
     :hover {
-        background-color: rgba(88, 50, 218, 0.1);
+        background-color: rgba(244, 244, 244, 0.1);
     }
 
 }
 .MuiDataGrid-root .MuiDataGrid-row.Mui-selected{
-        background-color: rgba(88, 50, 218, 0.1);
-        color: rgba(88, 50, 218, 1);
+        color:#7f156b;
 }
 /* CELLS */
+.MuiDataGrid-columnHeaders, .MuiDataGrid-root .MuiDataGrid-cell {
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
+}
+.MuiDataGrid-root .MuiDataGrid-menuIcon button svg, .MuiDataGrid-root .MuiDataGrid-columnHeader--sorted .MuiDataGrid-iconButtonContainer, .css-r11z79-MuiDataGrid-root .MuiDataGrid-columnHeader--filtered .MuiDataGrid-iconButtonContainer{ display: none;}
+
+.MuiDataGrid-columnHeaders {
+    .MuiDataGrid-columnSeparator{
+    opacity: 0 !important;
+}
+}
 .MuiDataGrid-root .MuiDataGrid-cell:focus, .MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within{
     outline: none;
 }
 
+.MuiDataGrid-root .MuiDataGrid-actionsCell .MuiButtonBase-root .MuiSvgIcon-root {
+    :hover {
+        color:#7F156B;
+    }
+}
 .MuiDataGrid-footerContainer {
     height: 50px;
+    border-top: 0px solid rgba(255, 255, 255, 0.5);
 }
 
 p { margin-bottom: 0px !important; }
 .MuiTablePagination-root{
     width: 100%;
     margin: 0  10px 0 0px;
+    color: #f4f4f4;
+
 }
 .MuiToolbar-root{
     width: 100%;
     margin-left: -70px;
     padding-right: 0px !important;
+    color: #f4f4f4;
 }
 
 .MuiTablePagination-actions {
     display: flex;
-    height: 100%;
+    height: 60%;
     margin-right: 20px;
     button {
         margin: 0 10px;
-        height: 80%;
-        background-color: rgba(88, 50, 218, 0.1);
-        svg {color: #5832DA;}
+        height: 60%;
+        background-color: rgba(255, 255, 255, 0.8);
+        svg {color:#7F156B;}
         :hover { 
-            background-color: #5832DA;
+            background-color:#7F156B;
             svg { color: #fff; }
         }
     }
 }
-    /* p.pending, svg { color: #12355B; } */
-.status_bar {
-    /* width: 80%;
-    height: 80%;
-    margin: 10%; */
-
-}
-    .status_bar.active {
-        background-color: rgba(125, 191, 16, 0.1);
-        color: rgba(125, 191, 16, 1);
-    }
-    .status_bar.banned {
-        background-color: rgba(255, 12, 62, 0.1);
-        color: rgba(255, 12, 62, 1);     
-    }
-
 `;
 
-const DataTable = ({type, datarows, datacols}) => {
+const DataTable = ({type, rows, cols}) => {
     const [pageSize, setPageSize] = React.useState(10);    
     return (
-    <TableCustomStyle style={{ display: 'flex', height: 600, width: '100%'}}>
+    <TableCustomStyle style={{ display: 'flex', minHeight: 400, height: 'auto', width: '100%'}}>
         <DataGrid
-            rows={datarows}
-            columns={datacols}
-            // checkboxSelection
+            rows={rows}
+            columns={cols}
             pageSize={pageSize}
             onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
             rowsPerPageOptions={[10, 20, 30]}
             pagination
-            getCellClassName={((params) => {
-                if(params.field === 'status'){
-                    return params.value === 0  ? "banned" : "active"
-                }
-            })}
-            
-            getRowId={((row) => {
-                if(type==="products"){
-                    return row.productID
-                }else if(type === "invites"){
-                    return row.inviteID
-                }else{
-                    return row.id
-                }
-            })}
             components={{ Toolbar: GridToolbar }}
+            columnVisibilityModel={{
+                id: false
+            }}
         />
     </TableCustomStyle>
     );

@@ -1,13 +1,57 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import Footer from './Footer';
 import { Link } from 'react-router-dom'
 import Slider from './Slider';
 import Features from './Features';
 
+import { db } from '../firebase'
+import { collection, doc, addDoc, getDoc, setDoc, deleteDoc, Timestamp } from "firebase/firestore"; 
 
+import { useFirestoreGet, useFirebaseStorageGet} from "../Hooks/firebaseHooks";
+
+const product = { 
+    createdAt: Timestamp.now(), 
+    description: "Rich red color perfect for all occasions",
+    image: "https://firebasestorage.googleapis.com/v0/b/shadesofruthbackend.appspot.com/o/products%2Flipsticks%2Fintentions_nobg.png?alt=media&token=632d5ed1-94cb-49ad-b454-05997c83f3e5",
+    name: "redwood",
+    price: "950",
+    type: "lipsticks",
+    updatedAt: Timestamp.now()
+}
 export default function Home( {info} ) {
+    
+    // const {data, error, loaded} = useFirestoreGet("products")
 
+    // const {data, error, loaded} = useFirebaseStorageGet('/products/lipsticks/redwood_nobg.png')
+
+    // console.log(data, error, loaded);
+
+    // console.log(product)
+
+    const postData = async (type) => {
+        const response = await addDoc(collection(db, type), product)
+            .then(response => { 
+                setDoc(doc(db, type, response.id), {...product, id: response.id} , { merge:true })
+            }).catch(error => console.log(error))
+    }
+
+    const updateData = async (type, id, data) => await setDoc(doc(db, type, id), data, { merge:true }).catch(error => console.log(error))
+    
+    const getDataById = async (type, id) => {
+        const docSnap = await getDoc(doc(db, type, id)).catch(error => console.log(error))
+        return docSnap.data();
+    }
+
+    const deleteDataById = async (type, id) => await deleteDoc(doc(db, type, id)).catch(error => console.log(error))
+        
+    
+    useEffect( () => {
+        postData("products")
+        // updateData("products", "i4LLqG8kWDolfIkI48YR", {price: 1300})
+        // getDataById("products", "i4LLqG8kWDolfIkI48YR")
+
+    })
     return (
         <>
         <Slider />
@@ -40,7 +84,7 @@ export default function Home( {info} ) {
                 <div className="home_product_info">
                     <h4>Shades of Ruth Eye-shadow.</h4>
                     <p>Our Taurus palette has 12 shades, 8 shimmers and 4 mattes, all easily blendable</p>
-                    <Link to="/eye_shadows">
+                    <Link to="/eye-shadows">
                     <button className="btns call-to-action">Shop Taurus</button>
 
                     </Link>

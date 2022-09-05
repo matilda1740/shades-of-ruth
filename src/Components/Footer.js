@@ -75,7 +75,7 @@ export default class Footer extends Component {
                         </div>
                         <br/>
                         <a href="/lipsticks">Lipsticks</a> <br/>
-                        <a href="/eye_shadows">Eye-Shadows</a> <br/>
+                        <a href="/eye-shadows">Eye-Shadows</a> <br/>
                         <a href="/products">All Products</a> 
 
 

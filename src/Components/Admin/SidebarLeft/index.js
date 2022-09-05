@@ -1,8 +1,8 @@
-import { AddLocationOutlined, CategoryOutlined, GroupOutlined, HomeOutlined, PublicOutlined } from '@material-ui/icons'
+import { CategoryOutlined, GroupOutlined, HomeRounded, LaptopMacRounded, ScoreRounded, SignalCellularAltRounded } from '@material-ui/icons'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import CustomAccordion, { AccordionWrapper } from '../../ReusableComponents/Accordion'
 import { DashboardLinks, SidebarCard } from './sidebarleft.style'
-
+import { PushPinRounded, ShoppingCartRounded, DescriptionRounded } from "@mui/icons-material"
 export default function SidebarLeft() {
   return (
     <SidebarCard>
@@ -11,20 +11,98 @@ export default function SidebarLeft() {
         </div>
 
         <div className="dashboard_sectionOne">
-            <DashboardLinks href="/admin">
-                <HomeOutlined />
-                <p>Dashboard</p>                    
-            </DashboardLinks>   
-            <DashboardLinks href="/admin/users">
-                <GroupOutlined />
-                <p>Customers</p>                    
-            </DashboardLinks>                   
-            <DashboardLinks href="/admin/products">
-                <CategoryOutlined />
-                <p>Products</p>                    
-            </DashboardLinks>
 
-            <DashboardLinks href="/admin/branches">
+            <AccordionWrapper>
+                <DashboardLinks href="/admin">
+                    <HomeRounded />
+                    <p>Overview</p>                    
+                </DashboardLinks>              
+                <DashboardLinks href="/admin">
+                    <SignalCellularAltRounded />
+                    <p>Analytics</p>                    
+                </DashboardLinks> 
+                <DashboardLinks href="/admin">
+                    <ScoreRounded />
+                    <p>Finance</p>                    
+                </DashboardLinks> 
+                <DashboardLinks href="/">
+                    <LaptopMacRounded />
+                    <p>Home Website</p>                    
+                </DashboardLinks> 
+            </AccordionWrapper>
+
+
+            <AccordionWrapper>
+                <CustomAccordion 
+                    icon={<GroupOutlined />}
+                    label={"Users"}
+                    children={
+                    <>
+                        <DashboardLinks className="accordion" href="/admin/users"><p>List</p>                    
+                        </DashboardLinks>  
+                        <DashboardLinks className="accordion" href="/admin/users/details"><p>Details</p>                    
+                        </DashboardLinks> 
+                    </>}
+                />
+                <CustomAccordion 
+                    icon={<CategoryOutlined />}
+                    label={"Products"}
+                    children={
+                    <>
+                        <DashboardLinks href="/admin/products">
+                            <p>List</p>                    
+                        </DashboardLinks> 
+                        <DashboardLinks href="/admin/products/details">
+                            <p>Details</p>                    
+                        </DashboardLinks> 
+                    </>}
+                />
+                <CustomAccordion 
+                    icon={<PushPinRounded/>}
+                    label={"Locations"}
+                    children={
+                    <>
+                        <DashboardLinks href="/admin/location">
+                            <p>List</p>                    
+                        </DashboardLinks> 
+                        <DashboardLinks href="/admin/location/:id">
+                            <p>Create</p>                    
+                        </DashboardLinks> 
+                    </>}
+                />
+
+                <CustomAccordion 
+                icon={<ShoppingCartRounded/>}
+                    label={"Orders"}
+                    children={
+                    <>
+                        <DashboardLinks href="/admin/orders">
+                            <p>List</p>                    
+                        </DashboardLinks> 
+                        <DashboardLinks href="/admin/orders/details">
+                            <p>Details</p>                    
+                        </DashboardLinks> 
+                    </>}
+                />
+                <CustomAccordion 
+                    icon={<DescriptionRounded/>}
+                    label={"Invoices"}
+                    children={
+                    <>
+                        <DashboardLinks href="/admin/products">
+                            <p>List</p>                    
+                        </DashboardLinks> 
+                        <DashboardLinks href="/admin/users">
+                            <p>Details</p>                    
+                        </DashboardLinks> 
+                    </>}
+                />
+
+            </AccordionWrapper>
+
+    
+
+            {/* <DashboardLinks href="/admin/branches">
                 <AddLocationOutlined />
                 <p>Branches</p>                    
             </DashboardLinks> 
@@ -32,12 +110,8 @@ export default function SidebarLeft() {
             <DashboardLinks href="/admin/locations">
                 <AddLocationOutlined />
                 <p>Delivery Locations</p>                    
-            </DashboardLinks>  
-
-            <DashboardLinks href="/">
-                <PublicOutlined />
-                <p>Website</p>                    
-            </DashboardLinks>             
+            </DashboardLinks>   */}
+            
         </div>
     </SidebarCard>
   )

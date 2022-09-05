@@ -23,7 +23,7 @@ export default function Categories({products}) {
             products.map( (item) => (
                 <div className="cat_product" key={item.id}>
                 { item.type === "Eye-Shadows" && 
-                    <ul><li><Link to="/eye_shadows"><NavigateNextRounded />{item.name}</Link></li></ul>
+                    <ul><li><Link to="/eye-shadows"><NavigateNextRounded />{item.name}</Link></li></ul>
                 }
                 </div>
             ))
