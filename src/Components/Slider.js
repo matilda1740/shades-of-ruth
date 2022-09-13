@@ -1,6 +1,6 @@
 import React from 'react'
 import './Slider.css'
-import { NavigateBeforeRounded, NavigateNextRounded} from '@material-ui/icons';
+import { NavigateBeforeRounded, NavigateNextRounded} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 export default function Slider() {

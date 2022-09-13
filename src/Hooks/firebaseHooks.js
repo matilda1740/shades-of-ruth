@@ -24,6 +24,7 @@ export const useFirestoreGet = (url) => {
         return array
     }
     useEffect(() => {
+        // TRY UPDATE STORE FROM HERE DISPATCH GET PRODUCTS
         getData()
         .then(response => setData(response))
         .catch(error => setError(error))

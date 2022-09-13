@@ -1,9 +1,8 @@
 /* eslint-disable array-callback-return */
 import React from 'react'
 import './Search.css'
-import {SearchRounded} from '@material-ui/icons';
-import HomeProducts from "./HomeProducts"
-import { Link, Route, Switch } from 'react-router-dom';
+import {SearchRounded} from '@mui/icons-material';
+import { Link, Route, Routes } from 'react-router-dom';
 
 export default function Search({products}){
 

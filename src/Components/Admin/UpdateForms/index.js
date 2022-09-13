@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import SectionHeading from '../../ReusableComponents/SectionHeading/index.js';
-import { ModuleStyle } from '../Products/index.js';
+import { ModuleStyle } from '../ViewPages/Products';
 
 export const UpdateFormStyle = styled.div`
-
     min-width: 400px;
     min-height: 200px;
     width: 100%;
@@ -30,9 +29,7 @@ export default function UpdateForms({title, type, btnHidden, content}) {
             btnHidden={btnHidden}
             type={type}
         /> 
-        <UpdateFormStyle>  
-            {content}
-        </UpdateFormStyle>
+        <UpdateFormStyle>{content}</UpdateFormStyle>
     </ModuleStyle>
 
   )

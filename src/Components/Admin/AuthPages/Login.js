@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
-import { useAuth } from '../../../Hooks/firebase/userHooks'
+import { useAuth } from '../../../contexts/AuthContext'
 
 import { LoginRounded } from '@mui/icons-material';
 import { Chip, Divider } from '@mui/material';
@@ -11,6 +11,8 @@ import FormInput from '../../ReusableComponents/FormInput'
 import ErrorMessage from '../../ReusableComponents/ErrorMessage/index.js';
 import Button from '../../ReusableComponents/Button/index.js';
 import { ReactComponent as GoogleIcon } from '../../../assets/images/google.svg'
+import { useSignal } from '../../../Hooks/useSignal';
+import SignalMessage from '../../ReusableComponents/SignalMessages';
 
 
 const initialValues = {
@@ -19,19 +21,25 @@ const initialValues = {
 }
 
 export default function Login() {
-    const history = useHistory();
+    const navigate = useNavigate();
     const { loginUser } = useAuth(); 
 
-    const validateForm = () => {
+    const [invalid, setInvalid] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("Invalid Username or Password");
 
-    }
+
+    const { isAlert, alertType, alertMsg, displaySignal } = useSignal()
 
     const handleSubmit = async (event, form) => {
         event.preventDefault();
         try{
-            await loginUser({...form})
-            await history.push("/admin/products")
-        }catch(error){console.log("Login Error: ", error)}
+            await loginUser({...form});
+            await displaySignal("Login Successful", "success", "/");
+        }catch(error){
+            if(error.code === "auth/wrong-password"){
+                displaySignal("Invalid Username or Password", "failure");
+            } 
+        }
     }
 
     return (
@@ -40,7 +48,7 @@ export default function Login() {
         variant={"form_row"} icon={<LoginRounded />}
         btnText={"Login"} btnType={"submit"} btnVariant={"secondary"} btnPosition={"center"} linkStatus={true} linkText={"Are you a new user?"} linkTrigger={"Sign Up"} linkHref={"/signup"}
     >
-        {/* <ErrorMessage status={"invalid"} message={"Invalid Username or Password"} /> */}
+        { isAlert && <SignalMessage status={isAlert} message={alertMsg} type={alertType} />}
 
         <FormContext.Consumer>
             {({form, handleFormChange}) => (
@@ -65,7 +73,7 @@ export default function Login() {
             )}
         </FormContext.Consumer>
         <Button 
-            handleClick={() => history.push("/reset")}
+            handleClick={() => navigate("/reset")}
             type={"button"}
             text={"Forgot Password?"}
             variant={"nobg"}

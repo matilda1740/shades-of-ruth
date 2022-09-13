@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import productsReducer from './productsReducer';
-import filtersReducer from './filtersReducer';
+// import { combineReducers } from 'react-redux';
+// import productsReducer from './productsReducer';
+// import filtersReducer from './filtersReducer';
 
-const rootReducer = combineReducers({
-    products: productsReducer,
-    filters: filtersReducer
-});
+// const rootReducer = combineReducers({
+//     products: productsReducer,
+//     filters: filtersReducer
+// });
 
-export default rootReducer;
+// export default rootReducer;

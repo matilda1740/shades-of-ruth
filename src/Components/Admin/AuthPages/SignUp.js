@@ -1,29 +1,68 @@
 import React, { useState } from 'react';
-import styled from "styled-components";
 import { ReactComponent as GoogleIcon } from '../../../assets/images/google.svg'
 
 import { LoginRounded } from '@mui/icons-material';
 import { Chip, Divider } from '@mui/material';
 
-import Form, { FormContext } from '../../ReusableComponents/Form/index.js'
+import Form, { FormColumn, FormContext, ImageColumn } from '../../ReusableComponents/Form/index.js'
 import FormInput from '../../ReusableComponents/FormInput'
 import ErrorMessage from '../../ReusableComponents/ErrorMessage/index.js';
 import Button from '../../ReusableComponents/Button/index.js';
+import { useAuth } from '../../../contexts/AuthContext';
+import ImageInput from '../../ReusableComponents/ImageInput';
+import { useSignal } from '../../../Hooks/useSignal';
+
+const initialValues = {
+    fname: "", 
+    lname: "", 
+    email: "",
+    phone: "",
+    address: "",
+    dob: "",
+    gender: "",
+    image: "",
+};
+
 
 export default function SignUp() {
-    const [loginDetails, setSignUpDetails] = useState("")
 
-    const initialValues = {
-        email: '',
-        password: ''
+    const [profileImage, setProfileImage] = useState();
+    const getImage = (image) => setProfileImage(image);
+
+    const { registerUser } = useAuth(); 
+
+    const { isAlert, alertType, alertMsg, displaySignal } = useSignal()
+
+
+    const addUserProfile = async (payload,image) => {
+        // dispatch({
+        //     type: "ADD_USER_PROFILE",
+        //     payload,
+        //     image
+        // })
     }
-
-    const handleSubmit = (event, form) => {
+    const handleSubmit = async (event, form) => {
         event.preventDefault();
-        setSignUpDetails({
-            ...form,
-        })
-        console.log(form, loginDetails)
+        const [ fname, lname, email, phone, dob, gender, password, confirmpassword ] = form;
+
+        if(confirmpassword === password && email !== "") {
+            try{
+                const response = await registerUser(email,password);
+                if(response){
+                    addUserProfile({
+                        "id": response.user.uid,
+                        "fname": fname,
+                        "lname": lname,
+                        "email": email, 
+                        "phone": phone,
+                        "dob": dob,
+                        "gender": gender
+                    }, profileImage)
+                        .then(() => displaySignal("Registration Successful!", "success"))
+                        .catch(() => displaySignal("Error Adding Product", "failure"))
+                }
+            }catch(error){console.log("Signup Error: ", error)}
+        }
     }
 
     return (
@@ -37,26 +76,65 @@ export default function SignUp() {
         <FormContext.Consumer>
             {({form, handleFormChange}) => (
             <>
+            <div className="row">
                 <FormInput 
-                label="Full Name" 
-                name="fullname" 
-                size={"full"} 
+                label="First Name" 
+                name="fname" 
+                size={"half"} 
                 placeholder={"Alice Jones"} 
                 type={"text"} 
                 variant={"column covered"}
-                />              
+                /> 
+                <FormInput 
+                label="Last Name" 
+                name="lname" 
+                size={"half"} 
+                placeholder={"Alice Jones"} 
+                type={"text"} 
+                variant={"column covered"}
+                />                 
+            </div>
+            <div className="row">
                 <FormInput 
                 label="Email Address" 
                 name="email" 
-                size={"full"} 
+                size={"half"} 
                 placeholder={"******@gmail.com"} 
                 type={"email"} 
                 variant={"column covered"}
-                />              
+                /> 
+                <FormInput 
+                label="Phone Number" 
+                name="phone" 
+                size={"half"} 
+                placeholder={"+2547********"} 
+                type={"number"} 
+                variant={"column covered"}
+                />         
+            </div>
+            <div className="row">
+                <FormInput 
+                label="Date of Birth" 
+                name="dob" 
+                size={"half"} 
+                placeholder={"12th August 1998"} 
+                type={"datetime"} 
+                variant={"column covered"}
+                />     
+                <FormInput 
+                label="Gender" 
+                name="gender" 
+                size={"half"} 
+                placeholder={"Female"} 
+                type={"text"} 
+                variant={"column covered"}
+                />                  
+            </div>  
+            <div className="row">
                 <FormInput 
                 label="Password" 
                 name="password" 
-                size={"full"} 
+                size={"half"} 
                 placeholder={"*********"} 
                 type={"password"} 
                 variant={"column covered"}
@@ -64,11 +142,12 @@ export default function SignUp() {
                 <FormInput 
                 label="Confirm Password" 
                 name="confirmpassword" 
-                size={"full"} 
+                size={"half"} 
                 placeholder={"*********"} 
                 type={"password"} 
                 variant={"column covered"}
-                />                                 
+                />  
+            </div>         
             </>
             )}
         </FormContext.Consumer>

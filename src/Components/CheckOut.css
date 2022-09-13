@@ -123,7 +123,7 @@ select {
 .checkout_row_form {
   display: flex;
   width: 100%;
-  margin-bottom: 10px;
+  margin: 10px 5px;
   align-items: center;
 }
 .checkout_row_form .login_labels,
@@ -134,6 +134,10 @@ select {
 .checkout_row_form textarea,
 #delivery_locations {
   width: 70%; /* important cause of the textarea */
+  border: none;
+  outline: none;
+  padding: 8px;
+  border-radius: 8px;;
 }
 #delivery_locations {
   width: 70% !important;

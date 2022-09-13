@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Coupon.css'
-import { useStateValue } from './StateProvider';
+import { useStateValue } from '../redux/StateProvider';
 
 export default function Coupon({ amount }) {
 

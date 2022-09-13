@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import './Checkout.css'
+import axios from './axios';
+import { Link } from 'react-router-dom';
+import CurrencyFormat from 'react-currency-format';
+import { CardTravelRounded, CommuteRounded } from '@mui/icons-material';
+import { NavigateBeforeRounded } from '@mui/icons-material';
+import Coupon from './Coupon';
 import CartProduct from './CartProduct';
 import Process from './Process';
-import Footer from './Footer';
-import axios from './axios';
 
-import { getSubTotal } from './reducer';
-import { useStateValue } from './StateProvider';
-import CurrencyFormat from 'react-currency-format';
+import { useStateValue } from '../redux/StateProvider';
+import { getSubTotal } from '../redux/reducers/cartListReducer';
 
-import { CardTravelRounded, CommuteRounded } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
-
-import { NavigateBeforeRounded } from '@material-ui/icons';
-import Coupon from './Coupon';
 
 export default function Checkout() {
-    const [{ cart, isCoupon, finalAmount }, dispatch] = useStateValue();
-    const history = useHistory();
+    const {cartListState, cartListDispatch}  = useStateValue(); 
+    const {cart} = cartListState;
+
+    const navigate = useNavigate();
 
     // P/DELIVERY
     const [pickup, setPickup] = useState(false);
@@ -55,7 +55,7 @@ export default function Checkout() {
 
 
     const handleSetDetails = () => {
-        if(isCoupon === true){
+        // if(isCoupon === true){
         setSendOrderDetails({
         client_name: clientName,
         client_contact_number: clientNumber,
@@ -67,29 +67,29 @@ export default function Checkout() {
         client_pd_option: pdOption,
         client_mpesa_number: mpesaNumber,
         client_mpesa_code: mpesaCode,
-        client_valid_coupon: isCoupon,
+        // client_valid_coupon: isCoupon,
         coupon_discount: amount * 0.1 ,
         final_order_amount: amount * 0.9,               
-        }) 
-        }else if(isCoupon === false){
-        setSendOrderDetails({
-        client_name: clientName,
-        client_contact_number: clientNumber,
-        client_email: clientEmail,
-        client_requests: clientRequests,
-        client_order: JSON.stringify(cartInfo),
-        cart_total: amount,
-        client_address: address,
-        client_pd_option: pdOption,
-        client_mpesa_number: mpesaNumber,
-        client_mpesa_code: mpesaCode,
-        client_valid_coupon: isCoupon,            
+        // }) 
+        // }else if(isCoupon === false){
+        // setSendOrderDetails({
+        // client_name: clientName,
+        // client_contact_number: clientNumber,
+        // client_email: clientEmail,
+        // client_requests: clientRequests,
+        // client_order: JSON.stringify(cartInfo),
+        // cart_total: amount,
+        // client_address: address,
+        // client_pd_option: pdOption,
+        // client_mpesa_number: mpesaNumber,
+        // client_mpesa_code: mpesaCode,
+        // client_valid_coupon: isCoupon,            
         })                
-        }
+        // }
     }
 
     const handleCartReset = () => {
-        dispatch({
+        cartListDispatch({
             type: "reset_cart"
         })
     }
@@ -116,13 +116,13 @@ export default function Checkout() {
         setFee(values.fee)
         setAddress(values.place)
 
-        if(isCoupon){
-            dispatch({
-            type: "coupon_code",
-            boolean: true,
-            total: amount
-        }) 
-        }
+        // if(isCoupon){
+        //     dispatch({
+        //     type: "coupon_code",
+        //     boolean: true,
+        //     total: amount
+        // }) 
+        // }
     }
 
     const formValidation = (e) => {
@@ -180,11 +180,11 @@ export default function Checkout() {
         couponInput.style.border = `2px solid #f70000`;
         }
 
-        dispatch({
-        type: "coupon_code",
-        boolean: false,
-        total: amount
-        }) 
+        // dispatch({
+        // type: "coupon_code",
+        // boolean: false,
+        // total: amount
+        // }) 
         
     }
 
@@ -213,11 +213,11 @@ export default function Checkout() {
     const handleCouponSubmit = (e) => {
         e.preventDefault();
         if(validCoupon){
-        dispatch({
-            type: "coupon_code",
-            boolean: true,
-            total: amount
-        }) 
+        // dispatch({
+        //     type: "coupon_code",
+        //     boolean: true,
+        //     total: amount
+        // }) 
         setCouponError("");
         }else{
             setCouponError("ⓘ Please Enter Valid Coupon Code")
@@ -260,7 +260,7 @@ export default function Checkout() {
                 .catch( (error) => console.log(error))
             window.emailjs.send("service_4g858vb", "template_44ffscs", sendOrderDetails, "user_BEqm6BdomIvJ0Y0hRhujd")
             .then( (response) => {
-            history.push("/order_success");
+            navigate("/order_success");
             try {
                 handleCartReset();
             }catch(error){
@@ -269,7 +269,7 @@ export default function Checkout() {
             })
             .catch((error) =>{
             console.log('FAILED...', error);
-               history.push("/order_failure");
+               navigate("/order_failure");
             }); 
         } catch (error) {
             console.log("ERROR: ", error)
@@ -502,7 +502,9 @@ export default function Checkout() {
                                             <p>1. Open your M-pesa</p>
                                             <p>2. Select Buy Goods and Services</p>
                                             <p>3. Enter Till No. <strong>5830891</strong></p>
-                                            <p>4. Enter the Amount: <strong>{ isCoupon ? amount * 0.9 : amount }</strong></p>
+                                            <p>4. Enter the Amount: 
+                                            {/* <strong>{ isCoupon ? amount * 0.9 : amount }</strong> */}
+                                            </p>
                                             <p>5. Enter Your Pin</p>
                                             <p>6. Confirm the name <strong>"SHARU COSMETICS"</strong></p>
                                         </div>

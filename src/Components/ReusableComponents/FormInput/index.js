@@ -118,7 +118,7 @@ const FormInput = (props) => {
         }
     }, []);
     return (
-        <FormStyleInput className={hasFocus ? `focus ${size} ${variant}` : `${size} ${variant}`}>
+        <FormStyleInput className={ "form_inputs" + hasFocus ? `focus ${size} ${variant}` : `${size} ${variant}`}>
             <label>{label}</label>
             <input 
                 type={type}

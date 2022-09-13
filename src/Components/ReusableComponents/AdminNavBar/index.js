@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {Avatar, Badge} from '@mui/material';
 import {blue} from '@mui/material/colors'
-import { Notifications } from '@material-ui/icons';
+import { Notifications } from '@mui/icons-material';
 import { PowerSettingsNewRounded } from '@mui/icons-material';
 
 export const AdminNavBarWrapper = styled.div`

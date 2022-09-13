@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import './AllProducts.css'
 import Categories from './Categories'
-import HomeProducts from './HomeProducts'
-import { useRouter } from "../Hooks/useRouter"
+import ProductLayout from './ReusableComponents/ProductLayout'
 
-export default function AllProducts({products, type}) {
-    const router = useRouter();
-    console.log(router.query?.id)
-    const [isSpecific, setIsSpecific] = useState(false);
-    const [specificProduct, setSpecificProduct] = useState([]);
+export default function AllProducts({products}) {
+    // let [searchparams] = useSearchParams();
+    // console.log(searchparams)
 
-    useEffect( () => {
-        if(router.query?.id !== undefined){
-            setIsSpecific(true)
-            setSpecificProduct(...products.filter( item => item.id === router.query?.id))
-        }else {
-            setIsSpecific(false)
-        }
-    }, [router.query?.id])
+    // const [currentView, setCurrentView] = useState("");
+
+    // useEffect( () => {
+
+    // }, [currentView])
     return (
         <section className="allProducts_page">
             <div className="innerProducts">
@@ -25,22 +20,9 @@ export default function AllProducts({products, type}) {
                     <Categories products={products}/>
                 </div>
                 <div className="products_container">
-                {
-                    isSpecific ? 
-                    <HomeProducts 
-                        key={specificProduct.id}
-                        id={specificProduct.id}
-                        type = {specificProduct.type}
-                        name = {specificProduct.name}
-                        image={specificProduct.src}
-                        description={specificProduct.description}
-                        price={specificProduct.price}
-                        quantity={specificProduct.quantity}
-                    />
-                : 
+                {                   
                 products.map( item => (
-                    type === item.type.toLowerCase() ?
-                    <HomeProducts 
+                    <ProductLayout 
                         key={item.id}
                         id={item.id}
                         type = {item.type}
@@ -48,22 +30,10 @@ export default function AllProducts({products, type}) {
                         image={item.src}
                         description={item.description}
                         price={item.price}
-                        quantity={item.quantity}
+                        quantity={item.quantity}             
                     />
-                    : type === "all" &&
-                    <HomeProducts 
-                        key={item.id}
-                        id={item.id}
-                        type = {item.type}
-                        name = {item.name}
-                        image={item.src}
-                        description={item.description}
-                        price={item.price}
-                        quantity={item.quantity}
-                    />
-
                     ))
-                }                   
+                }  
                 </div> 
             </div>            
         </section>

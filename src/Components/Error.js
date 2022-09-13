@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Error.css'
-import { NavigateBeforeRounded } from '@material-ui/icons';
+import { NavigateBeforeRounded } from '@mui/icons-material';
 
 export default function Error() {
     return (

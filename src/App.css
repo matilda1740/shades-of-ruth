@@ -427,10 +427,10 @@ li {
   /* ALL PRODUCTS */
   .products_sidebar {
     width: 25% !important;
-    margin-left: 5%;
+    /* margin-left: 5%; */
   }
   .allProducts_page .products_container {
-    width: 70% !important;
+    width: 75% !important;
   }
   /* .products_container a {
     width: 45% !important;

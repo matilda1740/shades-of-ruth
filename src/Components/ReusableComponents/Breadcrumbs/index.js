@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import styled from "styled-components";
 import Button from '../Button';
 import { ChevronRightRounded } from '@mui/icons-material';
@@ -24,6 +24,10 @@ const BreadcrumbsStyle = styled.div`
 `;
 
 const breadcrumbs = {
+    account: [
+        <Link to="/">Home</Link>,
+        <Link to="/account">Account</Link>,        
+    ],
     users: [
         <Link to="/admin">Dashboard</Link>,
         <Link to="/admin/users">Users</Link>,
@@ -59,6 +63,10 @@ const breadcrumbs = {
         <Link to="/admin">Dashboard</Link>,
         <Link to="/admin/invoices">Invoices</Link>,
         <Link to="/admin/invoices/details">Details</Link>,
+    ], 
+    locations: [
+        <Link to="/admin">Dashboard</Link>,
+        <Link to="/admin/locations">Locations</Link>,
     ], 
 };
 

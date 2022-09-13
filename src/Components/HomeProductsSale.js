@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './HomeProducts.css'
-import { ShoppingBasketRounded, FavoriteBorderRounded , FavoriteRounded, DeleteRounded, AddRounded, RemoveRounded, NavigateBeforeRounded, NavigateNextRounded, AddShoppingCartRounded  } from '@material-ui/icons'
+import { ShoppingBasketRounded, FavoriteBorderRounded , FavoriteRounded, DeleteRounded, AddRounded, RemoveRounded, NavigateBeforeRounded, NavigateNextRounded, AddShoppingCartRounded  } from '@mui/icons-material'
 import { useStateValue } from './StateProvider'
 import CurrencyFormat from 'react-currency-format';
 import { useEffect } from 'react';

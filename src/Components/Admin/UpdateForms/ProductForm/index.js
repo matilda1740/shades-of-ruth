@@ -1,9 +1,15 @@
-import { AddRounded } from '@mui/icons-material';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router';
+import { Timestamp } from "firebase/firestore"
+import { useStateValue } from '../../../../redux/StateProvider';
+import productsReducer, { initialState} from "../../../../redux/reducers/productsReducer";
 import styled from 'styled-components';
 import Form, { FormColumn, FormContext, ImageColumn } from '../../../ReusableComponents/Form';
 import FormInput from '../../../ReusableComponents/FormInput';
 import ImageInput from '../../../ReusableComponents/ImageInput';
+import { AddRounded } from '@mui/icons-material';
+import SignalMessage from '../../../ReusableComponents/SignalMessages';
+import { useSignal } from '../../../../Hooks/useSignal';
 
 
 const initialValues = {
@@ -12,34 +18,41 @@ const initialValues = {
     type: "",
     description: "",
     price: "",
-    createdAt: Date.now()
+    createdAt: Timestamp.now()
     };
 
 export function ProductForm() {
-  const [products, setProducts] = useState({});
+    // const navigate = useNavigate();
+
     const [prodImage, setProdImage] = useState();
-
-    const [errorMessage, setErrorMessage] = useState("ⓘ Please fill in all the fields");
-
     const getImage = (image) => setProdImage(image);
 
-    const validateForm = () => {
+    const { useCallReducer } = useStateValue();
+    const [ {products}, dispatch] = useCallReducer(initialState, productsReducer);
 
+    const validateForm = document.querySelectorAll(".form_inputs")
+
+    const { isAlert, alertType, alertMsg, displaySignal } = useSignal()
+
+    const addProduct = async (form) => {
+        dispatch({
+            type: "ADD_PRODUCT",
+            payload: {
+                ...form
+            },
+            image: prodImage,
+        })
     }
 
     const handleSubmit = (event, form) => {
         event.preventDefault();
+        let counter = 0
+        validateForm.forEach( el => el.value !== "" ? counter += 1 : counter)
 
-        // SEND IMAGE TO FIREBASE CONSOLE
-        // IF SUCCESSFUL GET REFERENCE TO IMAGE AND APPEND IT TO PRODUCTS
-        setProducts({
-            ...form,
-            image: prodImage,
-            createdAt: Date.now(),
-            updatedAt: Date.now()
-        })
-        console.log("Form Details: ", form, products)
-
+        counter === validateForm.length 
+            && addProduct(form)
+                .then(() => displaySignal("Product Added Successfully", "success", "/admin/products"))
+                .catch(() => displaySignal("Error Adding Product", "failure"))
     }
     return (
     <Form 
@@ -47,6 +60,7 @@ export function ProductForm() {
         variant={"form_row"} icon={<AddRounded/>}
         btnText={"Submit Details"} btnType={"submit"} btnVariant={"primary"} btnPosition={"end"}
     >
+    { isAlert && <SignalMessage status={isAlert} type={alertType} message={alertMsg} />}
         <FormContext.Consumer>
             {({form, handleFormChange}) => (
             <>
@@ -92,7 +106,7 @@ export function ProductForm() {
                 />
                 <div className="row">
                 <FormInput 
-                label="Quantity" 
+                label="Stock Quantity" 
                 name="quantity" 
                 size={"half"} 
                 placeholder={"30"} 
@@ -101,10 +115,10 @@ export function ProductForm() {
                 />
                 <FormInput 
                 label="Stock Status" 
-                name="quantity" 
+                name="status" 
                 size={"half"} 
-                placeholder={"30"} 
-                type={"number"} 
+                placeholder={"In stock"} 
+                type={"text"} 
                 variant={"column covered secondary"}
                 />                       
                 </div>

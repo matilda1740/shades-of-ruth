@@ -19,7 +19,7 @@ const product = {
     type: "lipsticks",
     updatedAt: Timestamp.now()
 }
-export default function Home( {info} ) {
+export default function Home() {
     
     // const {data, error, loaded} = useFirestoreGet("products")
 
@@ -47,7 +47,7 @@ export default function Home( {info} ) {
         
     
     useEffect( () => {
-        postData("products")
+        // postData("products")
         // updateData("products", "i4LLqG8kWDolfIkI48YR", {price: 1300})
         // getDataById("products", "i4LLqG8kWDolfIkI48YR")
 

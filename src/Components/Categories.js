@@ -2,7 +2,7 @@ import React from 'react'
 import './Categories.css';
 import Timer from './Timer'
 
-import { NavigateNextRounded } from '@material-ui/icons';
+import { NavigateNextRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 export default function Categories({products}) {
     return (

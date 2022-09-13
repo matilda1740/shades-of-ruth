@@ -44,14 +44,14 @@ const ImageInput = ({getImage}) => {
             image.src = URL.createObjectURL(event.target.files[0]);
             image.style.display = "block"
             setProfileImage(URL.createObjectURL(event.target.files[0]))
-            getImage(URL.createObjectURL(event.target.files[0]));
+            getImage(event.target.files[0]);
         }else {
             image.src = avatar ;
         }        
     }
 
     return (
-        <ImageInputStyle>
+        <ImageInputStyle className="form_inputs">
             <label htmlFor="inputImage">
                 <img id="displayImage" src={profileImage} alt="Avatar" />
             </label>

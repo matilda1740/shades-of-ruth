@@ -1,4 +1,4 @@
-import { CategoryOutlined, GroupOutlined, HomeRounded, LaptopMacRounded, ScoreRounded, SignalCellularAltRounded } from '@material-ui/icons'
+import { CategoryOutlined, GroupOutlined, HomeRounded, LaptopMacRounded, ScoreRounded, SignalCellularAltRounded } from '@mui/icons-material'
 import React from 'react'
 import CustomAccordion, { AccordionWrapper } from '../../ReusableComponents/Accordion'
 import { DashboardLinks, SidebarCard } from './sidebarleft.style'
@@ -62,10 +62,10 @@ export default function SidebarLeft() {
                     label={"Locations"}
                     children={
                     <>
-                        <DashboardLinks href="/admin/location">
+                        <DashboardLinks href="/admin/locations">
                             <p>List</p>                    
                         </DashboardLinks> 
-                        <DashboardLinks href="/admin/location/:id">
+                        <DashboardLinks href="/admin/locations/:id">
                             <p>Create</p>                    
                         </DashboardLinks> 
                     </>}

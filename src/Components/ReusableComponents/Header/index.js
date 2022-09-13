@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import "./Header.css"
-import { Link, useHistory} from 'react-router-dom';
-import { useStateValue } from './StateProvider';
+import { Link, useNavigate} from 'react-router-dom';
+import wishlistReducer, { initialState as listState} from '../../../redux/reducers/wishlistReducer';
+import cartReducer, { initialState as cartState, getproductTotal} from '../../../redux/reducers/wishlistReducer';
+import { useStateValue } from '../../../redux/StateProvider'
+
 // import {getproductTotal} from './reducer'
 // import Search from './Search'
 import MobileNav from './MobileNav';
 
-import { EmojiEmotionsOutlined, FavoriteBorderRounded , ShoppingBasketRounded, ExpandMoreRounded, ExpandLessRounded, MenuRounded, CloseRounded } from '@material-ui/icons';
+import { EmojiEmotionsOutlined, FavoriteBorderRounded , ShoppingBasketRounded, ExpandMoreRounded, ExpandLessRounded, MenuRounded, CloseRounded } from '@mui/icons-material';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
@@ -14,11 +17,15 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 export default function Header({products}) {
 
-    const [ {wishlist, cart}] = useStateValue();
+    const { useCallReducer}  = useStateValue(); 
+
+    const [{cart}, dispatchCart] = useCallReducer(cartState, cartReducer);
+    const [{wishlist}, dispatchList]= useCallReducer(listState, wishlistReducer);
+
     const [open, setOpen] = useState(false);
     const mobileMenu = document.querySelector(".mobile_nav_container")
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const displayMobileMenu = () => {
         if( typeof(mobileMenu) !== "undefined" && mobileMenu!==null){
@@ -41,7 +48,7 @@ export default function Header({products}) {
             } 
         }       
     }
-    useEffect(() =>  history.listen((location) => open && onURLChange(), [history]) )
+    useEffect(() =>  navigate.listen((location) => open && onURLChange(), [navigate]) )
 
     return (
         <section className="header">
@@ -146,7 +153,10 @@ export default function Header({products}) {
                         </span> 
                     </Link>
 
-                    {/* <Link to="/user" > */}
+                    <Link to="/user" >
+                        <EmojiEmotionsOutlined />
+                        <p>Hello, Guest</p>
+                    </Link>
                         {/* CONTACT - ROUND 0NE */}
                     <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello" className = "sidebar_social" target="_blank" rel="noreferrer">                
                     <div className="user_account_btn">
@@ -155,9 +165,7 @@ export default function Header({products}) {
                     </div>
                     </a>                    
                         {/* SIGNED IN - ROUND TWO */}
-                        {/* <EmojiEmotionsOutlined />
-                        <p>Hello, Guest</p> */}
-                    {/* </Link> */}
+
                 
                 </div>
 

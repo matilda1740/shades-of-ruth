@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import "./Header.css"
-import { Link, useHistory} from 'react-router-dom';
-import { useStateValue } from './StateProvider';
-import {getproductTotal} from './reducer'
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { auth } from "../firebase";
 import Search from './Search'
 import MobileNav from './MobileNav';
 
-import { EmojiEmotionsOutlined, FavoriteBorderRounded , ShoppingBasketRounded, ExpandMoreRounded, ExpandLessRounded, MenuRounded, CloseRounded } from '@material-ui/icons';
+import { useStateValue } from '../redux/StateProvider';
 
+import { EmojiEmotionsOutlined, FavoriteBorderRounded , ShoppingBasketRounded, ExpandMoreRounded, ExpandLessRounded, MenuRounded, CloseRounded } from '@mui/icons-material';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { useNavigateSearch } from '../Hooks/useCustom';
+import { getproductTotal } from '../redux/reducers/cartListReducer';
 
 
-export default function Header({products}) {
+export default function Header({currentUser}) {
 
-    const [ {wishlist, cart}] = useStateValue();
+    const {cartListState, cartListDispatch}  = useStateValue(); 
+    const {cart, wishlist} = cartListState;
+
     const [open, setOpen] = useState(false);
     const mobileMenu = document.querySelector(".mobile_nav_container")
 
-    const history = useHistory();
+    const navigateSearch = useNavigateSearch();
+
+    const goToSearchParam = link => () => {
+        navigateSearch("/products", {type: link});
+    }
+    let location = useLocation();
 
     const displayMobileMenu = () => {
         if( typeof(mobileMenu) !== "undefined" && mobileMenu!==null){
@@ -31,7 +39,6 @@ export default function Header({products}) {
             setOpen(false)
             }  
         }
-      
     }
 
     const onURLChange = () => {
@@ -42,7 +49,7 @@ export default function Header({products}) {
             } 
         }       
     }
-    useEffect(() =>  history.listen((location) => open && onURLChange(), [history]) )
+    useEffect(() => {open && onURLChange()}, [location]) 
 
     return (
         <section className="header">
@@ -53,10 +60,8 @@ export default function Header({products}) {
             <div className="mobile_nav_parent">
                 <div className="menuIcon" onClick={displayMobileMenu}>
                 { 
-                open ? 
-                <CloseRounded className="nav_icons x_icon" />
-                :
-                <MenuRounded className="nav_icons m_icon" />
+                open ? <CloseRounded className="nav_icons x_icon" />
+                : <MenuRounded className="nav_icons m_icon" />
                 }
                 </div>
                 {/* <MenuRounded className="nav_icons" onClick={displayMobileMenu}/> */}
@@ -77,21 +82,10 @@ export default function Header({products}) {
                 {/* SECTION TWO */}
                 <div className="navigation">
                 {/* <Search /> */}
-
-                <div className="nav_dropdown">
-                    <Link to="/lipsticks" className="nav_lips">
+                    <Link to="/products" className="nav_lips">
                         <p className="trigger_show" >Lipsticks</p>
-                        {/* <div className="show_lips"> 
-                        {products &&
-                            products.map( item => (
-                            item.type === "Lipsticks" &&
-                            <div className="dropdown_products" key={item.id}>
-                            <p>{item.name}</p>
-                            </div>
-                        ))
-                        }
-                        </div>   */}
                     </Link>
+            
 
                     <Link to="/eye-shadows" className="nav_eyes">
                         <p  className="trigger_show">Eye-Shadows</p>
@@ -119,7 +113,6 @@ export default function Header({products}) {
                         }
                         </div> */}
                     </Link>                   
-                </div>
                 </div> 
 
                 {/* SECTION THREE */}
@@ -147,25 +140,26 @@ export default function Header({products}) {
                         </span> 
                     </Link>
 
-                    {/* <Link to="/user" > */}
-                        {/* CONTACT - ROUND 0NE */}
-                    <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello" className = "sidebar_social" target="_blank" rel="noreferrer">                
+                    
+                    <Link to={currentUser ? "/profile" : "/login"} className="user_account_btn">
+                        <EmojiEmotionsOutlined />
+                        <p>Welcome, {currentUser ? currentUser.email : "Guest"}</p>
+                    </Link>
+
+                    {/* CONTACT - ROUND 0NE */}
+                    {/* <a href="https://api.whatsapp.com/send?phone=254790877635&text=Hello" className = "sidebar_social" target="_blank" rel="noreferrer">                
                     <div className="user_account_btn">
                     <FontAwesomeIcon icon={faWhatsapp} /> 
                     <p>CONTACT US</p>
                     </div>
-                    </a>                    
-                        {/* SIGNED IN - ROUND TWO */}
-                        {/* <EmojiEmotionsOutlined />
-                        <p>Hello, Guest</p> */}
-                    {/* </Link> */}
+                    </a>                     */}
                 
                 </div>
 
             </section> 
             
             <div className="mobile_nav_container closing">
-                <MobileNav /> 
+                {/* <MobileNav cart={cart} wishlist={wishlist} />  */}
             </div>
         </section>
     )

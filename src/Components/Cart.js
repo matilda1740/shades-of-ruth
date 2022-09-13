@@ -2,19 +2,17 @@ import React from 'react'
 import './Cart.css'
 
 import CartProduct from './CartProduct';
-import Footer from './Footer';
-import { useStateValue } from './StateProvider';
+import { useStateValue } from '../redux/StateProvider';
 import { Link } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 import { getSubTotal } from './reducer'
 import Process from './Process';
-import HomeProducts from './HomeProducts';
-import { NavigateBeforeRounded } from '@material-ui/icons';
-// import {getproductTotal} from './reducer'
+import { NavigateBeforeRounded } from '@mui/icons-material';
 
 export default function Cart() {
 
-    const [ {cart}] = useStateValue();
+    const {cartListState}  = useStateValue(); 
+    const {cart} = cartListState;
 
     return (
         <section className="cart_page">

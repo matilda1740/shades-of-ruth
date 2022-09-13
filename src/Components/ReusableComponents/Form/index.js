@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button';
 import KeyboardDoubleArrowRightRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowRightRounded';
+import ErrorMessage from '../ErrorMessage';
 
 const FormStyle = styled.form`
     width:100%;
@@ -20,6 +21,13 @@ const FormStyle = styled.form`
     }
     .error_message {
         color: rgb(209, 4, 4);
+    }
+    .row {
+            width:100%;
+    height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between
     }
 `;
 
@@ -130,18 +138,43 @@ export const FormContext = React.createContext({
 
 export default function Form(props) {
 
-const { icon, children,variant, handleSubmit = () => {} } = props;
+    const { icon, children,variant, handleSubmit = () => {} } = props;
 
-const [form, setForm] = useState({});
+    const [form, setForm] = useState({});
 
-const handleFormChange = (event) => {
-    const { name, value } = event.target;
-    try {
-        setForm({
-            ...form,
-            [name]: value
-        });
-    }catch (error) {console.log(error)}
+    // FORM VALIDATION
+
+    const [error, setError] = useState();
+    const [isError, setIsError] = useState(false);
+
+    const activateErrors = (el) => {
+        el.style.border ="2px solid rgb(210, 4, 45, 0.6)"
+        // el.style.backgroundColor ="rgb(244, 194, 194, 0.9)" 
+        setIsError(true)
+        setError("Please Ensure all Input Fields are Filled")
+        // setIsFormFilled(false)                           
+    }
+    const deactivateErrors = el => {
+        el.style.border = ""
+        el.style.backgroundColor =""
+        setIsError(false)
+        setError("")       
+    }
+
+    const handleFormChange = (event) => {
+        const { name, value } = event.target;
+
+        if(value === ""){
+            activateErrors(event.target) 
+        } else{
+            deactivateErrors(event.target)
+        }
+        try {
+            setForm({
+                ...form,
+                [name]: value.replace("C:\\fakepath\\", "")
+            });
+        }catch (error) {console.log(error)}
 
 };
 
@@ -151,6 +184,7 @@ return (
         form,
         handleFormChange
         }}>
+        { isError && <ErrorMessage status={"invalid"} message={error} /> }       
         {children}
         <Button 
             type={props.btnType}

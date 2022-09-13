@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './EachProduct.css'
-import {NavigateBeforeRounded, NavigateNextRounded, FiberManualRecord, FavoriteBorderRounded  } from '@material-ui/icons';
+import {NavigateBeforeRounded, NavigateNextRounded, FiberManualRecord, FavoriteBorderRounded  } from '@mui/icons-material';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";

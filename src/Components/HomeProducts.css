@@ -46,13 +46,7 @@
   justify-content: space-between;
   padding: 0 !important;
 }
-.product_info_icons,
-.faved_product {
-  font-size: 30px !important;
-}
-.faved_product {
-  color: #d00000;
-}
+
 .product_info p {
   padding-top: 10px;
 }

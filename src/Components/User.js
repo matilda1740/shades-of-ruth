@@ -65,7 +65,7 @@ export default function User() {
               </div>
               <div className="dash_selections">Account Details</div>
               <div className="dash_selections">
-              <p>My WishList</p>
+              <p>My WishListPage</p>
               <span>0</span>
               </div>
               <div className="dash_selections">

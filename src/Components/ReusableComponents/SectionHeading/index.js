@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import styled from "styled-components";
 import Button from '../Button';
 import { AddRounded } from '@mui/icons-material';
@@ -25,9 +25,10 @@ const SectionHeadingStyle = styled.div`
     }
 `;
 
-export default function SectionHeading({title, addText, pushLink, type, btnHidden}) {
+export default function SectionHeading({title, addText, pushLink, type, btnHidden, isReveal, handleReveal}) {
 
-    const history = useHistory();
+    const navigate = useNavigate();
+
     return (
         <SectionHeadingStyle>
             <div className="description">
@@ -40,7 +41,7 @@ export default function SectionHeading({title, addText, pushLink, type, btnHidde
                     icon={<AddRounded/>}
                     text={addText}
                     variant={"primary"}
-                    handleClick={() => history.push(pushLink)}
+                    handleClick={isReveal ? handleReveal : () => navigate(pushLink)}
                 />                
             }
 
