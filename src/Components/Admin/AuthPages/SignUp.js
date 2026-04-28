@@ -12,6 +12,9 @@ import { useAuth } from '../../../contexts/AuthContext';
 import ImageInput from '../../ReusableComponents/ImageInput';
 import { useSignal } from '../../../Hooks/useSignal';
 
+import { db } from '../../../firebase'
+import { collection, doc, addDoc, setDoc, Timestamp } from "firebase/firestore"; 
+
 const initialValues = {
     fname: "", 
     lname: "", 
@@ -34,16 +37,20 @@ export default function SignUp() {
     const { isAlert, alertType, alertMsg, displaySignal } = useSignal()
 
 
-    const addUserProfile = async (payload,image) => {
-        // dispatch({
-        //     type: "ADD_USER_PROFILE",
-        //     payload,
-        //     image
-        // })
+    const addUserProfile = async (payload) => {
+        addDoc(collection(db, "users"), payload)
+            .then(response => { 
+                setDoc(doc(db, "users", response.id), 
+                {...payload, 
+                id: response.id, 
+                createdAt: Timestamp.now(),
+                } , { merge:true })
+            }).catch(error => console.log(error))
+        // console.log("USER: ", payload)
     }
     const handleSubmit = async (event, form) => {
         event.preventDefault();
-        const [ fname, lname, email, phone, dob, gender, password, confirmpassword ] = form;
+        const {fname, lname, email, phone, dob, gender, password, confirmpassword } = form;
 
         if(confirmpassword === password && email !== "") {
             try{
@@ -57,8 +64,10 @@ export default function SignUp() {
                         "phone": phone,
                         "dob": dob,
                         "gender": gender
-                    }, profileImage)
-                        .then(() => displaySignal("Registration Successful!", "success"))
+                    }
+                    // , profileImage
+                    )
+                        .then(() => displaySignal("Registration Successful!", "success", "/"))
                         .catch(() => displaySignal("Error Adding Product", "failure"))
                 }
             }catch(error){console.log("Signup Error: ", error)}
@@ -118,7 +127,7 @@ export default function SignUp() {
                 name="dob" 
                 size={"half"} 
                 placeholder={"12th August 1998"} 
-                type={"datetime"} 
+                type={"date"} 
                 variant={"column covered"}
                 />     
                 <FormInput 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from 'react';
+import React from 'react';
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { useStateValue } from './redux/StateProvider';
@@ -39,19 +39,12 @@ export default function App(){
   const {cartListState} = useStateValue();
   const {cart, wishlist} = cartListState;
 
-  const [mobileNav, setMobileNav] = useState(false);
-
   // LOCAL STORAGE
   cart?.length !== 0 && localStorage.setItem('cart', JSON.stringify(cart))
   wishlist?.length !== 0 && localStorage.setItem('wishlist', JSON.stringify(wishlist))
 
   cart?.length === 0 && localStorage.removeItem('cart')
   wishlist?.length === 0 && localStorage.removeItem('wishlist')
-
-  useEffect(() => {
-    window.screen.width <= 812 ? setMobileNav(true) : setMobileNav(false)
-    }, []);
-
 
   return (
     <Router> 
@@ -76,10 +69,11 @@ export default function App(){
           element={ <AuthWrapper content={<ResetPassword />}  />} /> 
 
         <Route path="/profile" 
-          element={<Customer content={<Account userType="customer" />} />} />
+          element={<Customer content={<Account userType="customer" variant="secondary" />} />} />
 
+        {/* TRANSFORM ALL ADMIN ROUTES INTO PROTECTED ROUTES */}
         <Route path="/admin/account" 
-          element={<Admin content={<Account userType="admin" />} />} />
+          element={<Admin content={<Account userType="admin" variant="" />} />} />
 
 
         <Route path="/admin" 

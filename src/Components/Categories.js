@@ -1,6 +1,5 @@
 import React from 'react'
 import './Categories.css';
-import Timer from './Timer'
 
 import { NavigateNextRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';

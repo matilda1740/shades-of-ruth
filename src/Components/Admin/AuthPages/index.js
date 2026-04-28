@@ -34,7 +34,7 @@ export const LogoStyle = styled.div`
 `;
 
 export const AuthStyle = styled.div`
-    width: 500px;
+    width: 520px;
     height: auto;
     /* height: 400px; */
     display: flex;

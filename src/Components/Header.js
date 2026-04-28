@@ -143,7 +143,7 @@ export default function Header({currentUser}) {
                     
                     <Link to={currentUser ? "/profile" : "/login"} className="user_account_btn">
                         <EmojiEmotionsOutlined />
-                        <p>Welcome, {currentUser ? currentUser.email : "Guest"}</p>
+                        <p>Welcome, {currentUser.email ? currentUser.email : "Anonymous"}</p>
                     </Link>
 
                     {/* CONTACT - ROUND 0NE */}

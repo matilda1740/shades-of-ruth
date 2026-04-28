@@ -12,7 +12,7 @@ const ButtonStyle = styled.button`
     transition: all 0.3s ease-in-out; 
     min-width: 160px;
     min-height: 30px;
-    margin: 12px 1px;
+    margin: 12px 4px;
 
     :hover {
         cursor: pointer;

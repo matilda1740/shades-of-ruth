@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import React from 'react'
 import './AllProducts.css'
 import Categories from './Categories'
 import ProductLayout from './ReusableComponents/ProductLayout'

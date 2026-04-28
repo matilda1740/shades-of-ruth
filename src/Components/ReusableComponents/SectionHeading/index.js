@@ -23,14 +23,17 @@ const SectionHeadingStyle = styled.div`
             font-size: 24px;
         }
     }
+    &.secondary {
+          *, h3{color:  #341d17;}     
+    }
 `;
 
-export default function SectionHeading({title, addText, pushLink, type, btnHidden, isReveal, handleReveal}) {
+export default function SectionHeading({variant,title, addText, pushLink, type, btnHidden, isReveal, handleReveal}) {
 
     const navigate = useNavigate();
 
     return (
-        <SectionHeadingStyle>
+        <SectionHeadingStyle className={variant}>
             <div className="description">
                 <h3>{title}</h3>
                 <Breadcrumbs  type={type} />

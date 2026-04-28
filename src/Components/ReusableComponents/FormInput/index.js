@@ -19,7 +19,7 @@ const FormStyleInput = styled.div`
         background: transparent;
         ::placeholder{
             font-weight: 500;
-            color: rgba(18, 53, 91, 0.9);
+            color: rgba(18, 53, 91, 0.8);
         }    
     }
 
@@ -43,6 +43,8 @@ const FormStyleInput = styled.div`
         }
         input { 
             color:  rgba(128, 69, 141, 01) !important;
+            border: 1px solid rgba(128, 69, 141, 01) !important ;
+
         }
         *{
             font-weight: 300;
@@ -118,7 +120,7 @@ const FormInput = (props) => {
         }
     }, []);
     return (
-        <FormStyleInput className={ "form_inputs" + hasFocus ? `focus ${size} ${variant}` : `${size} ${variant}`}>
+        <FormStyleInput className={ `form_inputs ${size} ${variant} ${hasFocus ? "focus" : ""}`}>
             <label>{label}</label>
             <input 
                 type={type}

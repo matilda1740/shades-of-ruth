@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 import { CardTravelRounded, CommuteRounded } from '@mui/icons-material';
 import { NavigateBeforeRounded } from '@mui/icons-material';
-import Coupon from './Coupon';
 import CartProduct from './CartProduct';
 import Process from './Process';
 
@@ -24,8 +23,6 @@ export default function Checkout() {
     const [pickup, setPickup] = useState(false);
     const [delivery, setDelivery] = useState(false);
     const [fee, setFee] = useState(0);
-    const [discount, setDiscount] = useState(0);
-    const [discounted, setDiscounted] = useState(0);
 
     let amount = parseInt(getSubTotal(cart)) + parseInt(fee);
 
@@ -169,7 +166,6 @@ export default function Checkout() {
 
     // COUPON SECTION 
     const [validCoupon, setValidCoupon] = useState(false);
-    const [couponError, setCouponError] = useState("")
     
     const couponInput = document.getElementById("coupon_form")
 
@@ -179,13 +175,6 @@ export default function Checkout() {
         if(typeof(couponInput) !== "undefined" && couponInput!==null){
         couponInput.style.border = `2px solid #f70000`;
         }
-
-        // dispatch({
-        // type: "coupon_code",
-        // boolean: false,
-        // total: amount
-        // }) 
-        
     }
 
     const handleCodeEntry = e => {
@@ -194,14 +183,12 @@ export default function Checkout() {
         if(value.length !== 0){     
             if(value === "THANKYOU10"){
                 setValidCoupon(true);
-                setCouponError("");
 
                 if(typeof(couponInput) !== "undefined" && couponInput!==null){
                 couponInput.style.border = `transparent` ;                
                 }
             } else { 
                 handleInvalidCode(); 
-                setCouponError("ⓘ Please Enter Valid Coupon Code") 
             }
         }
         else {
@@ -212,16 +199,6 @@ export default function Checkout() {
 
     const handleCouponSubmit = (e) => {
         e.preventDefault();
-        if(validCoupon){
-        // dispatch({
-        //     type: "coupon_code",
-        //     boolean: true,
-        //     total: amount
-        // }) 
-        setCouponError("");
-        }else{
-            setCouponError("ⓘ Please Enter Valid Coupon Code")
-        }
     }
 
     const handleOrderDetails = (e) => {

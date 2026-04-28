@@ -8,7 +8,7 @@ import AccountOrders from './Orders'
 import AccountCart from './Cart'
 import AccountWishlist from './Wishlist'
 
-export function Account({userType}) {
+export function Account({userType, variant}) {
 
     const [ accountModule, setAccountModule] = useState("profile");
     const handleAccountModule = (input) => () => setAccountModule(input);
@@ -19,6 +19,7 @@ export function Account({userType}) {
         title="Account Details"
         type="account"
         btnHidden={true}
+        variant={variant}
         />  
         <SectionWrapper className={userType}>
             <Sidebar accountModule={accountModule} handleAccountModule={handleAccountModule}/>
