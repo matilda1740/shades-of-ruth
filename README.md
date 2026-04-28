@@ -2,7 +2,7 @@
 
 A modern, responsive React e-commerce storefront for beauty products. This project demonstrates a clean frontend implementation with a focus on user experience, product browsing, and a seamless checkout flow.
 
-[Live Demo](https://shadesofruth.com/)
+[Live Demo](https://shadesofruthbackend.web.app/)
 
 ## Project Overview
 Shades of Ruth is a portfolio-ready React application that showcases professional frontend engineering practices. It features a fully functional product catalog, wishlist system, and a multi-step checkout process.
