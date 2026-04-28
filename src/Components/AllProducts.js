@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './AllProducts.css'
 import Categories from './Categories'
-import HomeProducts from './HomeProducts'
+import ProductLayout from './ReusableComponents/ProductLayout'
 
 export default function AllProducts({products}) {
+    // let [searchparams] = useSearchParams();
+    // console.log(searchparams)
 
+    // const [currentView, setCurrentView] = useState("");
+
+    // useEffect( () => {
+
+    // }, [currentView])
     return (
         <section className="allProducts_page">
             <div className="innerProducts">
@@ -12,8 +19,9 @@ export default function AllProducts({products}) {
                     <Categories products={products}/>
                 </div>
                 <div className="products_container">
-                { products.map( item => (
-                    <HomeProducts 
+                {                   
+                products.map( item => (
+                    <ProductLayout 
                         key={item.id}
                         id={item.id}
                         type = {item.type}
@@ -21,9 +29,10 @@ export default function AllProducts({products}) {
                         image={item.src}
                         description={item.description}
                         price={item.price}
-                        quantity={item.quantity}
-                    />))
-                }                   
+                        quantity={item.quantity}             
+                    />
+                    ))
+                }  
                 </div> 
             </div>            
         </section>

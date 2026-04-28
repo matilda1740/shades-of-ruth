@@ -1,7 +1,7 @@
 import React from 'react'
 import './Process.css'
 
-import { NavigateNextRounded } from '@material-ui/icons';
+import { NavigateNextRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';

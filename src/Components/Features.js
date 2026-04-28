@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Features.css"
-import { LocalAirportRounded, CreditCardRounded, HeadsetRounded } from '@material-ui/icons';
+import { LocalAirportRounded, CreditCardRounded, HeadsetRounded } from '@mui/icons-material';
 export default function Features({features}) {
 
     return (

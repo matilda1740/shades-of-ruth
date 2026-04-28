@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {ClearRounded, SentimentDissatisfiedRounded} from '@material-ui/icons'
+import {ClearRounded, SentimentDissatisfiedRounded} from '@mui/icons-material'
 import Process from './Process'
 export default function Failure() {
     return (

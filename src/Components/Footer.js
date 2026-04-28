@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './Footer.css'
-import { ShoppingBasketRounded, CallRounded, SendRounded , PaymentRounded } from '@material-ui/icons';
+import { ShoppingBasketRounded, CallRounded, SendRounded , PaymentRounded } from '@mui/icons-material';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
@@ -75,7 +75,7 @@ export default class Footer extends Component {
                         </div>
                         <br/>
                         <a href="/lipsticks">Lipsticks</a> <br/>
-                        <a href="/eye_shadows">Eye-Shadows</a> <br/>
+                        <a href="/eye-shadows">Eye-Shadows</a> <br/>
                         <a href="/products">All Products</a> 
 
 

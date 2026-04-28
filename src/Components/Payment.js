@@ -3,7 +3,7 @@
 // import './Payment.css'
 // import { useStateValue } from './StateProvider';
 // import { useStripe } from '@stripe/react-stripe-js'
-// import { useHistory } from 'react-router';
+// import { useNavigate } from 'react-router';
 // export default function Payment({amount, stripePk}) {
     
 //     const [ {cart}, dispatch ] = useStateValue();
@@ -19,7 +19,7 @@
 //     const [payFailure, setPayFailure] = useState(false);
 
 //     // STRIPE
-//     let history = useHistory();
+//     let navigate = useNavigate();
 //     const stripe = useStripe();
 
 //     const manageStripe = async (cardDetails) => {

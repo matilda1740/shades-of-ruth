@@ -1,6 +1,6 @@
 import React from 'react'
 import './SuccessPage.css'
-import { CheckCircleOutlineRounded, ThumbUpAltRounded } from '@material-ui/icons';
+import { CheckCircleOutlineRounded, ThumbUpAltRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Process from './Process';
 

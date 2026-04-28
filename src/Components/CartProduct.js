@@ -2,23 +2,23 @@
 
 import React, { useState } from 'react'
 import './CartProduct.css'
-import {AddRounded, RemoveRounded} from '@material-ui/icons';
-import { useStateValue } from './StateProvider';
-import CurrencyFormat from 'react-currency-format';
+
+import { useStateValue } from '../redux/StateProvider';
+import {AddRounded, RemoveRounded} from '@mui/icons-material';
 
 export default function CartProduct({id, type, name, image, description, price, quantity}) {
-
-    const [ {cart, wishlist}, dispatch] = useStateValue();
+    const {cartListState, cartListDispatch}  = useStateValue(); 
+    const {cart} = cartListState;
 
     const handleIncreaseQty = (e) => {
-        dispatch({
+        cartListDispatch({
             type: "increase_qty",
             id,
             quantity
         }) 
      }
      const handleReduceQty = (e) => {
-        dispatch({
+        cartListDispatch({
             type: "reduce_quantity",
             id,
             quantity

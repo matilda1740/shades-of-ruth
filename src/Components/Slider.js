@@ -1,6 +1,6 @@
 import React from 'react'
 import './Slider.css'
-import { NavigateBeforeRounded, NavigateNextRounded} from '@material-ui/icons';
+import { NavigateBeforeRounded, NavigateNextRounded} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 export default function Slider() {
@@ -19,7 +19,7 @@ export default function Slider() {
             <div className="slider_right">
             <h2>Featured New Collection Of Eye-Shadows</h2>
             <p>Our eyeshadow palette is inspired by the colours of Earth, with beginner makeup enthusiasts in mind. Check out our Taurus collection.</p>
-            <Link to="/eye_shadows">
+            <Link to="/eye-shadows">
             <button className="btns slider_btn">View Collection</button>
             </Link>
 

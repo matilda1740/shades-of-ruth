@@ -1,0 +1,55 @@
+import React from 'react'
+import './WishListPage.css'
+
+import { useStateValue } from '../redux/StateProvider'
+
+import { FavoriteRounded, NavigateBeforeRounded } from '@mui/icons-material'
+import { Link } from 'react-router-dom';
+import ProductLayout from './ReusableComponents/ProductLayout';
+
+export default function WishListPage(){
+
+    const {cartListState}  = useStateValue(); 
+    const {wishlist} = cartListState;
+        
+    return (
+        <section className="wishlist_page">
+            { wishlist?.length > 0 ?
+            <div className="non_empty_list">
+            <h5 className="tags"><FavoriteRounded/>Your Favourite Items<FavoriteRounded/></h5>
+
+            <div className="products_container">
+
+            {wishlist?.map( item => (
+                <ProductLayout
+                    key={item.id}
+                    id={item.id}
+                    type = {item.type}
+                    name = {item.name}
+                    image={item.image}
+                    description={item.description}
+                    price={item.price}
+                    quantity={item.quantity}
+                />))
+            }   
+            </div>             
+            </div> 
+            : 
+            <div className="nothing_in_cart">
+                <p>You have no products in your WishListPage</p>
+                <div className="nothing_navigation">
+                <Link to="/" className="back_to_home_div btns">
+                <NavigateBeforeRounded />
+                <button>Back to Home</button>
+                </Link>
+                <Link to="/products" className="back_to_home_div btns">
+                <NavigateBeforeRounded />
+                <button>Shop Products</button>
+                </Link>  
+                </div>
+            
+            </div>
+            }
+        </section>
+    )
+    }

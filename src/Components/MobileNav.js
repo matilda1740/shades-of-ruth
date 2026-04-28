@@ -4,13 +4,15 @@ import './MobileNav.css'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import {  MenuRounded, FavoriteBorderRounded , HomeRounded, ShoppingCartRounded, ShoppingBasketRounded} from '@material-ui/icons';
-import { useStateValue } from './StateProvider';
-import {getproductTotal} from './reducer'
+import {  MenuRounded, FavoriteBorderRounded , HomeRounded, ShoppingCartRounded, ShoppingBasketRounded} from '@mui/icons-material';
+
+import { useStateValue } from '../redux/StateProvider';
+import cartListReducer, { initialState as cartListState, getproductTotal} from '../redux/reducers/cartListReducer';
  
 export default function MobileNav() {
-    const [ {wishlist, cart}] = useStateValue();
-    
+    const { useCallReducer}  = useStateValue(); 
+
+    const [{cart, wishlist}, dispatch] = useCallReducer(cartListState, cartListReducer);
     return (
         <section className="mobile_nav_section">
 
