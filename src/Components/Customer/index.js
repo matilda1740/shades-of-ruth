@@ -7,7 +7,7 @@ import { useAxiosGet } from '../../Hooks/axiosHooks';
 import Loader from '../ReusableComponents/Loader';
 
 export default function Customer(props) {
-  const { data, error, loaded } = useAxiosGet('http://localhost:3000/data.json');
+  const { data, error, loaded } = useAxiosGet('/data.json');
   
   const Comp = props.content;
 

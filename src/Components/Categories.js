@@ -4,12 +4,14 @@ import './Categories.css';
 import { NavigateNextRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 export default function Categories({products}) {
+    const products_list = Array.isArray(products) ? products : [];
+    
     return (
         <div className="categories_div">
         {/* <Timer/>  */}
         <h5>OUR LIPSTICKS</h5>
-        {   products &&
-            products.map( (item) => (
+        {
+            products_list.map( (item) => (
                 <div className="cat_product" key={item.id}>               
                 { item.type === "Lipsticks" && 
                     <ul><li><Link to="/lipsticks"><NavigateNextRounded />{item.name}</Link></li></ul>
@@ -18,8 +20,8 @@ export default function Categories({products}) {
             ))
         }
         <h5>OUR EYE-SHADOWS</h5>
-        {   products &&
-            products.map( (item) => (
+        {
+            products_list.map( (item) => (
                 <div className="cat_product" key={item.id}>
                 { item.type === "Eye-Shadows" && 
                     <ul><li><Link to="/eye-shadows"><NavigateNextRounded />{item.name}</Link></li></ul>
@@ -28,8 +30,8 @@ export default function Categories({products}) {
             ))
         }
         <h5>OUR BRUSHES</h5>
-        {   products &&
-            products.map( (item) => (
+        {
+            products_list.map( (item) => (
                 <div className="cat_product" key={item.id}>
                 { item.type === "Brushes" && 
                     <ul><li><Link to="/brushes"><NavigateNextRounded />{item.name}</Link></li></ul>

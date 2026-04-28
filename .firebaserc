@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "shadesofruthbackend"
-  }
+  },
+  "targets": {
+    "shadesofruthbackend": {
+      "hosting": {
+        "shadesofruthbackend": [
+          "shadesofruthbackend"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

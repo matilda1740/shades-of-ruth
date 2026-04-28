@@ -9,7 +9,7 @@ import Home from './Components/Home';
 import AllProducts from './Components/AllProducts';
 import WishListPage from './Components/WishListPage';
 import Cart from './Components/Cart';
-import Checkout from './Components/Checkout';
+import CheckOut from './Components/CheckOut';
 import Error from './Components/Error';
 import ScrollToTop from './Components/ScrollToTop';
 
@@ -55,11 +55,17 @@ export default function App(){
 
         <Route path="/products" element={<Customer content={<AllProducts />}/>} /> 
 
+        <Route path="/lipsticks" element={<Customer content={<AllProducts category="Lipsticks" />}/>} />
+
+        <Route path="/eye-shadows" element={<Customer content={<AllProducts category="Eye-Shadow" />}/>} />
+
+        <Route path="/brushes" element={<Customer content={<AllProducts category="Brushes" />}/>} /> 
+
         <Route path="/wishlist" element={<Customer content={<WishListPage />} />} />
 
         <Route path="/cart" element={<Customer content={<Cart />} />} />     
         
-        <Route path="/checkout" element={<Customer content={<Checkout />} />} /> 
+        <Route path="/checkout" element={<Customer content={<CheckOut />} />} /> 
 
         <Route path="/login" element={ <AuthWrapper content={<Login />}  />} /> 
 

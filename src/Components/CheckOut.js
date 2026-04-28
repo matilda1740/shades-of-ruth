@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
-import './Checkout.css'
+import './CheckOut.css'
 import axios from './axios';
 import { Link } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';

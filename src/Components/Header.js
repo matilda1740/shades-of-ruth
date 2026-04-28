@@ -82,7 +82,7 @@ export default function Header({currentUser}) {
                 {/* SECTION TWO */}
                 <div className="navigation">
                 {/* <Search /> */}
-                    <Link to="/products" className="nav_lips">
+                    <Link to="/lipsticks" className="nav_lips">
                         <p className="trigger_show" >Lipsticks</p>
                     </Link>
             
@@ -143,7 +143,7 @@ export default function Header({currentUser}) {
                     
                     <Link to={currentUser ? "/profile" : "/login"} className="user_account_btn">
                         <EmojiEmotionsOutlined />
-                        <p>Welcome, {currentUser.email ? currentUser.email : "Anonymous"}</p>
+                        <p>Welcome, {currentUser?.email ? currentUser.email : "Guest"}</p>
                     </Link>
 
                     {/* CONTACT - ROUND 0NE */}
